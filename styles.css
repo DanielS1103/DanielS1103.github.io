@@ -1032,3 +1032,105 @@ main {
   display: block;
   height: 16px;
 }
+
+/* =========================================================
+   ESTILOS DE TERMINAL REALISTA (shell.sh)
+========================================================= */
+
+/* Contenedor principal de la pestaña de la shell */
+.tab-panel[data-panel="shell"] {
+  background-color: #0a0b0d !important; /* Fondo negro profundo de consola */
+  border: 1px solid #1a1d24;
+  border-radius: 4px;
+  padding: 16px;
+  box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.9); /* Sombra interna para profundidad */
+  font-family: "JetBrains Mono", "IBM Plex Mono", monospace;
+}
+
+/* Cuerpo donde se imprimen las líneas de comando */
+.terminal__body {
+  max-height: 380px;
+  overflow-y: auto;
+  margin-bottom: 12px;
+  padding-right: 8px;
+}
+
+/* Estilo para cada párrafo/línea de texto que aparece */
+.terminal__body p {
+  margin: 0 0 6px 0;
+  line-height: 1.5;
+  font-size: 14px;
+  word-break: break-all;
+  /* Efecto sutil de brillo CRT de fósforo */
+  text-shadow: 0 0 1px rgba(255, 255, 255, 0.15);
+}
+
+/* Contenedor de la línea de comandos activa ($ input) */
+.terminal__input-line {
+  display: flex; /* Alinea el prompt y el input en la misma fila */
+  align-items: center;
+  font-size: 14px;
+  width: 100%;
+}
+
+/* El prompt clásico (visitante@portfolio:~$ ) */
+.terminal__input-line .prompt {
+  color: var(--cyan); /* Color verde/azul retro */
+  font-weight: bold;
+  white-space: nowrap;
+  margin-right: 8px; /* Separación exacta con lo que vas a escribir */
+  text-shadow: 0 0 3px rgba(85, 214, 194, 0.3);
+}
+
+/* Limpieza absoluta del Input del sistema */
+#term-input {
+  flex: 1; /* Ocupa todo el espacio restante horizontal */
+  background: transparent; /* Sin fondo de caja */
+  border: none; /* Sin bordes de campo web */
+  outline: none; /* Elimina la caja azul al hacer clic */
+  color: #ffffff; /* Texto que escribes en blanco puro */
+  font-family: "JetBrains Mono", "IBM Plex Mono", monospace;
+  font-size: 14px;
+  padding: 0;
+  margin: 0;
+
+  /* Hace que el cursor nativo del navegador sea un Bloque de color (Estilo Bash) */
+  caret-color: var(--amber);
+  caret-shape: block; /* Soportado en navegadores modernos como Chrome/Edge */
+}
+
+/* --- COLORES PERSONALIZADOS PARA LOS COMANDOS INTERNOS --- */
+
+/* Líneas de comando ejecutadas */
+.line-cmd {
+  color: #e2e8f0;
+}
+
+/* Errores (ej: command not found) */
+.line-err {
+  color: #ff5555 !important;
+  font-weight: 500;
+  text-shadow: 0 0 4px rgba(255, 85, 85, 0.2);
+}
+
+/* Textos secundarios o explicativos (ej: help) */
+.line-dim {
+  color: var(--text-faint);
+  font-style: italic;
+  opacity: 0.7;
+}
+
+/* --- SCROLLBAR RETRO MINIMALISTA --- */
+.terminal__body::-webkit-scrollbar {
+  width: 6px;
+}
+.terminal__body::-webkit-scrollbar-track {
+  background: #0a0b0d;
+}
+.terminal__body::-webkit-scrollbar-thumb {
+  background: #222530;
+  border-radius: 3px;
+}
+.terminal__body::-webkit-scrollbar-thumb:hover {
+  background: var(--amber); /* Cambia al color acento al pasar el mouse */
+}
