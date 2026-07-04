@@ -935,3 +935,100 @@ main {
     padding: 8px 14px;
   }
 }
+
+/* =========================================================
+   SCROLLBAR WINDOWS XP - EDICIÓN TERMINAL ÁMBAR
+========================================================= */
+
+/* 1. Ancho de la barra de scroll */
+.sidebar::-webkit-scrollbar {
+  width: 17px;
+}
+
+/* 2. Pista de fondo (Mantiene la textura punteada clásica de XP adaptada a tus oscuros) */
+.sidebar::-webkit-scrollbar-track {
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(var(--border-soft) 25%, transparent 25%),
+    radial-gradient(var(--border-soft) 25%, transparent 25%);
+  background-size: 4px 4px;
+  background-position:
+    0 0,
+    2px 2px;
+}
+
+/* 3. El deslizador (Thumb - El relieve cilíndrico de XP con tu degradado ámbar) */
+.sidebar::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    to right,
+    #ffd085 0%,
+    var(--amber) 24%,
+    #cc8114 50%,
+    var(--amber-dim) 79%,
+    #945f10 100%
+  );
+  border: 1px solid var(--amber-dim);
+  border-radius: 3px;
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.2);
+}
+
+/* Estado Hover (Un ámbar ligeramente más brillante) */
+.sidebar::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    to right,
+    #ffe1b3 0%,
+    #ffb64d 24%,
+    #e69219 50%,
+    #945f10 79%,
+    #b87514 100%
+  );
+}
+
+/* Estado Click/Active */
+.sidebar::-webkit-scrollbar-thumb:active {
+  background: linear-gradient(
+    to right,
+    #cc8114 0%,
+    var(--amber-dim) 24%,
+    #54390f 50%,
+    #302008 79%,
+    #4d330d 100%
+  );
+}
+
+/* 4. Botón de flecha hacia ARRIBA (Estructura XP con colores de tus paneles) */
+.sidebar::-webkit-scrollbar-button:vertical:decrement {
+  background: linear-gradient(
+    to bottom,
+    var(--bg-panel-2),
+    var(--border) 50%,
+    var(--border-soft) 51%,
+    var(--bg-panel) 100%
+  );
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  /* El color %23ffa62b equivale a tu variable var(--amber) en formato SVG */
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'><polygon points='8,5 4,11 12,11' fill='%23ffa62b'/></svg>");
+  background-repeat: no-repeat;
+  background-position: center;
+  display: block;
+  height: 16px;
+}
+
+/* 5. Botón de flecha hacia ABAJO */
+.sidebar::-webkit-scrollbar-button:vertical:increment {
+  background: linear-gradient(
+    to bottom,
+    var(--bg-panel-2),
+    var(--border) 50%,
+    var(--border-soft) 51%,
+    var(--bg-panel) 100%
+  );
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'><polygon points='8,11 4,5 12,5' fill='%23ffa62b'/></svg>");
+  background-repeat: no-repeat;
+  background-position: center;
+  display: block;
+  height: 16px;
+}
