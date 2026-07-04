@@ -164,6 +164,10 @@ message:   viste el código Konami. eso ya dice bastante de vos.
             <a href="#workspace" data-tab="resume"
               >[ RESUME ]<small>RESUME.PDF</small></a
             >
+            <a href="#retro-station"
+              >[ MAC_RETRO ]<small>BOOT_STATION.EXE</small></a
+            >
+            <a href="#changelog">[ CHANGELOG ]<small>CHANGELOG.LOG</small></a>
           </nav>
 
           <a href="#contacto" class="cta">
@@ -690,6 +694,199 @@ message:   viste el código Konami. eso ya dice bastante de vos.
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      <!-- ============ BOOT_STATION: MAC RETRO INTERACTIVA ============ -->
+      <section class="retro-station" id="retro-station">
+        <p class="section-label">// BOOT_STATION.EXE</p>
+        <div class="retro-station__grid">
+          <div class="retro-station__copy">
+            <h2 class="retro-station__title">¿LE DAMOS<br />ENCENDIDO?</h2>
+            <p class="retro-station__text">
+              Escondí un mini sistema operativo adentro de esta máquina.
+              Encendela con el botón de power, abrí un par de archivos del
+              escritorio y date una vuelta — como en 1984, pero sin el
+              ventilador ruidoso.
+            </p>
+            <ul class="stat-list retro-station__specs">
+              <li><span>CPU</span><span>Motorola 68000 @ 8MHz*</span></li>
+              <li><span>RAM</span><span>128K*</span></li>
+              <li><span>OS</span><span>System 6*</span></li>
+              <li><span>REAL_STACK</span><span>HTML · CSS · JS</span></li>
+            </ul>
+            <p class="retro-station__hint">
+              *nostalgia incluida — hardware no.
+            </p>
+          </div>
+
+          <div class="mac" id="retro-mac" data-state="off">
+            <div class="mac__chassis">
+              <div class="mac__led" id="mac-led" aria-hidden="true"></div>
+              <div class="mac__screen-bezel">
+                <div class="mac__menubar">
+                  <button
+                    class="mac__apple"
+                    id="mac-apple-btn"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    aria-label="Menú Apple"
+                  >
+                    ◆
+                  </button>
+                  <span>Archivo</span>
+                  <span>Edición</span>
+                  <span>Ver</span>
+                  <span>Especial</span>
+
+                  <div class="mac__menu" id="mac-apple-menu" role="menu">
+                    <button role="menuitem" id="mac-about-btn">
+                      Acerca de esta Mac...
+                    </button>
+                    <button role="menuitem" id="mac-shutdown-btn">
+                      Apagar
+                    </button>
+                  </div>
+                </div>
+
+                <div class="mac__screen" id="mac-screen">
+                  <div class="mac__standby">STANDBY</div>
+                  <pre class="mac__boot" id="mac-boot"></pre>
+
+                  <div class="mac__desktop" id="mac-desktop">
+                    <button class="mac__icon" data-window="about-me">
+                      <span class="mac__icon-glyph">▤</span>SOBRE_MI.TXT
+                    </button>
+                    <button class="mac__icon" data-window="skills">
+                      <span class="mac__icon-glyph">◆</span>HABILIDADES.PKG
+                    </button>
+                    <button class="mac__icon" data-window="contact">
+                      <span class="mac__icon-glyph">✉</span>CONTACTO.SH
+                    </button>
+
+                    <div class="mac__window" data-window="about-me" hidden>
+                      <div class="mac__window-bar">
+                        <span class="mac__window-close" data-close></span>
+                        <span class="mac__window-title">sobre_mi.txt</span>
+                      </div>
+                      <div class="mac__window-body">
+                        <p>
+                          Hola, soy [ TU_NOMBRE ] — construyo [ TU_ENFOQUE ]. Me
+                          obsesiona la simplicidad y los sistemas bien pensados.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div class="mac__window" data-window="skills" hidden>
+                      <div class="mac__window-bar">
+                        <span class="mac__window-close" data-close></span>
+                        <span class="mac__window-title">habilidades.pkg</span>
+                      </div>
+                      <div class="mac__window-body">
+                        <div class="mac__tags">
+                          <span>[ TU_STACK_1 ]</span>
+                          <span>[ TU_STACK_2 ]</span>
+                          <span>[ TU_STACK_3 ]</span>
+                          <span>[ TU_STACK_4 ]</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="mac__window" data-window="contact" hidden>
+                      <div class="mac__window-bar">
+                        <span class="mac__window-close" data-close></span>
+                        <span class="mac__window-title">contacto.sh</span>
+                      </div>
+                      <div class="mac__window-body">
+                        <p>&gt; echo $EMAIL</p>
+                        <p class="mac__window-link">
+                          <a href="mailto:tu@email.com">tu@email.com</a>
+                        </p>
+                        <p>
+                          <a href="#contacto">ir a la sección de contacto →</a>
+                        </p>
+                      </div>
+                    </div>
+
+                    <div class="mac__window" data-window="about-mac" hidden>
+                      <div class="mac__window-bar">
+                        <span class="mac__window-close" data-close></span>
+                        <span class="mac__window-title"
+                          >Acerca de esta Mac</span
+                        >
+                      </div>
+                      <div class="mac__window-body">
+                        <p>MacPortfolio SE</p>
+                        <p>System 6.0.8 (emulado con cariño)</p>
+                        <p>Memoria: 128K sobre RAM real, ∞ sobre café.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mac__front">
+                <span class="mac__brand">MacPortfolio <small>SE</small></span>
+                <button
+                  class="mac__power"
+                  id="mac-power"
+                  aria-label="Encender o apagar la Mac"
+                >
+                  <span aria-hidden="true">⏻</span>
+                </button>
+              </div>
+              <div class="mac__vents" aria-hidden="true"></div>
+            </div>
+            <div class="mac__base" aria-hidden="true"></div>
+            <p class="mac__caption">click en el botón de encendido ⏻</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ CHANGELOG DEL PROPIO PORTFOLIO ============ -->
+      <section class="changelog" id="changelog">
+        <p class="section-label">// CHANGELOG.LOG</p>
+        <div class="changelog__list">
+          <article class="changelog__entry">
+            <div class="changelog__meta">
+              <span class="changelog__version">v1.2.0</span>
+              <span class="changelog__tag changelog__tag--wip"
+                >EN_DESARROLLO</span
+              >
+              <span class="changelog__date">próximamente</span>
+            </div>
+            <ul>
+              <li>~ sumando referencias a proyectos reales.</li>
+              <li>~ próxima función: [ TU_PRÓXIMA_IDEA ].</li>
+            </ul>
+          </article>
+
+          <article class="changelog__entry">
+            <div class="changelog__meta">
+              <span class="changelog__version">v1.1.0</span>
+              <span class="changelog__tag">FEATURE</span>
+              <span class="changelog__date">2025</span>
+            </div>
+            <ul>
+              <li>+ mini Mac interactiva en /boot_station.</li>
+              <li>+ paneles tipo ventana en /my_details.</li>
+              <li>+ modo de movimiento reducido respetado en toda la UI.</li>
+            </ul>
+          </article>
+
+          <article class="changelog__entry">
+            <div class="changelog__meta">
+              <span class="changelog__version">v1.0.0</span>
+              <span class="changelog__tag changelog__tag--major"
+                >LANZAMIENTO</span
+              >
+              <span class="changelog__date">2024</span>
+            </div>
+            <ul>
+              <li>+ boot sequence, matrix rain, shell interactiva.</li>
+              <li>+ estructura base del portfolio.</li>
+            </ul>
+          </article>
         </div>
       </section>
 
