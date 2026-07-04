@@ -68,69 +68,41 @@ function tickClock() {
 }
 
 /* =========================================================
-   3) TABS DE LA TERMINAL (contenido estático por pestaña)
+   3) TABS DEL WORKSPACE (case_studies / details / gallery / ...)
 ========================================================= */
-const tabContent = {
-  about: [
-    { cls: "line-cmd", text: "$ cat sobre_mi.txt" },
-    {
-      cls: "",
-      text: "Reemplaza este texto con tu bio real: quién eres, qué construyes",
-    },
-    {
-      cls: "",
-      text: "y qué tipo de proyectos te interesan. 2-4 líneas es suficiente.",
-    },
-    {
-      cls: "line-dim",
-      text: "// tip: cuenta un logro concreto, no solo adjetivos.",
-    },
-  ],
-  skills: [
-    { cls: "line-cmd", text: "$ cat habilidades.json" },
-    { cls: "", text: '{ "frontend": ["HTML", "CSS", "JavaScript", "..."],' },
-    { cls: "", text: '  "backend":  ["Node", "Python", "..."],' },
-    { cls: "", text: '  "tools":    ["Git", "Docker", "..."] }' },
-    { cls: "line-dim", text: "// reemplaza con tu stack real." },
-  ],
-  help: [
-    { cls: "line-cmd", text: "$ ./help.sh" },
-    {
-      cls: "",
-      text: "Esta terminal también es interactiva: usa el campo de abajo.",
-    },
-    {
-      cls: "",
-      text: "Comandos: help, about, projects, skills, contact, whoami, clear",
-    },
-  ],
-};
+function activateTab(name) {
+  const tabs = document.querySelectorAll(".tab");
+  const panels = document.querySelectorAll(".tab-panel");
 
-function renderTab(name) {
-  const out = document.getElementById("term-output");
-  out.innerHTML = "";
-  tabContent[name].forEach((line) => {
-    const p = document.createElement("p");
-    if (line.cls) p.className = line.cls;
-    p.textContent = line.text;
-    out.appendChild(p);
+  tabs.forEach((t) => {
+    const active = t.dataset.panel === name;
+    t.classList.toggle("is-active", active);
+    t.setAttribute("aria-selected", active ? "true" : "false");
+  });
+  panels.forEach((p) => {
+    p.classList.toggle("is-active", p.dataset.panel === name);
   });
 }
 
 function setupTabs() {
-  const tabs = document.querySelectorAll(".tab");
-  tabs.forEach((tab) => {
-    tab.addEventListener("click", () => {
-      tabs.forEach((t) => {
-        t.classList.remove("is-active");
-        t.setAttribute("aria-selected", "false");
+  document.querySelectorAll(".tab").forEach((tab) => {
+    tab.addEventListener("click", () => activateTab(tab.dataset.panel));
+  });
+}
+
+/* Enlaces del sidebar (QUICK_ACCESS) que abren una pestaña específica
+   dentro del workspace, además de hacer scroll hasta él. */
+function setupQuickAccess() {
+  document.querySelectorAll(".quick-access a[data-tab]").forEach((link) => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+      activateTab(link.dataset.tab);
+      document.getElementById("workspace").scrollIntoView({
+        behavior: reduceMotion ? "auto" : "smooth",
+        block: "start",
       });
-      tab.classList.add("is-active");
-      tab.setAttribute("aria-selected", "true");
-      renderTab(tab.dataset.tab);
     });
   });
-  renderTab("about");
 }
 
 /* =========================================================
@@ -157,7 +129,7 @@ function setupShell() {
   const commands = {
     help() {
       print(
-        "Comandos disponibles: help, about, projects, skills, contact, whoami, sudo hire-me, clear",
+        "Comandos disponibles: help, about, projects, skills, gallery, contact, whoami, sudo hire-me, clear",
       );
     },
     about() {
@@ -166,17 +138,16 @@ function setupShell() {
       );
     },
     projects() {
-      document
-        .getElementById("proyectos")
-        .scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" });
-      print("Saltando a la sección de proyectos...", "line-dim");
+      activateTab("cases");
+      print("Abriendo case_studies.sh...", "line-dim");
     },
     skills() {
-      renderTab("skills");
-      document
-        .querySelectorAll(".tab")
-        .forEach((t) => t.classList.remove("is-active"));
-      document.querySelector('[data-tab="skills"]').classList.add("is-active");
+      activateTab("details");
+      print("Abriendo my_details.json...", "line-dim");
+    },
+    gallery() {
+      activateTab("gallery");
+      print("Abriendo gallery.sh...", "line-dim");
     },
     contact() {
       document
@@ -242,6 +213,7 @@ document.addEventListener("DOMContentLoaded", () => {
   tickClock();
   setInterval(tickClock, 1000);
   setupTabs();
+  setupQuickAccess();
   setupShell();
   document.getElementById("year").textContent = new Date().getFullYear();
 });
