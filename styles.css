@@ -1,4 +1,65 @@
 /* =========================================================
+   MATRIX RAIN (fondo ambiental)
+========================================================= */
+#matrix-rain {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  opacity: 0.16;
+  pointer-events: none;
+}
+
+/* =========================================================
+   EASTER EGG OVERLAY (código Konami)
+========================================================= */
+#easter-egg {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translate(-50%, 20px);
+  z-index: 1000;
+  background: var(--bg-panel);
+  border: 1px solid var(--amber);
+  padding: 16px 20px;
+  max-width: 90vw;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease,
+    visibility 0.35s ease;
+}
+#easter-egg.is-active {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
+}
+#easter-egg pre {
+  margin: 0;
+  font-size: 12px;
+  color: var(--amber);
+  white-space: pre-wrap;
+}
+
+/* =========================================================
+   STATUS BAR — log ticker central
+========================================================= */
+.statusbar__center {
+  color: var(--cyan);
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  opacity: 0.85;
+}
+@media (max-width: 780px) {
+  .statusbar__center {
+    display: none;
+  }
+}
+
+/* =========================================================
    TOKENS
 ========================================================= */
 :root {
@@ -233,9 +294,52 @@ main {
   font-size: clamp(2rem, 3.4vw, 2.6rem);
   line-height: 0.98;
   letter-spacing: -0.01em;
-  margin: 0 0 22px;
+  margin: 0 0 8px;
   text-transform: uppercase;
   color: var(--amber);
+  cursor: default;
+}
+.scramble-line {
+  display: inline-block;
+}
+.scramble-hint {
+  font-size: 10px;
+  color: var(--text-faint);
+  letter-spacing: 0.02em;
+  margin: 0 0 22px;
+}
+
+.sys-meter {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--border-soft);
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.sys-meter__row {
+  display: grid;
+  grid-template-columns: 30px 1fr 34px;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  color: var(--text-faint);
+  letter-spacing: 0.04em;
+}
+.bar {
+  height: 5px;
+  background: var(--border-soft);
+  overflow: hidden;
+}
+.bar__fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--amber-dim), var(--amber));
+  transition: width 1.1s ease;
+}
+.sys-meter__val {
+  text-align: right;
+  color: var(--text-dim);
 }
 
 .status-card {
@@ -715,6 +819,45 @@ main {
 }
 
 /* =========================================================
+   CIRCUIT DIVIDER (pulso de datos entre secciones)
+========================================================= */
+.circuit-divider {
+  max-width: var(--maxw);
+  margin: 8px auto 0;
+  padding: 0 24px;
+}
+.circuit-divider svg {
+  width: 100%;
+  height: 44px;
+  display: block;
+  overflow: visible;
+}
+.circuit-divider__path {
+  fill: none;
+  stroke: var(--border);
+  stroke-width: 1.5;
+}
+.circuit-divider__node {
+  fill: var(--bg);
+  stroke: var(--amber-dim);
+  stroke-width: 1.5;
+}
+.circuit-divider__pulse {
+  fill: var(--amber);
+  filter: drop-shadow(0 0 4px var(--amber));
+}
+.circuit-divider__pulse--b {
+  fill: var(--cyan);
+  filter: drop-shadow(0 0 4px var(--cyan));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .circuit-divider__pulse {
+    display: none;
+  }
+}
+
+/* =========================================================
    CONTACT
 ========================================================= */
 .contact__panel {
@@ -750,6 +893,12 @@ main {
   border-top: 1px solid var(--border-soft);
   color: var(--text-faint);
   font-size: 11px;
+}
+.site-footer p {
+  margin: 0 0 6px;
+}
+.site-footer__hint {
+  opacity: 0.7;
 }
 
 /* =========================================================

@@ -13,6 +13,9 @@ function pad(n) {
    1) BOOT SEQUENCE
 ========================================================= */
 const bootLines = [
+  " ┌─┐┌─┐┬─┐┌┬┐┌─┐┌─┐┬  ┬┌─┐",
+  " ├─┘│ │├┬┘ │ ├┤ │ ││  │ │",
+  " ┴  └─┘┴└─ ┴ └  └─┘┴─┘┴└─┘",
   "SYS_NAME: PORTFOLIO_CORE_v1.0",
   "KERNEL: 6.5.0-WEB",
   "INIT: cargando módulos de presentación...",
@@ -97,11 +100,187 @@ function setupQuickAccess() {
     link.addEventListener("click", (e) => {
       e.preventDefault();
       activateTab(link.dataset.tab);
-      document.getElementById("workspace").scrollIntoView({
-        behavior: reduceMotion ? "auto" : "smooth",
-        block: "start",
-      });
+      document
+        .getElementById("workspace")
+        .scrollIntoView({
+          behavior: reduceMotion ? "auto" : "smooth",
+          block: "start",
+        });
     });
+  });
+}
+
+/* =========================================================
+   5) MATRIX RAIN (canvas ambiental de fondo)
+========================================================= */
+function setupMatrixRain() {
+  const canvas = document.getElementById("matrix-rain");
+  if (!canvas || reduceMotion) return; // sin animación si se prefiere menos movimiento
+
+  const ctx = canvas.getContext("2d");
+  const chars = "01アイウエオカキクケコ{}[]<>/\\;:_-+=$#·".split("");
+  let cols, drops;
+
+  function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    cols = Math.floor(canvas.width / 16);
+    drops = new Array(cols).fill(0).map(() => Math.random() * -50);
+  }
+  resize();
+  window.addEventListener("resize", resize);
+
+  function draw() {
+    ctx.fillStyle = "rgba(10,11,13,0.09)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.font = '14px "JetBrains Mono", monospace';
+
+    for (let i = 0; i < cols; i++) {
+      const char = chars[Math.floor(Math.random() * chars.length)];
+      const x = i * 16;
+      const y = drops[i] * 16;
+      ctx.fillStyle = Math.random() > 0.94 ? "#55d6c2" : "#ffa62b";
+      ctx.fillText(char, x, y);
+      if (y > canvas.height && Math.random() > 0.975) {
+        drops[i] = 0;
+      }
+      drops[i]++;
+    }
+  }
+  setInterval(draw, 60);
+}
+
+/* =========================================================
+   6) SCRAMBLE / DECRYPT TEXT (nombre del sidebar)
+========================================================= */
+const SCRAMBLE_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ01#$%&*";
+
+function scrambleReveal(el) {
+  const final = el.dataset.text;
+  if (reduceMotion) {
+    el.textContent = final;
+    return;
+  }
+
+  let frame = 0;
+  const totalFrames = 18;
+  clearInterval(el._scrambleTimer);
+
+  el._scrambleTimer = setInterval(() => {
+    frame++;
+    const revealCount = Math.floor((frame / totalFrames) * final.length);
+    let out = "";
+    for (let i = 0; i < final.length; i++) {
+      if (i < revealCount) {
+        out += final[i];
+      } else if (final[i] === " ") {
+        out += " ";
+      } else {
+        out +=
+          SCRAMBLE_CHARS[Math.floor(Math.random() * SCRAMBLE_CHARS.length)];
+      }
+    }
+    el.textContent = out;
+    if (frame >= totalFrames) {
+      el.textContent = final;
+      clearInterval(el._scrambleTimer);
+    }
+  }, 40);
+}
+
+function setupScrambleName() {
+  const lines = document.querySelectorAll(".scramble-line");
+  lines.forEach((el, i) => {
+    setTimeout(() => scrambleReveal(el), i * 120);
+  });
+  const heading = document.getElementById("scramble-name");
+  if (heading) {
+    heading.addEventListener("mouseenter", () => {
+      lines.forEach((el, i) => setTimeout(() => scrambleReveal(el), i * 60));
+    });
+  }
+}
+
+/* =========================================================
+   7) SYS_METER (CPU / MEM / NET simulados, con vida propia)
+========================================================= */
+function setupSysMeter() {
+  const meters = document.querySelectorAll("[data-meter]");
+  if (!meters.length) return;
+
+  function update() {
+    meters.forEach((meter) => {
+      const value = 15 + Math.floor(Math.random() * 70);
+      meter.style.width = value + "%";
+      const label = document.querySelector(
+        `[data-val="${meter.dataset.meter}"]`,
+      );
+      if (label) label.textContent = value + "%";
+    });
+  }
+  update();
+  setInterval(update, reduceMotion ? 4000 : 2200);
+}
+
+/* =========================================================
+   8) STATUS LOG TICKER (barra superior)
+========================================================= */
+const statusLogLines = [
+  "&gt; render_loop: 60fps estables",
+  "&gt; cache: warm",
+  "&gt; paquetes_de_datos: nominal",
+  "&gt; sin errores en consola",
+  "&gt; accesibilidad: focus-visible activo",
+  "&gt; esperando input del visitante...",
+];
+
+function setupStatusLog() {
+  const el = document.getElementById("status-log");
+  if (!el) return;
+  let i = 0;
+  function next() {
+    el.style.opacity = 0;
+    setTimeout(
+      () => {
+        i = (i + 1) % statusLogLines.length;
+        el.innerHTML = statusLogLines[i];
+        el.style.opacity = 0.85;
+      },
+      reduceMotion ? 0 : 250,
+    );
+  }
+  el.style.transition = "opacity .25s ease";
+  setInterval(next, 4200);
+}
+
+/* =========================================================
+   9) EASTER EGG — CÓDIGO KONAMI
+========================================================= */
+function setupKonami() {
+  const sequence = [
+    "ArrowUp",
+    "ArrowUp",
+    "ArrowDown",
+    "ArrowDown",
+    "ArrowLeft",
+    "ArrowRight",
+    "ArrowLeft",
+    "ArrowRight",
+    "b",
+    "a",
+  ];
+  let progress = 0;
+
+  document.addEventListener("keydown", (e) => {
+    const key = e.key.length === 1 ? e.key.toLowerCase() : e.key;
+    progress = key === sequence[progress] ? progress + 1 : 0;
+
+    if (progress === sequence.length) {
+      progress = 0;
+      const egg = document.getElementById("easter-egg");
+      egg.classList.add("is-active");
+      setTimeout(() => egg.classList.remove("is-active"), 5000);
+    }
   });
 }
 
@@ -215,5 +394,10 @@ document.addEventListener("DOMContentLoaded", () => {
   setupTabs();
   setupQuickAccess();
   setupShell();
+  setupMatrixRain();
+  setupScrambleName();
+  setupSysMeter();
+  setupStatusLog();
+  setupKonami();
   document.getElementById("year").textContent = new Date().getFullYear();
 });

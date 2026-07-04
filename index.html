@@ -1,185 +1,333 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TU NOMBRE — Portfolio</title>
-<meta name="description" content="Portfolio personal con estética de terminal.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;0,800;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TU NOMBRE — Portfolio</title>
+    <meta
+      name="description"
+      content="Portfolio personal con estética de terminal."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;0,800;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- ============ BOOT OVERLAY ============ -->
+    <div id="boot-overlay" aria-hidden="true">
+      <pre id="boot-text"></pre>
+    </div>
 
-<!-- ============ BOOT OVERLAY ============ -->
-<div id="boot-overlay" aria-hidden="true">
-  <pre id="boot-text"></pre>
-</div>
+    <!-- ============ MATRIX RAIN (fondo ambiental) ============ -->
+    <canvas id="matrix-rain" aria-hidden="true"></canvas>
 
-<!-- ============ SCANLINE / NOISE OVERLAY ============ -->
-<div class="crt-overlay" aria-hidden="true"></div>
+    <!-- ============ SCANLINE / NOISE OVERLAY ============ -->
+    <div class="crt-overlay" aria-hidden="true"></div>
 
-<!-- ============ TOP STATUS BAR ============ -->
-<header class="statusbar">
-  <div class="statusbar__left">
-    <span class="dot dot--live" aria-hidden="true"></span>
-    <span>SYSTEM://PORTFOLIO_v1.0</span>
-  </div>
-  <div class="statusbar__right">
-    <span id="uptime">UPTIME: 00:00:00</span>
-    <span class="sep">·</span>
-    <span id="clock">LOCAL: --:--:--</span>
-  </div>
-</header>
+    <!-- ============ EASTER EGG (código Konami) ============ -->
+    <div id="easter-egg" aria-live="polite">
+      <pre>
+&gt; sudo ./unlock_easter_egg.sh
 
-<main>
-  <!-- ============ SPLIT: SIDEBAR + WORKSPACE ============ -->
-  <section class="split" id="inicio">
+ACCESS_GRANTED
+--------------
+role:      RECRUITER_FAST_TRACK
+clearance: LEVEL_9
+message:   viste el código Konami. eso ya dice bastante de vos.
+</pre
+      >
+    </div>
 
-    <!-- ---------- SIDEBAR (about me) ---------- -->
-    <aside class="sidebar">
-      <p class="eyebrow">BOOT_SEQUENCE :: <span class="ok">COMPLETE</span></p>
-      <h1 class="sidebar__name">TU<br>NOMBRE<br>AQUÍ</h1>
-
-      <div class="status-card">
-        <p class="status-card__label">AVAILABILITY_STATUS</p>
-        <div class="status-card__body">
-          <div class="avatar-box" aria-hidden="true">
-            <span>TU</span>
-          </div>
-          <div>
-            <p class="badge"><span class="dot dot--live" aria-hidden="true"></span> ACTIVE_READY</p>
-            <ul class="stat-list stat-list--compact">
-              <li><span>SYSTEM_LOAD</span><span>29%</span></li>
-              <li><span>FOCUS_MODE</span><span>[ TU ESPECIALIDAD ]</span></li>
-              <li><span>AI_CONTEXT</span><span>ENABLED</span></li>
-            </ul>
-          </div>
-        </div>
+    <!-- ============ TOP STATUS BAR ============ -->
+    <header class="statusbar">
+      <div class="statusbar__left">
+        <span class="dot dot--live" aria-hidden="true"></span>
+        <span>SYSTEM://PORTFOLIO_v1.0</span>
       </div>
-
-      <div class="badges-row">
-        <div class="badge-box">
-          <span class="badge-box__top">FEATURED_ON</span>
-          <span class="badge-box__main">[ TU_LISTADO ]</span>
-        </div>
-        <div class="badge-box">
-          <span class="badge-box__top">CERTIFIED_BY</span>
-          <span class="badge-box__main">[ TU_CERT ]</span>
-        </div>
-        <div class="badge-box">
-          <span class="badge-box__top">EXPERIENCE</span>
-          <span class="badge-box__main">X+ YEARS</span>
-        </div>
-        <div class="badge-box badge-box--accent">
-          <span class="badge-box__top">FOCUS_CORE</span>
-          <span class="badge-box__main">[ TU_ROL ]</span>
-        </div>
+      <div class="statusbar__center" id="status-log" aria-hidden="true">
+        &gt; inicializando...
       </div>
+      <div class="statusbar__right">
+        <span id="uptime">UPTIME: 00:00:00</span>
+        <span class="sep">·</span>
+        <span id="clock">LOCAL: --:--:--</span>
+      </div>
+    </header>
 
-      <p class="section-label section-label--tight">MANIFESTO.EXE</p>
-      <blockquote class="manifesto">
-        <p>&gt; CONSTRUIR_ANTES_DE_ADORNAR.</p>
-        <p>&gt; CLARIDAD_SOBRE_COMPLEJIDAD.</p>
-        <p>&gt; EL_DETALLE_ES_LA_FUNCIÓN.</p>
-        <p>&gt; SHIP_IT.</p>
-      </blockquote>
+    <main>
+      <!-- ============ SPLIT: SIDEBAR + WORKSPACE ============ -->
+      <section class="split" id="inicio">
+        <!-- ---------- SIDEBAR (about me) ---------- -->
+        <aside class="sidebar">
+          <p class="eyebrow">
+            BOOT_SEQUENCE :: <span class="ok">COMPLETE</span>
+          </p>
+          <h1 class="sidebar__name" id="scramble-name">
+            <span class="scramble-line" data-text="TU">TU</span><br />
+            <span class="scramble-line" data-text="NOMBRE">NOMBRE</span><br />
+            <span class="scramble-line" data-text="AQUÍ">AQUÍ</span>
+          </h1>
+          <p class="scramble-hint">
+            // pasa el mouse por tu nombre para re-renderizarlo
+          </p>
 
-      <p class="section-label section-label--tight">QUICK_ACCESS</p>
-      <nav class="quick-access" aria-label="Accesos rápidos">
-        <a href="#workspace" data-tab="details">[ SOBRE_MÍ ]<small>MY_DETAILS.JSON</small></a>
-        <a href="#workspace" data-tab="cases">[ PROYECTOS ]<small>CASE_STUDIES.SH</small></a>
-        <a href="https://github.com/" target="_blank" rel="noopener">[ GITHUB ]<small>VERIFIED</small></a>
-        <a href="https://www.linkedin.com/" target="_blank" rel="noopener">[ LINKEDIN ]<small>PROFILE</small></a>
-        <a href="#workspace" data-tab="resume">[ RESUME ]<small>RESUME.PDF</small></a>
-      </nav>
+          <div class="status-card">
+            <p class="status-card__label">AVAILABILITY_STATUS</p>
+            <div class="status-card__body">
+              <div class="avatar-box" aria-hidden="true">
+                <span>TU</span>
+              </div>
+              <div>
+                <p class="badge">
+                  <span class="dot dot--live" aria-hidden="true"></span>
+                  ACTIVE_READY
+                </p>
+                <ul class="stat-list stat-list--compact">
+                  <li>
+                    <span>FOCUS_MODE</span><span>[ TU ESPECIALIDAD ]</span>
+                  </li>
+                  <li><span>AI_CONTEXT</span><span>ENABLED</span></li>
+                </ul>
+              </div>
+            </div>
 
-      <a href="#contacto" class="cta">
-        <span class="cta__prompt">EXECUTE:</span> START_COLLABORATION()<span class="cursor">_</span>
-      </a>
-    </aside>
-
-    <!-- ---------- WORKSPACE (tabbed terminal) ---------- -->
-    <div class="workspace" id="workspace">
-      <div class="terminal">
-        <div class="terminal__titlebar">
-          <div class="terminal__dots"><span></span><span></span><span></span></div>
-          <span class="terminal__title">PORTFOLIO_TERMINAL ~ workspace.sh</span>
-          <div class="terminal__meta">
-            <span>HOST: LOCALHOST</span>
-            <span class="sep">·</span>
-            <span>SHELL: BASH</span>
+            <div class="sys-meter" aria-hidden="true">
+              <div class="sys-meter__row">
+                <span>CPU</span>
+                <div class="bar">
+                  <div class="bar__fill" data-meter="cpu"></div>
+                </div>
+                <span class="sys-meter__val" data-val="cpu">--%</span>
+              </div>
+              <div class="sys-meter__row">
+                <span>MEM</span>
+                <div class="bar">
+                  <div class="bar__fill" data-meter="mem"></div>
+                </div>
+                <span class="sys-meter__val" data-val="mem">--%</span>
+              </div>
+              <div class="sys-meter__row">
+                <span>NET</span>
+                <div class="bar">
+                  <div class="bar__fill" data-meter="net"></div>
+                </div>
+                <span class="sys-meter__val" data-val="net">--%</span>
+              </div>
+            </div>
           </div>
-        </div>
 
-        <div class="terminal__tabs" role="tablist">
-          <button class="tab is-active" data-panel="cases" role="tab" aria-selected="true">&gt;_ case_studies.sh</button>
-          <button class="tab" data-panel="details" role="tab" aria-selected="false">my_details.json</button>
-          <button class="tab" data-panel="gallery" role="tab" aria-selected="false">gallery.sh</button>
-          <button class="tab" data-panel="deploys" role="tab" aria-selected="false">live_deploys.sh</button>
-          <button class="tab" data-panel="resume" role="tab" aria-selected="false">resume.pdf</button>
-          <button class="tab" data-panel="shell" role="tab" aria-selected="false">shell.sh</button>
-        </div>
-
-        <!-- ===== PANEL: case_studies.sh ===== -->
-        <div class="tab-panel is-active" data-panel="cases">
-          <p class="cmd-line"><span class="prompt">user@portfolio:~$</span> ls -la --verbose ./proyectos</p>
-          <div class="card-grid">
-
-            <article class="project-card">
-              <span class="project-card__node">NODE_01</span>
-              <div class="thumb thumb--a"><span>IMG_PLACEHOLDER</span></div>
-              <h3>proyecto_uno.app</h3>
-              <p class="project-card__meta"><span class="dot dot--live" aria-hidden="true"></span> STATUS: ONLINE <span class="sep">·</span> ROL: [ TU_ROL ]</p>
-              <div class="tag-row">
-                <span>&gt; UI_DESIGN</span>
-                <span>&gt; REACT</span>
-                <span>&gt; NODE</span>
-              </div>
-              <a href="#" target="_blank" rel="noopener" class="open">abrir_caso →</a>
-            </article>
-
-            <article class="project-card">
-              <span class="project-card__node">NODE_02</span>
-              <div class="thumb thumb--b"><span>IMG_PLACEHOLDER</span></div>
-              <h3>proyecto_dos.app</h3>
-              <p class="project-card__meta"><span class="dot dot--live" aria-hidden="true"></span> STATUS: ONLINE <span class="sep">·</span> ROL: [ TU_ROL ]</p>
-              <div class="tag-row">
-                <span>&gt; UX_STRATEGY</span>
-                <span>&gt; NEXT.JS</span>
-                <span>&gt; PRISMA</span>
-              </div>
-              <a href="#" target="_blank" rel="noopener" class="open">abrir_caso →</a>
-            </article>
-
-            <article class="project-card">
-              <span class="project-card__node">NODE_03</span>
-              <div class="thumb thumb--c"><span>IMG_PLACEHOLDER</span></div>
-              <h3>proyecto_tres.app</h3>
-              <p class="project-card__meta"><span class="dot" style="background:var(--text-faint)" aria-hidden="true"></span> STATUS: EN_PROGRESO <span class="sep">·</span> ROL: [ TU_ROL ]</p>
-              <div class="tag-row">
-                <span>&gt; PYTHON</span>
-                <span>&gt; FASTAPI</span>
-              </div>
-              <a href="#" target="_blank" rel="noopener" class="open">abrir_caso →</a>
-            </article>
-
-            <article class="project-card project-card--locked">
-              <span class="project-card__node">LOCKED_04</span>
-              <div class="thumb thumb--d"><span>PRÓXIMAMENTE</span></div>
-              <h3>siguiente_proyecto</h3>
-              <p class="project-card__meta">STATUS: EN_CONSTRUCCIÓN</p>
-              <div class="tag-row"><span>&gt; ???</span></div>
-            </article>
+          <div class="badges-row">
+            <div class="badge-box">
+              <span class="badge-box__top">FEATURED_ON</span>
+              <span class="badge-box__main">[ TU_LISTADO ]</span>
+            </div>
+            <div class="badge-box">
+              <span class="badge-box__top">CERTIFIED_BY</span>
+              <span class="badge-box__main">[ TU_CERT ]</span>
+            </div>
+            <div class="badge-box">
+              <span class="badge-box__top">EXPERIENCE</span>
+              <span class="badge-box__main">X+ YEARS</span>
+            </div>
+            <div class="badge-box badge-box--accent">
+              <span class="badge-box__top">FOCUS_CORE</span>
+              <span class="badge-box__main">[ TU_ROL ]</span>
+            </div>
           </div>
-          <p class="ls-footer">total 4 items · reemplaza cada tarjeta con tus proyectos reales</p>
-        </div>
 
-        <!-- ===== PANEL: my_details.json ===== -->
-        <div class="tab-panel" data-panel="details">
-          <p class="cmd-line"><span class="prompt">user@portfolio:~$</span> cat my_details.json</p>
-          <pre class="json-block">{
+          <p class="section-label section-label--tight">MANIFESTO.EXE</p>
+          <blockquote class="manifesto">
+            <p>&gt; CONSTRUIR_ANTES_DE_ADORNAR.</p>
+            <p>&gt; CLARIDAD_SOBRE_COMPLEJIDAD.</p>
+            <p>&gt; EL_DETALLE_ES_LA_FUNCIÓN.</p>
+            <p>&gt; SHIP_IT.</p>
+          </blockquote>
+
+          <p class="section-label section-label--tight">QUICK_ACCESS</p>
+          <nav class="quick-access" aria-label="Accesos rápidos">
+            <a href="#workspace" data-tab="details"
+              >[ SOBRE_MÍ ]<small>MY_DETAILS.JSON</small></a
+            >
+            <a href="#workspace" data-tab="cases"
+              >[ PROYECTOS ]<small>CASE_STUDIES.SH</small></a
+            >
+            <a href="https://github.com/" target="_blank" rel="noopener"
+              >[ GITHUB ]<small>VERIFIED</small></a
+            >
+            <a href="https://www.linkedin.com/" target="_blank" rel="noopener"
+              >[ LINKEDIN ]<small>PROFILE</small></a
+            >
+            <a href="#workspace" data-tab="resume"
+              >[ RESUME ]<small>RESUME.PDF</small></a
+            >
+          </nav>
+
+          <a href="#contacto" class="cta">
+            <span class="cta__prompt">EXECUTE:</span> START_COLLABORATION()<span
+              class="cursor"
+              >_</span
+            >
+          </a>
+        </aside>
+
+        <!-- ---------- WORKSPACE (tabbed terminal) ---------- -->
+        <div class="workspace" id="workspace">
+          <div class="terminal">
+            <div class="terminal__titlebar">
+              <div class="terminal__dots">
+                <span></span><span></span><span></span>
+              </div>
+              <span class="terminal__title"
+                >PORTFOLIO_TERMINAL ~ workspace.sh</span
+              >
+              <div class="terminal__meta">
+                <span>HOST: LOCALHOST</span>
+                <span class="sep">·</span>
+                <span>SHELL: BASH</span>
+              </div>
+            </div>
+
+            <div class="terminal__tabs" role="tablist">
+              <button
+                class="tab is-active"
+                data-panel="cases"
+                role="tab"
+                aria-selected="true"
+              >
+                &gt;_ case_studies.sh
+              </button>
+              <button
+                class="tab"
+                data-panel="details"
+                role="tab"
+                aria-selected="false"
+              >
+                my_details.json
+              </button>
+              <button
+                class="tab"
+                data-panel="gallery"
+                role="tab"
+                aria-selected="false"
+              >
+                gallery.sh
+              </button>
+              <button
+                class="tab"
+                data-panel="deploys"
+                role="tab"
+                aria-selected="false"
+              >
+                live_deploys.sh
+              </button>
+              <button
+                class="tab"
+                data-panel="resume"
+                role="tab"
+                aria-selected="false"
+              >
+                resume.pdf
+              </button>
+              <button
+                class="tab"
+                data-panel="shell"
+                role="tab"
+                aria-selected="false"
+              >
+                shell.sh
+              </button>
+            </div>
+
+            <!-- ===== PANEL: case_studies.sh ===== -->
+            <div class="tab-panel is-active" data-panel="cases">
+              <p class="cmd-line">
+                <span class="prompt">user@portfolio:~$</span> ls -la --verbose
+                ./proyectos
+              </p>
+              <div class="card-grid">
+                <article class="project-card">
+                  <span class="project-card__node">NODE_01</span>
+                  <div class="thumb thumb--a"><span>IMG_PLACEHOLDER</span></div>
+                  <h3>proyecto_uno.app</h3>
+                  <p class="project-card__meta">
+                    <span class="dot dot--live" aria-hidden="true"></span>
+                    STATUS: ONLINE <span class="sep">·</span> ROL: [ TU_ROL ]
+                  </p>
+                  <div class="tag-row">
+                    <span>&gt; UI_DESIGN</span>
+                    <span>&gt; REACT</span>
+                    <span>&gt; NODE</span>
+                  </div>
+                  <a href="#" target="_blank" rel="noopener" class="open"
+                    >abrir_caso →</a
+                  >
+                </article>
+
+                <article class="project-card">
+                  <span class="project-card__node">NODE_02</span>
+                  <div class="thumb thumb--b"><span>IMG_PLACEHOLDER</span></div>
+                  <h3>proyecto_dos.app</h3>
+                  <p class="project-card__meta">
+                    <span class="dot dot--live" aria-hidden="true"></span>
+                    STATUS: ONLINE <span class="sep">·</span> ROL: [ TU_ROL ]
+                  </p>
+                  <div class="tag-row">
+                    <span>&gt; UX_STRATEGY</span>
+                    <span>&gt; NEXT.JS</span>
+                    <span>&gt; PRISMA</span>
+                  </div>
+                  <a href="#" target="_blank" rel="noopener" class="open"
+                    >abrir_caso →</a
+                  >
+                </article>
+
+                <article class="project-card">
+                  <span class="project-card__node">NODE_03</span>
+                  <div class="thumb thumb--c"><span>IMG_PLACEHOLDER</span></div>
+                  <h3>proyecto_tres.app</h3>
+                  <p class="project-card__meta">
+                    <span
+                      class="dot"
+                      style="background: var(--text-faint)"
+                      aria-hidden="true"
+                    ></span>
+                    STATUS: EN_PROGRESO <span class="sep">·</span> ROL: [ TU_ROL
+                    ]
+                  </p>
+                  <div class="tag-row">
+                    <span>&gt; PYTHON</span>
+                    <span>&gt; FASTAPI</span>
+                  </div>
+                  <a href="#" target="_blank" rel="noopener" class="open"
+                    >abrir_caso →</a
+                  >
+                </article>
+
+                <article class="project-card project-card--locked">
+                  <span class="project-card__node">LOCKED_04</span>
+                  <div class="thumb thumb--d"><span>PRÓXIMAMENTE</span></div>
+                  <h3>siguiente_proyecto</h3>
+                  <p class="project-card__meta">STATUS: EN_CONSTRUCCIÓN</p>
+                  <div class="tag-row"><span>&gt; ???</span></div>
+                </article>
+              </div>
+              <p class="ls-footer">
+                total 4 items · reemplaza cada tarjeta con tus proyectos reales
+              </p>
+            </div>
+
+            <!-- ===== PANEL: my_details.json ===== -->
+            <div class="tab-panel" data-panel="details">
+              <p class="cmd-line">
+                <span class="prompt">user@portfolio:~$</span> cat
+                my_details.json
+              </p>
+              <pre class="json-block">
+{
   "nombre": "Tu Nombre Aquí",
   "rol": "[ tu rol — ej. product designer, full-stack dev ]",
   "ubicación": "[ tu ciudad, país ]",
@@ -187,79 +335,149 @@
   "stack": ["reemplaza", "con", "tu", "stack"],
   "intereses": ["ai", "sistemas de diseño", "producto"],
   "estado": "abierto a nuevos proyectos"
-}</pre>
-        </div>
+}</pre
+              >
+            </div>
 
-        <!-- ===== PANEL: gallery.sh ===== -->
-        <div class="tab-panel" data-panel="gallery">
-          <p class="cmd-line"><span class="prompt">user@portfolio:~$</span> ./gallery.sh --thumbnails</p>
-          <div class="gallery-grid">
-            <div class="gallery-item thumb--a"><span>IMG_01.png</span></div>
-            <div class="gallery-item thumb--b"><span>IMG_02.png</span></div>
-            <div class="gallery-item thumb--c"><span>IMG_03.png</span></div>
-            <div class="gallery-item thumb--d"><span>IMG_04.png</span></div>
-            <div class="gallery-item thumb--a"><span>IMG_05.png</span></div>
-            <div class="gallery-item thumb--b"><span>IMG_06.png</span></div>
+            <!-- ===== PANEL: gallery.sh ===== -->
+            <div class="tab-panel" data-panel="gallery">
+              <p class="cmd-line">
+                <span class="prompt">user@portfolio:~$</span> ./gallery.sh
+                --thumbnails
+              </p>
+              <div class="gallery-grid">
+                <div class="gallery-item thumb--a"><span>IMG_01.png</span></div>
+                <div class="gallery-item thumb--b"><span>IMG_02.png</span></div>
+                <div class="gallery-item thumb--c"><span>IMG_03.png</span></div>
+                <div class="gallery-item thumb--d"><span>IMG_04.png</span></div>
+                <div class="gallery-item thumb--a"><span>IMG_05.png</span></div>
+                <div class="gallery-item thumb--b"><span>IMG_06.png</span></div>
+              </div>
+              <p class="ls-footer">
+                reemplaza cada bloque con capturas reales de tu trabajo
+              </p>
+            </div>
+
+            <!-- ===== PANEL: live_deploys.sh ===== -->
+            <div class="tab-panel" data-panel="deploys">
+              <p class="cmd-line">
+                <span class="prompt">user@portfolio:~$</span> ./live_deploys.sh
+                --status
+              </p>
+              <ul class="deploy-list">
+                <li>
+                  <span class="dot dot--live" aria-hidden="true"></span>
+                  proyecto_uno.app
+                  <a href="#" target="_blank" rel="noopener">ver_en_vivo →</a>
+                </li>
+                <li>
+                  <span class="dot dot--live" aria-hidden="true"></span>
+                  proyecto_dos.app
+                  <a href="#" target="_blank" rel="noopener">ver_en_vivo →</a>
+                </li>
+                <li>
+                  <span
+                    class="dot"
+                    style="background: var(--text-faint)"
+                    aria-hidden="true"
+                  ></span>
+                  proyecto_tres.app
+                  <span class="deploy-list__offline">EN_CONSTRUCCIÓN</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- ===== PANEL: resume.pdf ===== -->
+            <div class="tab-panel" data-panel="resume">
+              <p class="cmd-line">
+                <span class="prompt">user@portfolio:~$</span> file resume.pdf
+              </p>
+              <div class="resume-card">
+                <p>resume.pdf: documento PDF · actualízalo con tu CV real</p>
+                <a href="./cv.pdf" download class="cta cta--small">
+                  <span class="cta__prompt">EXECUTE:</span> DOWNLOAD_CV()<span
+                    class="cursor"
+                    >_</span
+                  >
+                </a>
+              </div>
+            </div>
+
+            <!-- ===== PANEL: shell.sh (interactivo) ===== -->
+            <div class="tab-panel" data-panel="shell">
+              <div class="terminal__body" id="term-output" aria-live="polite">
+                <p class="line-dim">
+                  // terminal interactiva — escribe "help" y pulsa Enter
+                </p>
+              </div>
+              <div class="terminal__input-line">
+                <span class="prompt">visitante@portfolio:~$</span>
+                <input
+                  type="text"
+                  id="term-input"
+                  autocomplete="off"
+                  spellcheck="false"
+                  aria-label="Escribe un comando. Prueba 'help'"
+                />
+              </div>
+            </div>
           </div>
-          <p class="ls-footer">reemplaza cada bloque con capturas reales de tu trabajo</p>
         </div>
+      </section>
 
-        <!-- ===== PANEL: live_deploys.sh ===== -->
-        <div class="tab-panel" data-panel="deploys">
-          <p class="cmd-line"><span class="prompt">user@portfolio:~$</span> ./live_deploys.sh --status</p>
-          <ul class="deploy-list">
-            <li><span class="dot dot--live" aria-hidden="true"></span> proyecto_uno.app <a href="#" target="_blank" rel="noopener">ver_en_vivo →</a></li>
-            <li><span class="dot dot--live" aria-hidden="true"></span> proyecto_dos.app <a href="#" target="_blank" rel="noopener">ver_en_vivo →</a></li>
-            <li><span class="dot" style="background:var(--text-faint)" aria-hidden="true"></span> proyecto_tres.app <span class="deploy-list__offline">EN_CONSTRUCCIÓN</span></li>
-          </ul>
-        </div>
-
-        <!-- ===== PANEL: resume.pdf ===== -->
-        <div class="tab-panel" data-panel="resume">
-          <p class="cmd-line"><span class="prompt">user@portfolio:~$</span> file resume.pdf</p>
-          <div class="resume-card">
-            <p>resume.pdf: documento PDF · actualízalo con tu CV real</p>
-            <a href="./cv.pdf" download class="cta cta--small">
-              <span class="cta__prompt">EXECUTE:</span> DOWNLOAD_CV()<span class="cursor">_</span>
-            </a>
-          </div>
-        </div>
-
-        <!-- ===== PANEL: shell.sh (interactivo) ===== -->
-        <div class="tab-panel" data-panel="shell">
-          <div class="terminal__body" id="term-output" aria-live="polite">
-            <p class="line-dim">// terminal interactiva — escribe "help" y pulsa Enter</p>
-          </div>
-          <div class="terminal__input-line">
-            <span class="prompt">visitante@portfolio:~$</span>
-            <input type="text" id="term-input" autocomplete="off" spellcheck="false"
-                   aria-label="Escribe un comando. Prueba 'help'">
-          </div>
-        </div>
-
+      <!-- ============ DIVISOR: CIRCUITO CON PULSO DE DATOS ============ -->
+      <div class="circuit-divider" aria-hidden="true">
+        <svg viewBox="0 0 1200 60" preserveAspectRatio="none">
+          <path
+            id="circuit-path"
+            class="circuit-divider__path"
+            d="M0,30 L200,30 L230,10 L400,10 L430,30 L780,30 L810,50 L980,50 L1010,30 L1200,30"
+          />
+          <circle r="3" class="circuit-divider__node" cx="230" cy="10" />
+          <circle r="3" class="circuit-divider__node" cx="430" cy="30" />
+          <circle r="3" class="circuit-divider__node" cx="810" cy="50" />
+          <circle r="3" class="circuit-divider__node" cx="1010" cy="30" />
+          <circle r="2.5" class="circuit-divider__pulse">
+            <animateMotion dur="5s" repeatCount="indefinite" begin="0s">
+              <mpath href="#circuit-path"></mpath>
+            </animateMotion>
+          </circle>
+          <circle
+            r="2.5"
+            class="circuit-divider__pulse circuit-divider__pulse--b"
+          >
+            <animateMotion dur="5s" repeatCount="indefinite" begin="2.5s">
+              <mpath href="#circuit-path"></mpath>
+            </animateMotion>
+          </circle>
+        </svg>
       </div>
-    </div>
-  </section>
 
-  <!-- ============ CONTACTO ============ -->
-  <section class="contact" id="contacto">
-    <p class="section-label">// CONTACT.SH</p>
-    <div class="contact__panel">
-      <p><span class="prompt">$</span> cat contacto.json</p>
-      <pre class="contact__json">{
+      <!-- ============ CONTACTO ============ -->
+      <section class="contact" id="contacto">
+        <p class="section-label">// CONTACT.SH</p>
+        <div class="contact__panel">
+          <p><span class="prompt">$</span> cat contacto.json</p>
+          <pre class="contact__json">{
   "email": "<a href="mailto:tu@email.com">tu@email.com</a>",
   "github": "<a href="https://github.com/" target="_blank" rel="noopener">github.com/tu-usuario</a>",
   "linkedin": "<a href="https://www.linkedin.com/" target="_blank" rel="noopener">linkedin.com/in/tu-usuario</a>",
   "estado": "abierto a nuevos proyectos"
 }</pre>
-    </div>
-  </section>
-</main>
+        </div>
+      </section>
+    </main>
 
-<footer class="site-footer">
-  <p>// © <span id="year"></span> TU_NOMBRE — construido con HTML, CSS &amp; JS, sin frameworks.</p>
-</footer>
+    <footer class="site-footer">
+      <p>
+        // © <span id="year"></span> TU_NOMBRE — construido con HTML, CSS &amp;
+        JS, sin frameworks.
+      </p>
+      <p class="site-footer__hint">
+        // psst: hay un código Konami escondido en esta página (↑↑↓↓←→←→ B A)
+      </p>
+    </footer>
 
-<script src="script.js"></script>
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>
