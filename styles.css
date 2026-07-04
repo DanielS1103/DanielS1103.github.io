@@ -707,6 +707,384 @@ main {
 }
 
 /* =========================================================
+   MINI WINDOWS (my_details.json — tarjetas estilo ventana)
+========================================================= */
+.mw-grid {
+  display: grid;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.mw-grid--3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+.mw-grid--2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+.mw-grid--split {
+  grid-template-columns: 1.15fr 1fr;
+  align-items: start;
+}
+
+.mw {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border-soft);
+  background: var(--bg-panel-2);
+  min-width: 0;
+}
+.mw--tall {
+  height: 100%;
+}
+.mw-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+
+.mw__bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  background: var(--bg-panel);
+  border-bottom: 1px solid var(--border-soft);
+}
+.mw__bar--plain {
+  justify-content: space-between;
+}
+.mw__dots {
+  display: flex;
+  gap: 5px;
+  flex: none;
+}
+.mw__dots span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--border);
+}
+.mw__dots span:nth-child(1) {
+  background: #ff5f56;
+}
+.mw__dots span:nth-child(2) {
+  background: #ffbd2e;
+}
+.mw__dots span:nth-child(3) {
+  background: #27c93f;
+}
+.mw__title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--text-dim);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.mw__title--right {
+  margin-left: auto;
+}
+.mw__ext {
+  margin-left: auto;
+  font-size: 9px;
+  color: var(--text-faint);
+  letter-spacing: 0.06em;
+}
+.mw__hint {
+  font-size: 10px;
+  color: var(--text-faint);
+  white-space: nowrap;
+}
+.mw__badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 9.5px;
+  letter-spacing: 0.05em;
+  color: var(--amber);
+  border: 1px solid var(--amber-dim);
+  padding: 3px 8px;
+  white-space: nowrap;
+}
+
+.mw__body {
+  padding: 14px;
+  flex: 1;
+}
+
+/* ---- PROFILE_META.SH ---- */
+.mw-profile__top {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.mw-profile__avatar {
+  flex: none;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border);
+  background: linear-gradient(145deg, var(--amber-dim), var(--bg-panel-2));
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 12px;
+  color: var(--amber);
+}
+.mw-profile__label {
+  margin: 0;
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  color: var(--text-faint);
+}
+.mw-profile__name {
+  margin: 2px 0;
+  font-family: var(--font-display);
+  font-size: 14px;
+  text-transform: uppercase;
+  color: var(--text);
+}
+.mw-profile__status {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  font-size: 10px;
+  color: var(--amber);
+}
+.mw-profile__stats {
+  margin-top: 2px;
+}
+
+/* ---- MANIFESTO.C ---- */
+.mw-code {
+  margin: 0 0 10px;
+  font-size: 11.5px;
+  line-height: 1.7;
+  color: var(--text-dim);
+  white-space: pre-wrap;
+}
+.mw-code__kw {
+  color: var(--cyan);
+}
+.mw-code__fn,
+.mw-code__str {
+  color: var(--amber);
+}
+.mw-code__cmt {
+  color: var(--text-faint);
+  font-style: italic;
+}
+.mw-code__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  font-size: 9.5px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--border-soft);
+  color: var(--text-faint);
+}
+.mw-code__access {
+  color: var(--amber);
+  white-space: nowrap;
+}
+.mw-code__verified {
+  color: var(--cyan);
+  white-space: nowrap;
+}
+
+/* ---- SYSTEM_STATUS ---- */
+.mw-status-list {
+  list-style: none;
+  margin: 0 0 12px;
+  padding: 0;
+}
+.mw-status-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 5px 0;
+  border-bottom: 1px dashed var(--border-soft);
+  font-size: 11.5px;
+  color: var(--text-dim);
+}
+.mw-status-list__val {
+  color: var(--cyan);
+}
+.mw-status-list__val--amber {
+  color: var(--amber);
+}
+.mw-status-footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: var(--text-faint);
+}
+
+/* ---- ./execute_approach.SH ---- */
+.mw-steps {
+  margin: 0;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 12.5px;
+  color: var(--text-dim);
+}
+.mw-steps li::marker {
+  color: var(--amber);
+  font-size: 11px;
+}
+
+/* ---- CURRENT_STATE ---- */
+.mw-state__flag {
+  margin: 0 0 12px;
+  font-family: var(--font-display);
+  font-size: 12.5px;
+  letter-spacing: -0.01em;
+  color: var(--amber);
+}
+.mw-state__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 16px;
+  margin-bottom: 14px;
+}
+.mw-state__grid p {
+  margin: 0;
+  padding-left: 10px;
+  border-left: 1px solid var(--border-soft);
+  font-size: 11.5px;
+  color: var(--text-dim);
+}
+.mw-state__grid em {
+  color: var(--cyan);
+  font-style: normal;
+}
+.mw-state__footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 10.5px;
+  color: var(--text-faint);
+}
+.mw-state__footer b {
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* ---- GIT_LOG.TXT ---- */
+.mw-commits {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.mw-commits > li {
+  padding-bottom: 14px;
+  border-bottom: 1px dashed var(--border-soft);
+}
+.mw-commits > li:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+.mw-commits__range {
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 11px;
+  color: var(--text-faint);
+}
+.mw-commits__role {
+  color: var(--text-dim);
+  text-align: right;
+}
+.mw-commits__org {
+  margin: 4px 0;
+  font-family: var(--font-display);
+  font-size: 13px;
+  color: var(--amber);
+}
+.mw-commits__tag {
+  margin: 0 0 6px;
+  font-size: 10.5px;
+  color: var(--text-faint);
+}
+.mw-commits__bullets {
+  margin: 0;
+  padding-left: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 11.5px;
+  color: var(--text-dim);
+}
+
+/* ---- CAPABILITIES.JSON ---- */
+.mw-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.mw-tags span {
+  font-size: 10.5px;
+  border: 1px solid var(--border-soft);
+  background: var(--bg-panel);
+  padding: 5px 9px;
+  color: var(--cyan);
+}
+.mw-tags__meta {
+  margin: 0;
+  font-size: 10px;
+  color: var(--text-faint);
+}
+
+/* ---- SYSTEM_TOOLS.BIN ---- */
+.mw-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.mw-tools__item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10.5px;
+  color: var(--text-dim);
+  border: 1px solid var(--border-soft);
+  padding: 4px 9px 4px 4px;
+}
+.mw-tools__ico {
+  font-style: normal;
+  width: 20px;
+  height: 20px;
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 8.5px;
+  font-weight: 700;
+  color: var(--amber);
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+}
+.mw-tools__footer {
+  display: flex;
+  align-items: center;
+  font-size: 10px;
+  color: var(--text-faint);
+}
+
+/* =========================================================
    TERMINAL (interactive)
 ========================================================= */
 .terminal {
@@ -921,6 +1299,11 @@ main {
   .gallery-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+  .mw-grid--3,
+  .mw-grid--2,
+  .mw-grid--split {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 640px) {
@@ -933,6 +1316,9 @@ main {
   .statusbar {
     font-size: 10px;
     padding: 8px 14px;
+  }
+  .mw-state__grid {
+    grid-template-columns: 1fr;
   }
 }
 

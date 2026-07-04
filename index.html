@@ -324,19 +324,287 @@ message:   viste el código Konami. eso ya dice bastante de vos.
             <div class="tab-panel" data-panel="details">
               <p class="cmd-line">
                 <span class="prompt">user@portfolio:~$</span> cat
-                my_details.json
+                my_details.json --expand
               </p>
-              <pre class="json-block">
-{
-  "nombre": "Tu Nombre Aquí",
-  "rol": "[ tu rol — ej. product designer, full-stack dev ]",
-  "ubicación": "[ tu ciudad, país ]",
-  "años_experiencia": "X+",
-  "stack": ["reemplaza", "con", "tu", "stack"],
-  "intereses": ["ai", "sistemas de diseño", "producto"],
-  "estado": "abierto a nuevos proyectos"
-}</pre
-              >
+
+              <!-- fila 1: perfil / filosofía / estado del sistema -->
+              <div class="mw-grid mw-grid--3">
+                <div class="mw">
+                  <div class="mw__bar">
+                    <span class="mw__dots" aria-hidden="true"
+                      ><span></span><span></span><span></span
+                    ></span>
+                    <span class="mw__title">[ PROFILE_META.SH ]</span>
+                  </div>
+                  <div class="mw__body">
+                    <div class="mw-profile__top">
+                      <div class="mw-profile__avatar" aria-hidden="true">
+                        TU
+                      </div>
+                      <div>
+                        <p class="mw-profile__label">USER_ID:</p>
+                        <p class="mw-profile__name">TU_NOMBRE</p>
+                        <p class="mw-profile__status">
+                          <span class="dot dot--live" aria-hidden="true"></span
+                          >STATUS: ACTIVE_PRO_[TU_ROL]
+                        </p>
+                      </div>
+                    </div>
+                    <ul class="stat-list stat-list--compact mw-profile__stats">
+                      <li>
+                        <span>ROLE</span><span>[ TU_ROL_PRINCIPAL ]</span>
+                      </li>
+                      <li>
+                        <span>FOCUS</span><span>[ TU_ESPECIALIDAD ]</span>
+                      </li>
+                      <li>
+                        <span>LOCATION</span><span>[ TU_CIUDAD, TU_PAÍS ]</span>
+                      </li>
+                      <li><span>EXP</span><span>X+_AÑOS</span></li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="mw">
+                  <div class="mw__bar">
+                    <span class="mw__dots" aria-hidden="true"
+                      ><span></span><span></span><span></span
+                    ></span>
+                    <span class="mw__title mw__title--right">MANIFESTO.C</span>
+                  </div>
+                  <div class="mw__body">
+                    <pre
+                      class="mw-code"
+                    ><span class="mw-code__kw">export const</span> <span class="mw-code__fn">FILOSOFIA</span> = () =&gt; {
+
+  <span class="mw-code__str">"SISTEMAS_CON_SIMPLICIDAD"</span>;
+
+  <span class="mw-code__cmt">// diseño/construyo cosas que piensan antes de verse bien.</span>
+  <span class="mw-code__cmt">// ai cuando se necesita. simplicidad siempre.</span>
+  <span class="mw-code__cmt">// sistemas estructurados. interacciones claras.</span>
+
+}</pre>
+                    <div class="mw-code__footer">
+                      <span class="mw-code__access"
+                        >● ESTADO: ABIERTO_A_COLABORAR</span
+                      >
+                      <span class="mw-code__verified">repo_verificado ✓</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mw">
+                  <div class="mw__bar">
+                    <span class="mw__dots" aria-hidden="true"
+                      ><span></span><span></span><span></span
+                    ></span>
+                    <span class="mw__title"
+                      ><span class="dot dot--live" aria-hidden="true"></span
+                      >SYSTEM_STATUS</span
+                    >
+                  </div>
+                  <div class="mw__body">
+                    <ul class="mw-status-list">
+                      <li>
+                        <span>Core_Logic</span
+                        ><span class="mw-status-list__val">[ OPTIMIZADO ]</span>
+                      </li>
+                      <li>
+                        <span>Enfoque_UX</span
+                        ><span class="mw-status-list__val"
+                          >[ MAX_CAPACIDAD ]</span
+                        >
+                      </li>
+                      <li>
+                        <span>Diseño_Visual</span
+                        ><span class="mw-status-list__val"
+                          >[ PIXEL_PERFECT ]</span
+                        >
+                      </li>
+                      <li>
+                        <span>Nivel_Café</span
+                        ><span
+                          class="mw-status-list__val mw-status-list__val--amber"
+                          >[ RECARGANDO ]</span
+                        >
+                      </li>
+                    </ul>
+                    <div class="mw-status-footer">
+                      <span>UPTIME: 99.9%</span><span>LATENCY: 12ms</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- fila 2: enfoque de trabajo / estado actual -->
+              <div class="mw-grid mw-grid--2">
+                <div class="mw">
+                  <div class="mw__bar">
+                    <span class="mw__dots" aria-hidden="true"
+                      ><span></span><span></span><span></span
+                    ></span>
+                    <span class="mw__title">./execute_approach</span>
+                    <span class="mw__ext">.SH</span>
+                  </div>
+                  <div class="mw__body">
+                    <ol class="mw-steps">
+                      <li>Descomponer problemas complejos.</li>
+                      <li>Identificar la necesidad real del usuario.</li>
+                      <li>Diseñar interacciones mínimas viables.</li>
+                      <li>Iterar según datos y feedback.</li>
+                      <li>Pulir el último pixel.</li>
+                    </ol>
+                  </div>
+                </div>
+
+                <div class="mw">
+                  <div class="mw__bar mw__bar--plain">
+                    <span class="mw__title">CURRENT_STATE</span>
+                    <span class="mw__badge"
+                      ><span class="dot dot--live" aria-hidden="true"></span
+                      >LIVE_FEED</span
+                    >
+                  </div>
+                  <div class="mw__body">
+                    <p class="mw-state__flag">[ EXPLORANDO_NUEVOS_FLUJOS ]</p>
+                    <div class="mw-state__grid">
+                      <p>
+                        Explorando <em>vibe-coding</em> para interfaces guiadas
+                        por intención
+                      </p>
+                      <p>Adaptando flujos de trabajo con asistencia de IA</p>
+                      <p>Probando sistemas de tipo prompt-to-ui</p>
+                      <p>Estudiando patrones de colaboración humano-IA</p>
+                    </div>
+                    <div class="mw-state__footer">
+                      <span>FOCO: <b>CONSTRUIR_CON_ESTRUCTURA</b></span>
+                      <span>META: <b>PRODUCTOS_ADAPTATIVOS</b></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- fila 3: historial / capacidades / stack de herramientas -->
+              <div class="mw-grid mw-grid--split">
+                <div class="mw mw--tall">
+                  <div class="mw__bar mw__bar--plain">
+                    <span class="mw__title">GIT_LOG.TXT</span>
+                    <span class="mw__hint">--oneline --graph --all</span>
+                  </div>
+                  <div class="mw__body">
+                    <ul class="mw-commits">
+                      <li>
+                        <p class="mw-commits__range">
+                          COMMIT: 20XX_PRESENT
+                          <span class="mw-commits__role"
+                            >[ TU_ROL_ACTUAL ]</span
+                          >
+                        </p>
+                        <p class="mw-commits__org">@tu_empresa_actual</p>
+                        <p class="mw-commits__tag">
+                          // [tu_industria + tu_enfoque]
+                        </p>
+                        <ul class="mw-commits__bullets">
+                          <li>Reemplaza esto con un logro real.</li>
+                          <li>Reemplaza esto con otro logro real.</li>
+                          <li>Reemplaza esto con otro logro real.</li>
+                        </ul>
+                      </li>
+                      <li>
+                        <p class="mw-commits__range">
+                          COMMIT: 20XX_20XX
+                          <span class="mw-commits__role"
+                            >[ TU_ROL_ANTERIOR ]</span
+                          >
+                        </p>
+                        <p class="mw-commits__org">@tu_empresa_anterior</p>
+                        <p class="mw-commits__tag">
+                          // [tu_industria + tu_enfoque]
+                        </p>
+                      </li>
+                      <li>
+                        <p class="mw-commits__range">
+                          COMMIT: 20XX_20XX
+                          <span class="mw-commits__role"
+                            >[ TU_PRIMER_ROL ]</span
+                          >
+                        </p>
+                        <p class="mw-commits__org">@tu_primera_empresa</p>
+                        <p class="mw-commits__tag">
+                          // [tu_industria + tu_enfoque]
+                        </p>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="mw-stack">
+                  <div class="mw">
+                    <div class="mw__bar mw__bar--plain">
+                      <span class="mw__title">CAPABILITIES.JSON</span>
+                    </div>
+                    <div class="mw__body">
+                      <div class="mw-tags">
+                        <span>"pensamiento_sistemas"</span>
+                        <span>"estrategia_producto"</span>
+                        <span>"resolución_de_problemas"</span>
+                        <span>"investigación_usuario"</span>
+                        <span>"trabajo_en_equipo"</span>
+                        <span>"prototipado"</span>
+                        <span>"control_de_versiones"</span>
+                        <span>"testing"</span>
+                      </div>
+                      <p class="mw-tags__meta">
+                        { "claridad": true, "complejidad": "reducida",
+                        "escalable": true }
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="mw">
+                    <div class="mw__bar mw__bar--plain">
+                      <span class="mw__title">⚡ SYSTEM_TOOLS.BIN</span>
+                    </div>
+                    <div class="mw__body">
+                      <div class="mw-tools">
+                        <span class="mw-tools__item"
+                          ><i class="mw-tools__ico">FG</i>FIGMA</span
+                        >
+                        <span class="mw-tools__item"
+                          ><i class="mw-tools__ico">RE</i>REACT</span
+                        >
+                        <span class="mw-tools__item"
+                          ><i class="mw-tools__ico">ND</i>NODE.JS</span
+                        >
+                        <span class="mw-tools__item"
+                          ><i class="mw-tools__ico">GH</i>GITHUB</span
+                        >
+                        <span class="mw-tools__item"
+                          ><i class="mw-tools__ico">VS</i>VS_CODE</span
+                        >
+                        <span class="mw-tools__item"
+                          ><i class="mw-tools__ico">PY</i>PYTHON</span
+                        >
+                        <span class="mw-tools__item"
+                          ><i class="mw-tools__ico">NT</i>NOTION</span
+                        >
+                        <span class="mw-tools__item"
+                          ><i class="mw-tools__ico">DK</i>DOCKER</span
+                        >
+                      </div>
+                      <p class="mw-tools__footer">
+                        <span class="dot dot--live" aria-hidden="true"></span
+                        >[!] ALL_SYSTEMS_OPTIMIZED
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <p class="ls-footer">
+                total 6 windows · reemplaza cada bloque con tu información real
+                — esto es solo el layout
+              </p>
             </div>
 
             <!-- ===== PANEL: gallery.sh ===== -->
