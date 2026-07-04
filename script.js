@@ -281,29 +281,26 @@ function setupKonami() {
     }
   });
 }
-
-/* =========================================================
-   4) SHELL INTERACTIVA (comandos reales)
-========================================================= */
 /* =========================================================
    4) SHELL INTERACTIVA (comandos reales y simulación)
 ========================================================= */
 function setupShell() {
   const input = document.getElementById("term-input");
-  const out = document.getElementById("term-output");
+  const out =
+    document.getElementById("term-output") ||
+    document.querySelector(".terminal__body");
   const shellPanel = document.querySelector('[data-panel="shell"]');
 
   if (!input || !out) return;
 
-  // ¡TRUCO CLAVE! Si el usuario hace clic en cualquier parte de la pestaña de la terminal,
-  // forzamos el foco en el input invisible para que pueda escribir de inmediato.
+  // Forzar el foco en el input al hacer clic en la terminal
   if (shellPanel) {
     shellPanel.addEventListener("click", () => {
       input.focus();
     });
   }
 
-  // Sistema de archivos ficticio para explorar
+  // ¡AQUÍ ESTÁ LA VARIABLE! (Asegúrate de que solo exista esta vez en todo tu archivo)
   const fakeFileSystem = {
     "sobre_mi.txt":
       "Soy un desarrollador apasionado por la tecnología retro, los sistemas embebidos y el desarrollo web limpio.",
@@ -316,17 +313,19 @@ function setupShell() {
   const history = [];
   let historyIndex = -1;
 
-  // Imprimir en pantalla renderizando HTML
   function print(text, cls = "") {
     const p = document.createElement("p");
     if (cls) p.className = cls;
-    p.innerHTML = text; // Usamos innerHTML para soportar etiquetas <br> y colores
+    p.innerHTML = text;
     out.appendChild(p);
-    out.scrollTop = out.scrollHeight; // Auto-scroll hacia abajo
+    out.scrollTop = out.scrollHeight;
   }
 
   function printCmd(cmd) {
-    print(`<span style="color: var(--amber)">$</span> ${cmd}`, "line-cmd");
+    print(
+      `<span class="prompt" style="color: var(--cyan); font-weight: bold; margin-right: 8px; text-shadow: 0 0 3px rgba(85, 214, 194, 0.3);">visitante@portfolio:~$</span> <span style="color: #ffffff;">${cmd}</span>`,
+      "line-cmd",
+    );
   }
 
   const commands = {
@@ -384,17 +383,28 @@ function setupShell() {
     },
   };
 
-  // Escuchar el teclado
   input.addEventListener("keydown", (e) => {
+    // 1. Simulación de Ctrl + C
+    if (e.ctrlKey && e.key.toLowerCase() === "c") {
+      printCmd(input.value + "^C");
+      input.value = "";
+      e.preventDefault();
+      return;
+    }
+
+    // 2. Comportamiento tecla Enter
     if (e.key === "Enter") {
       const raw = input.value.trim();
-      if (raw === "") return;
+
+      if (raw === "") {
+        printCmd("");
+        return;
+      }
 
       printCmd(raw);
       history.push(raw);
       historyIndex = history.length;
 
-      // Separar comando de los argumentos (ej: "cat sobre_mi.txt" -> "cat" y "sobre_mi.txt")
       const parts = raw.split(" ");
       const cmd = parts[0].toLowerCase();
       const args = parts.slice(1).join(" ");
@@ -408,187 +418,9 @@ function setupShell() {
         );
       }
       input.value = "";
-    } else if (e.key === "ArrowUp") {
-      if (historyIndex > 0) {
-        historyIndex--;
-        input.value = history[historyIndex];
-      }
-      e.preventDefault();
-    } else if (e.key === "ArrowDown") {
-      if (historyIndex < history.length - 1) {
-        historyIndex++;
-        input.value = history[historyIndex];
-      } else {
-        historyIndex = history.length;
-        input.value = "";
-      }
-      e.preventDefault();
     }
-  });
-}
-/* =========================================================
-/* =========================================================
-   3) TERMINAL INTERACTIVA (Simulación Linux)
-========================================================= */
-
-// Sistema de archivos simulado para los comandos 'ls' y 'cat'
-const fakeFileSystem = {
-  "sobre_mi.txt":
-    "Soy un desarrollador apasionado por la tecnología retro, los sistemas embebidos y el desarrollo web limpio.",
-  "proyectos.json":
-    '[\n  {\n    "nombre": "Cyber-Portfolio",\n    "status": "Completado",\n    "tech": ["HTML", "CSS", "JS"]\n  },\n  {\n    "nombre": "Sub-System OS",\n    "status": "En desarrollo",\n    "tech": ["C++", "Assembly"]\n  }\n]',
-  "contacto.sh":
-    "#!/bin/bash\necho 'Email: tu@email.com'\necho 'GitHub: github.com/tu-usuario'",
-  "secreto.log":
-    "LOG_ENTRY_2026: Si estás leyendo esto, prueba el Código Konami en tu teclado: ↑ ↑ ↓ ↓ ← → ← → B A",
-};
-
-// Vinculamos directamente la función con tu lógica interna del DOM
-function initTerminalInteractive() {
-  // Usamos exactamente los mismos IDs y clases de tu index.html
-  const input = document.getElementById("term-input");
-  const output = document.querySelector(".terminal__body");
-
-  if (!input || !output) return; // Salvaguarda por si no encuentra los elementos
-
-  let history = [];
-  let historyIndex = -1;
-
-  // Función interna para imprimir usando tus estilos nativos
-  function print(text, className = "") {
-    const p = document.createElement("p");
-    if (className) p.className = className;
-    p.innerHTML = text;
-    output.appendChild(p);
-    output.scrollTop = output.scrollHeight;
-  }
-
-  // Diccionario de comandos disponibles
-  const commands = {
-    help: () => {
-      print("Comandos disponibles:", "line-dim");
-      print(
-        "  <span style='color: var(--cyan)'>ls</span>             - Listar archivos en el directorio actual",
-      );
-      print(
-        "  <span style='color: var(--cyan)'>cat [archivo]</span>  - Ver el contenido de un archivo",
-      );
-      print(
-        "  <span style='color: var(--cyan)'>whoami</span>         - Mostrar información del usuario actual",
-      );
-      print(
-        "  <span style='color: var(--cyan)'>date</span>           - Mostrar la fecha y hora del sistema",
-      );
-      print(
-        "  <span style='color: var(--cyan)'>neofetch</span>       - Mostrar especificaciones de la máquina",
-      );
-      print(
-        "  <span style='color: var(--cyan)'>clear</span>          - Limpiar la pantalla de la terminal",
-      );
-      print(
-        "  <span style='color: var(--cyan)'>rm -rf /</span>       - No ejecutar bajo ninguna circunstancia",
-      );
-    },
-
-    ls: () => {
-      const files = Object.keys(fakeFileSystem)
-        .map((f) => {
-          if (f.endsWith(".sh"))
-            return `<span style="color: var(--cyan); font-weight: bold;">${f}*</span>`;
-          if (f.endsWith(".json"))
-            return `<span style="color: var(--amber);">${f}</span>`;
-          return `<span>${f}</span>`;
-        })
-        .join("    ");
-      print(files || "Directorio vacío.");
-    },
-
-    cat: (args) => {
-      if (!args || args.trim() === "") {
-        print("Uso: cat [nombre_archivo]", "line-err");
-        return;
-      }
-      const fileName = args.trim();
-      if (fakeFileSystem[fileName]) {
-        print(fakeFileSystem[fileName].replace(/\n/g, "<br>"));
-      } else {
-        print(
-          `cat: ${fileName}: No se encontró el archivo o directorio.`,
-          "line-err",
-        );
-      }
-    },
-
-    whoami: () => {
-      print(
-        "guest@portfolio-core.local — Privilegios: <span style='color: var(--amber)'>Invitado</span>",
-      );
-    },
-
-    date: () => {
-      print(new Date().toString());
-    },
-
-    neofetch: () => {
-      const userAgent = navigator.userAgent.split(" ")[0];
-      const screenRes = `${window.screen.width}x${window.screen.height}`;
-      print(
-        `
-<span style="color: var(--amber)">.-----.</span>       <span style="color: var(--cyan)">USER:</span> guest@portfolio
-<span style="color: var(--amber)">/  _  _ \\</span>      <span style="color: var(--cyan)">OS:</span> Web Terminal OS / Classic Build
-<span style="color: var(--amber)">|  |  |  |</span>     <span style="color: var(--cyan)">KERNEL:</span> Gecko/Blink-2026.4.1
-<span style="color: var(--amber)">\\  ^  ^  /</span>     <span style="color: var(--cyan)">DISPLAY:</span> ${screenRes}
-<span style="color: var(--amber)">'-----'</span>       <span style="color: var(--cyan)">BROWSER:</span> ${userAgent}
-      `,
-        "line-cmd",
-      );
-    },
-
-    clear: () => {
-      output.innerHTML = "";
-    },
-
-    "rm -rf /": () => {
-      print("¡ERROR CRÍTICO! Acceso raíz ilegal detectado.", "line-err");
-      setTimeout(() => {
-        document.body.style.filter = "invert(1) blur(1px)";
-      }, 500);
-      setTimeout(() => {
-        document.body.style.filter = "none";
-        location.reload();
-      }, 3500);
-    },
-  };
-
-  // Evento de escucha del teclado corregido
-  input.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") {
-      const raw = input.value.trim();
-      if (raw === "") return;
-
-      // Imprime el comando introducido en la pantalla
-      print(`<span style="color: var(--amber)">$</span> ${raw}`, "line-cmd");
-
-      history.push(raw);
-      historyIndex = history.length;
-
-      const parts = raw.split(" ");
-      const cmdBase = parts[0].toLowerCase();
-
-      if (raw.toLowerCase() === "rm -rf /") {
-        commands["rm -rf /"]();
-      } else if (commands[cmdBase]) {
-        // Pasa los argumentos de forma correcta (ej: el nombre del archivo al cat)
-        commands[cmdBase](parts.slice(1).join(" "));
-      } else {
-        print(
-          `bash: ${cmdBase}: comando no encontrado — escribe "<span style='color: var(--amber)'>help</span>"`,
-          "line-err",
-        );
-      }
-
-      input.value = "";
-    } else if (e.key === "ArrowUp") {
+    // 3. Historial
+    else if (e.key === "ArrowUp") {
       if (historyIndex > 0) {
         historyIndex--;
         input.value = history[historyIndex];
