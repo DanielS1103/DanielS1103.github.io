@@ -1568,9 +1568,7 @@ main {
 /* =========================================================
    CHANGELOG.LOG — historial de versiones del portfolio
 ========================================================= */
-.changelog {
-  padding-top: 12px;
-}
+
 .changelog__list {
   display: flex;
   flex-direction: column;
