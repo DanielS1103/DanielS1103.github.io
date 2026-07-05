@@ -552,7 +552,40 @@ function setupRetroMac() {
 }
 
 /* =========================================================
-   11) EASTER EGG DE CONSOLA
+   11) REVEAL ON SCROLL (aparición progresiva de tarjetas)
+========================================================= */
+function setupRevealOnScroll() {
+  const selector = ".project-card, .badge-box, .changelog__entry, .gallery-item, .mw";
+  const targets = document.querySelectorAll(selector);
+  if (!targets.length) return;
+
+  if (reduceMotion || !("IntersectionObserver" in window)) {
+    targets.forEach((el) => el.classList.add("is-visible"));
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    (entries, obs) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        const siblings = Array.from(el.parentElement.children).filter((c) =>
+          c.matches(selector),
+        );
+        const index = siblings.indexOf(el);
+        el.style.transitionDelay = `${Math.min(index, 8) * 70}ms`;
+        el.classList.add("is-visible");
+        obs.unobserve(el);
+      });
+    },
+    { threshold: 0.15, rootMargin: "0px 0px -40px 0px" },
+  );
+
+  targets.forEach((el) => observer.observe(el));
+}
+
+/* =========================================================
+   12) EASTER EGG DE CONSOLA
 ========================================================= */
 function logConsoleEasterEgg() {
   console.log(
@@ -581,6 +614,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupStatusLog();
   setupKonami();
   setupRetroMac();
+  setupRevealOnScroll();
   logConsoleEasterEgg();
   document.getElementById("year").textContent = new Date().getFullYear();
 });

@@ -1972,3 +1972,352 @@ main {
 .terminal__body::-webkit-scrollbar-thumb:hover {
   background: var(--amber); /* Cambia al color acento al pasar el mouse */
 }
+
+/* =========================================================
+   ICONOS BASE (sprite SVG reutilizable)
+========================================================= */
+.icon,
+.icon-xs,
+.icon-sm,
+.icon-lg,
+.qa-icon,
+.qa-arrow,
+.cta-icon,
+.open__ico {
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  vertical-align: middle;
+}
+.icon-xs {
+  width: 11px;
+  height: 11px;
+}
+.icon-sm {
+  width: 13px;
+  height: 13px;
+}
+.icon {
+  width: 14px;
+  height: 14px;
+}
+.icon-lg {
+  width: 20px;
+  height: 20px;
+}
+
+/* =========================================================
+   SYS_METER — icono junto a CPU / MEM / NET
+========================================================= */
+.sys-meter__row {
+  grid-template-columns: 42px 1fr 34px;
+}
+.sys-meter__label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.sys-meter__label .icon-xs {
+  color: var(--amber);
+  opacity: 0.85;
+}
+
+/* =========================================================
+   BADGES-ROW — icono junto a la etiqueta superior + hover
+========================================================= */
+.badge-box__top {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.badge-box__top .icon-xs {
+  color: var(--text-faint);
+}
+.badge-box {
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+.badge-box:hover {
+  transform: translateY(-3px);
+  border-color: var(--amber-dim);
+  background: var(--bg-panel-2);
+}
+.badge-box:hover .badge-box__top .icon-xs {
+  color: var(--amber);
+}
+.badge-box--accent:hover {
+  border-color: var(--amber);
+}
+
+/* =========================================================
+   QUICK_ACCESS — icono + etiqueta + flecha animada al hover
+========================================================= */
+.quick-access a {
+  justify-content: flex-start;
+  align-items: center;
+  gap: 12px;
+}
+.qa-icon {
+  width: 15px;
+  height: 15px;
+  color: var(--text-faint);
+  transition:
+    color 0.15s ease,
+    transform 0.15s ease;
+}
+.qa-label {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+.qa-arrow {
+  width: 13px;
+  height: 13px;
+  margin-left: auto;
+  opacity: 0;
+  transform: translateX(-4px);
+  transition:
+    opacity 0.18s ease,
+    transform 0.18s ease;
+}
+.quick-access a:hover .qa-icon {
+  color: var(--amber);
+  transform: scale(1.1);
+}
+.quick-access a:hover .qa-arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* =========================================================
+   CTA — icono con pequeño impulso al hover
+========================================================= */
+.cta {
+  gap: 10px;
+}
+.cta-icon {
+  width: 14px;
+  height: 14px;
+  transition: transform 0.2s ease;
+}
+.cta:hover .cta-icon {
+  transform: rotate(-8deg) scale(1.15);
+}
+
+/* =========================================================
+   PROJECT CARDS — elevación, brillo y zoom de imagen al hover
+========================================================= */
+.project-card {
+  transition:
+    transform 0.28s ease,
+    box-shadow 0.28s ease,
+    border-color 0.28s ease;
+}
+.project-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--amber-dim);
+  box-shadow:
+    0 14px 32px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 166, 43, 0.12);
+}
+.project-card--locked:hover {
+  transform: none;
+  box-shadow: none;
+  border-color: var(--border-soft);
+}
+.thumb img {
+  transition: transform 0.55s ease;
+}
+.project-card:hover .thumb img {
+  transform: scale(1.08);
+}
+.open,
+.deploy-list li a {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.open__ico {
+  transition: transform 0.2s ease;
+}
+.open:hover .open__ico,
+.deploy-list li a:hover .open__ico {
+  transform: translateX(4px);
+}
+
+/* =========================================================
+   CHIPS / TAGS — pequeño realce al pasar el cursor
+========================================================= */
+.tag-row span,
+.mw-tags span,
+.mw-tools__item {
+  transition:
+    border-color 0.15s ease,
+    color 0.15s ease,
+    transform 0.15s ease;
+}
+.tag-row span:hover,
+.mw-tags span:hover {
+  border-color: var(--amber);
+  color: var(--amber);
+  transform: translateY(-2px);
+}
+.mw-tools__item:hover {
+  border-color: var(--amber-dim);
+  transform: translateY(-2px);
+}
+.mw-tools__item:hover .mw-tools__ico {
+  color: var(--bg);
+  background: var(--amber);
+  border-color: var(--amber);
+}
+
+/* =========================================================
+   CONTACT — fila de accesos rápidos con icono
+========================================================= */
+.contact__quick {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.contact__icon-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid var(--border);
+  padding: 8px 14px;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--text-dim);
+  transition:
+    border-color 0.18s ease,
+    color 0.18s ease,
+    transform 0.18s ease,
+    box-shadow 0.18s ease;
+}
+.contact__icon-link .icon {
+  transition: transform 0.18s ease;
+}
+.contact__icon-link:hover {
+  color: var(--amber);
+  border-color: var(--amber);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(255, 166, 43, 0.15);
+  text-decoration: none;
+}
+.contact__icon-link:hover .icon {
+  transform: scale(1.15) rotate(-6deg);
+}
+
+/* =========================================================
+   CHANGELOG — icono de rol + brillo del punto al hover
+========================================================= */
+.changelog__version {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.changelog__version .icon-xs {
+  color: var(--amber);
+}
+.changelog__entry {
+  transition: transform 0.2s ease;
+}
+.changelog__entry::before {
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+.changelog__entry:hover {
+  transform: translateX(3px);
+}
+.changelog__entry:hover::before {
+  border-color: var(--amber);
+  box-shadow: 0 0 10px rgba(255, 166, 43, 0.5);
+  transform: scale(1.15);
+}
+
+/* =========================================================
+   MAC RETRO — botón de encendido "respira" para invitar al clic
+========================================================= */
+@keyframes mac-power-breathe {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 166, 43, 0.25);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(255, 166, 43, 0);
+  }
+}
+[data-state="off"] .mac__power {
+  animation: mac-power-breathe 2.4s ease-in-out infinite;
+}
+.mac__icon {
+  transition:
+    transform 0.15s ease,
+    border-color 0.15s ease;
+}
+
+/* =========================================================
+   FOOTER — icono con leve rebote
+========================================================= */
+@keyframes footer-ico-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+}
+.footer-hint__ico {
+  color: var(--amber);
+  animation: footer-ico-bounce 2.4s ease-in-out infinite;
+}
+
+/* =========================================================
+   REVEAL ON SCROLL — aparición progresiva de bloques
+========================================================= */
+.project-card,
+.badge-box,
+.changelog__entry,
+.gallery-item,
+.mw {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+}
+.project-card.is-visible,
+.badge-box.is-visible,
+.changelog__entry.is-visible,
+.gallery-item.is-visible,
+.mw.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.project-card--locked.is-visible {
+  opacity: 0.55;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-card,
+  .badge-box,
+  .changelog__entry,
+  .gallery-item,
+  .mw {
+    opacity: 1;
+    transform: none;
+  }
+  .footer-hint__ico,
+  [data-state="off"] .mac__power {
+    animation: none;
+  }
+}

@@ -29,6 +29,203 @@
     <!-- ============ SCANLINE / NOISE OVERLAY ============ -->
     <div class="crt-overlay" aria-hidden="true"></div>
 
+    <!-- ============ SPRITE DE ICONOS (SVG reutilizables) ============ -->
+    <svg
+      aria-hidden="true"
+      style="position: absolute; width: 0; height: 0; overflow: hidden"
+    >
+      <symbol id="i-arrow" viewBox="0 0 20 20">
+        <path
+          d="M4 10h11M11 5l5 5-5 5"
+          stroke="currentColor"
+          stroke-width="1.6"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          fill="none"
+        />
+      </symbol>
+      <symbol id="i-external" viewBox="0 0 20 20">
+        <path
+          d="M8 5H5a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1v-3M12 4h4v4M15.5 4.5 9 11"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          fill="none"
+        />
+      </symbol>
+      <symbol id="i-envelope" viewBox="0 0 20 20">
+        <path
+          d="M3 5.5h14a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-7a1 1 0 0 1 1-1ZM2.4 6l7.6 5.5L17.6 6"
+          stroke="currentColor"
+          stroke-width="1.4"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          fill="none"
+        />
+      </symbol>
+      <symbol id="i-link" viewBox="0 0 20 20">
+        <path
+          d="M8.5 11.5 11.5 8.5M7 12.5 4.8 14.7a2.5 2.5 0 1 1-3.5-3.5L3.5 9M13 7.5l2.2-2.2a2.5 2.5 0 1 1 3.5 3.5L16.5 11"
+          stroke="currentColor"
+          stroke-width="1.4"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          fill="none"
+        />
+      </symbol>
+      <symbol id="i-terminal" viewBox="0 0 20 20">
+        <rect
+          x="2"
+          y="3.5"
+          width="16"
+          height="13"
+          rx="1.4"
+          stroke="currentColor"
+          stroke-width="1.4"
+          fill="none"
+        />
+        <path
+          d="M5.5 8 8.5 10.5 5.5 13M10.5 13h4"
+          stroke="currentColor"
+          stroke-width="1.4"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          fill="none"
+        />
+      </symbol>
+      <symbol id="i-folder" viewBox="0 0 20 20">
+        <path
+          d="M2.5 5.5h5l1.5 2h8.5v8a1 1 0 0 1-1 1h-13a1 1 0 0 1-1-1v-9a1 1 0 0 1 1-1Z"
+          stroke="currentColor"
+          stroke-width="1.4"
+          stroke-linejoin="round"
+          fill="none"
+        />
+      </symbol>
+      <symbol id="i-download" viewBox="0 0 20 20">
+        <path
+          d="M10 3v9.5M6.5 9l3.5 3.5L13.5 9M3.5 15.5h13"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          fill="none"
+        />
+      </symbol>
+      <symbol id="i-cpu" viewBox="0 0 20 20">
+        <rect
+          x="5.5"
+          y="5.5"
+          width="9"
+          height="9"
+          rx="1"
+          stroke="currentColor"
+          stroke-width="1.4"
+          fill="none"
+        />
+        <path
+          d="M8 5.5V3M12 5.5V3M8 17v-2.5M12 17v-2.5M5.5 8H3M5.5 12H3M17 8h-2.5M17 12h-2.5"
+          stroke="currentColor"
+          stroke-width="1.3"
+          stroke-linecap="round"
+        />
+      </symbol>
+      <symbol id="i-memory" viewBox="0 0 20 20">
+        <rect
+          x="2.5"
+          y="7"
+          width="15"
+          height="7"
+          rx="1"
+          stroke="currentColor"
+          stroke-width="1.4"
+          fill="none"
+        />
+        <path
+          d="M5.5 7V4.5M9 7V4.5M14.5 7V4.5"
+          stroke="currentColor"
+          stroke-width="1.3"
+          stroke-linecap="round"
+        />
+      </symbol>
+      <symbol id="i-wifi" viewBox="0 0 20 20">
+        <path
+          d="M3 8a10 10 0 0 1 14 0M5.5 10.7a6.3 6.3 0 0 1 9 0M8 13.4a2.7 2.7 0 0 1 4 0"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          fill="none"
+        />
+        <circle cx="10" cy="16" r="1" fill="currentColor" stroke="none" />
+      </symbol>
+      <symbol id="i-briefcase" viewBox="0 0 20 20">
+        <rect
+          x="2.5"
+          y="6.5"
+          width="15"
+          height="9.5"
+          rx="1.2"
+          stroke="currentColor"
+          stroke-width="1.4"
+          fill="none"
+        />
+        <path
+          d="M7 6.5v-1a1.5 1.5 0 0 1 1.5-1.5h3A1.5 1.5 0 0 1 13 5.5v1M2.5 10.5h15"
+          stroke="currentColor"
+          stroke-width="1.4"
+          stroke-linecap="round"
+          fill="none"
+        />
+      </symbol>
+      <symbol id="i-award" viewBox="0 0 20 20">
+        <circle
+          cx="10"
+          cy="7.5"
+          r="4.5"
+          stroke="currentColor"
+          stroke-width="1.4"
+          fill="none"
+        />
+        <path
+          d="M7.3 11.3 6 17.5l4-2 4 2-1.3-6.2"
+          stroke="currentColor"
+          stroke-width="1.4"
+          stroke-linejoin="round"
+          fill="none"
+        />
+      </symbol>
+      <symbol id="i-bolt" viewBox="0 0 20 20">
+        <path
+          d="M10.8 2.5 4 11.5h4.5L8.3 17.5 16 8h-4.7z"
+          stroke="currentColor"
+          stroke-width="1.3"
+          stroke-linejoin="round"
+          fill="none"
+        />
+      </symbol>
+      <symbol id="i-chip" viewBox="0 0 20 20">
+        <rect
+          x="4"
+          y="4"
+          width="12"
+          height="12"
+          rx="1.5"
+          stroke="currentColor"
+          stroke-width="1.4"
+          fill="none"
+        />
+        <circle
+          cx="10"
+          cy="10"
+          r="2.4"
+          stroke="currentColor"
+          stroke-width="1.3"
+          fill="none"
+        />
+      </symbol>
+    </svg>
+
     <!-- ============ EASTER EGG (código Konami) ============ -->
     <div id="easter-egg" aria-live="polite">
       <pre>
@@ -95,21 +292,29 @@ message:   viste el código Konami. eso ya dice bastante de vos.
 
             <div class="sys-meter" aria-hidden="true">
               <div class="sys-meter__row">
-                <span>CPU</span>
+                <span class="sys-meter__label"
+                  ><svg class="icon-xs"><use href="#i-cpu"></use></svg>CPU</span
+                >
                 <div class="bar">
                   <div class="bar__fill" data-meter="cpu"></div>
                 </div>
                 <span class="sys-meter__val" data-val="cpu">--%</span>
               </div>
               <div class="sys-meter__row">
-                <span>MEM</span>
+                <span class="sys-meter__label"
+                  ><svg class="icon-xs"><use href="#i-memory"></use></svg
+                  >MEM</span
+                >
                 <div class="bar">
                   <div class="bar__fill" data-meter="mem"></div>
                 </div>
                 <span class="sys-meter__val" data-val="mem">--%</span>
               </div>
               <div class="sys-meter__row">
-                <span>NET</span>
+                <span class="sys-meter__label"
+                  ><svg class="icon-xs"><use href="#i-wifi"></use></svg
+                  >NET</span
+                >
                 <div class="bar">
                   <div class="bar__fill" data-meter="net"></div>
                 </div>
@@ -120,19 +325,31 @@ message:   viste el código Konami. eso ya dice bastante de vos.
 
           <div class="badges-row">
             <div class="badge-box">
-              <span class="badge-box__top">FEATURED_ON</span>
+              <span class="badge-box__top"
+                ><svg class="icon-xs"><use href="#i-link"></use></svg
+                >FEATURED_ON</span
+              >
               <span class="badge-box__main">[ GITHUB ]</span>
             </div>
             <div class="badge-box">
-              <span class="badge-box__top">CERTIFIED_BY</span>
+              <span class="badge-box__top"
+                ><svg class="icon-xs"><use href="#i-award"></use></svg
+                >CERTIFIED_BY</span
+              >
               <span class="badge-box__main">[ DATA_SCIENCE ]</span>
             </div>
             <div class="badge-box">
-              <span class="badge-box__top">EXPERIENCE</span>
+              <span class="badge-box__top"
+                ><svg class="icon-xs"><use href="#i-briefcase"></use></svg
+                >EXPERIENCE</span
+              >
               <span class="badge-box__main">1+ YEARS</span>
             </div>
             <div class="badge-box badge-box--accent">
-              <span class="badge-box__top">FOCUS_CORE</span>
+              <span class="badge-box__top"
+                ><svg class="icon-xs"><use href="#i-chip"></use></svg
+                >FOCUS_CORE</span
+              >
               <span class="badge-box__main">SOFTWARE ENGINEER</span>
             </div>
           </div>
@@ -147,34 +364,61 @@ message:   viste el código Konami. eso ya dice bastante de vos.
 
           <p class="section-label section-label--tight">QUICK_ACCESS</p>
           <nav class="quick-access" aria-label="Accesos rápidos">
-            <a href="#workspace" data-tab="details"
-              >[ SOBRE_MÍ ]<small>MY_DETAILS.JSON</small></a
-            >
-            <a href="#workspace" data-tab="cases"
-              >[ PROYECTOS ]<small>CASE_STUDIES.SH</small></a
-            >
+            <a href="#workspace" data-tab="details">
+              <svg class="qa-icon"><use href="#i-terminal"></use></svg>
+              <span class="qa-label"
+                >[ SOBRE_MÍ ]<small>MY_DETAILS.JSON</small></span
+              >
+              <svg class="qa-arrow"><use href="#i-arrow"></use></svg>
+            </a>
+            <a href="#workspace" data-tab="cases">
+              <svg class="qa-icon"><use href="#i-folder"></use></svg>
+              <span class="qa-label"
+                >[ PROYECTOS ]<small>CASE_STUDIES.SH</small></span
+              >
+              <svg class="qa-arrow"><use href="#i-arrow"></use></svg>
+            </a>
             <a
               href="https://github.com/DanielS1103"
               target="_blank"
               rel="noopener"
-              >[ GITHUB ]<small>VERIFIED</small></a
             >
+              <svg class="qa-icon"><use href="#i-link"></use></svg>
+              <span class="qa-label">[ GITHUB ]<small>VERIFIED</small></span>
+              <svg class="qa-arrow"><use href="#i-external"></use></svg>
+            </a>
             <a
               href="https://www.linkedin.com/in/daniel-alejandro-acosta-avila"
               target="_blank"
               rel="noopener"
-              >[ LINKEDIN ]<small>PROFILE</small></a
             >
-            <a href="#workspace" data-tab="resume"
-              >[ RESUME ]<small>RESUME.PDF</small></a
-            >
-            <a href="#retro-station"
-              >[ MAC_RETRO ]<small>BOOT_STATION.EXE</small></a
-            >
-            <a href="#changelog">[ CHANGELOG ]<small>CHANGELOG.LOG</small></a>
+              <svg class="qa-icon"><use href="#i-link"></use></svg>
+              <span class="qa-label">[ LINKEDIN ]<small>PROFILE</small></span>
+              <svg class="qa-arrow"><use href="#i-external"></use></svg>
+            </a>
+            <a href="#workspace" data-tab="resume">
+              <svg class="qa-icon"><use href="#i-download"></use></svg>
+              <span class="qa-label">[ RESUME ]<small>RESUME.PDF</small></span>
+              <svg class="qa-arrow"><use href="#i-arrow"></use></svg>
+            </a>
+            <a href="#retro-station">
+              <svg class="qa-icon"><use href="#i-cpu"></use></svg>
+              <span class="qa-label"
+                >[ MAC_RETRO ]<small>BOOT_STATION.EXE</small></span
+              >
+              <svg class="qa-arrow"><use href="#i-arrow"></use></svg>
+            </a>
+            <a href="#changelog">
+              <svg class="qa-icon"><use href="#i-briefcase"></use></svg>
+              <span class="qa-label"
+                >[ CHANGELOG ]<small>CHANGELOG.LOG</small></span
+              >
+              <svg class="qa-arrow"><use href="#i-arrow"></use></svg>
+            </a>
           </nav>
 
           <a href="#contacto" class="cta">
+            <svg class="cta-icon"><use href="#i-bolt"></use></svg>
             <span class="cta__prompt">EXECUTE:</span> START_COLLABORATION()<span
               class="cursor"
               >_</span
@@ -289,8 +533,10 @@ message:   viste el código Konami. eso ya dice bastante de vos.
                     target="_blank"
                     rel="noopener"
                     class="open"
-                    >abrir_caso →</a
-                  >
+                    >abrir_caso
+                    <svg class="icon-sm open__ico">
+                      <use href="#i-arrow"></use></svg
+                  ></a>
                 </article>
 
                 <article class="project-card">
@@ -324,8 +570,10 @@ message:   viste el código Konami. eso ya dice bastante de vos.
                     target="_blank"
                     rel="noopener"
                     class="open"
-                    >abrir_caso →</a
-                  >
+                    >abrir_caso
+                    <svg class="icon-sm open__ico">
+                      <use href="#i-arrow"></use></svg
+                  ></a>
                 </article>
 
                 <article class="project-card">
@@ -361,8 +609,10 @@ message:   viste el código Konami. eso ya dice bastante de vos.
                     target="_blank"
                     rel="noopener"
                     class="open"
-                    >abrir_caso →</a
-                  >
+                    >abrir_caso
+                    <svg class="icon-sm open__ico">
+                      <use href="#i-arrow"></use></svg
+                  ></a>
                 </article>
 
                 <article class="project-card">
@@ -396,8 +646,10 @@ message:   viste el código Konami. eso ya dice bastante de vos.
                     target="_blank"
                     rel="noopener"
                     class="open"
-                    >abrir_caso →</a
-                  >
+                    >abrir_caso
+                    <svg class="icon-sm open__ico">
+                      <use href="#i-arrow"></use></svg
+                  ></a>
                 </article>
 
                 <article class="project-card project-card--locked">
@@ -586,15 +838,19 @@ message:   viste el código Konami. eso ya dice bastante de vos.
                           <span class="dot dot--live" aria-hidden="true"></span>
                           Top Average Award - 2020 II.app
                           <a href="#" target="_blank" rel="noopener"
-                            >ver_en_vivo →</a
-                          >
+                            >ver_en_vivo
+                            <svg class="icon-sm open__ico">
+                              <use href="#i-external"></use></svg
+                          ></a>
                         </li>
                         <li>
                           <span class="dot dot--live" aria-hidden="true"></span>
                           Top GPA engineering program.app
                           <a href="#" target="_blank" rel="noopener"
-                            >ver_en_vivo →</a
-                          >
+                            >ver_en_vivo
+                            <svg class="icon-sm open__ico">
+                              <use href="#i-external"></use></svg
+                          ></a>
                         </li>
                         <li>
                           <span
@@ -712,6 +968,8 @@ message:   viste el código Konami. eso ya dice bastante de vos.
                   <article class="changelog__entry">
                     <div class="changelog__meta">
                       <span class="changelog__version"
+                        ><svg class="icon-xs">
+                          <use href="#i-briefcase"></use></svg
                         >Data analyst assistant</span
                       >
                       <span class="changelog__tag changelog__tag--wip"
@@ -728,6 +986,8 @@ message:   viste el código Konami. eso ya dice bastante de vos.
                   <article class="changelog__entry">
                     <div class="changelog__meta">
                       <span class="changelog__version"
+                        ><svg class="icon-xs">
+                          <use href="#i-briefcase"></use></svg
                         >Data analyst assistant</span
                       >
                       <span class="changelog__tag changelog__tag--wip"
@@ -743,7 +1003,11 @@ message:   viste el código Konami. eso ya dice bastante de vos.
 
                   <article class="changelog__entry">
                     <div class="changelog__meta">
-                      <span class="changelog__version">Software developer</span>
+                      <span class="changelog__version"
+                        ><svg class="icon-xs">
+                          <use href="#i-briefcase"></use></svg
+                        >Software developer</span
+                      >
                       <span class="changelog__tag changelog__tag--major"
                         >Colombian Virtual Reality</span
                       >
@@ -758,6 +1022,8 @@ message:   viste el código Konami. eso ya dice bastante de vos.
                   <article class="changelog__entry">
                     <div class="changelog__meta">
                       <span class="changelog__version"
+                        ><svg class="icon-xs">
+                          <use href="#i-briefcase"></use></svg
                         >Software developer assistant</span
                       >
                       <span class="changelog__tag changelog__tag--wip"
@@ -782,6 +1048,7 @@ message:   viste el código Konami. eso ya dice bastante de vos.
               <div class="resume-card">
                 <p>resume.pdf: document PDF · download</p>
                 <a href="assets/cv.pdf" download class="cta cta--small">
+                  <svg class="cta-icon"><use href="#i-download"></use></svg>
                   <span class="cta__prompt">EXECUTE:</span> DOWNLOAD_CV()<span
                     class="cursor"
                     >_</span
@@ -986,6 +1253,36 @@ message:   viste el código Konami. eso ya dice bastante de vos.
       <!-- ============ CONTACTO ============ -->
       <section class="contact" id="contacto">
         <p class="section-label">// CONTACT.SH</p>
+        <div class="contact__quick" aria-label="Accesos directos de contacto">
+          <a
+            href="mailto:danielacosta130602@gmail.com"
+            class="contact__icon-link"
+            title="Enviar email"
+          >
+            <svg class="icon"><use href="#i-envelope"></use></svg>
+            <span>EMAIL</span>
+          </a>
+          <a
+            href="https://github.com/DanielS1103"
+            target="_blank"
+            rel="noopener"
+            class="contact__icon-link"
+            title="Ver GitHub"
+          >
+            <svg class="icon"><use href="#i-link"></use></svg>
+            <span>GITHUB</span>
+          </a>
+          <a
+            href="https://www.linkedin.com/in/daniel-alejandro-acosta-avila"
+            target="_blank"
+            rel="noopener"
+            class="contact__icon-link"
+            title="Ver LinkedIn"
+          >
+            <svg class="icon"><use href="#i-link"></use></svg>
+            <span>LINKEDIN</span>
+          </a>
+        </div>
         <div class="contact__panel">
           <p><span class="prompt">$</span> cat contacto.json</p>
           <pre class="contact__json">{
@@ -1004,7 +1301,10 @@ message:   viste el código Konami. eso ya dice bastante de vos.
         &amp; JS, sin frameworks.
       </p>
       <p class="site-footer__hint">
-        // psst: hay un código Konami escondido en esta página (↑↑↓↓←→←→ B A)
+        <svg class="icon-xs footer-hint__ico">
+          <use href="#i-terminal"></use>
+        </svg>
+        psst: hay un código Konami escondido en esta página (↑↑↓↓←→←→ B A)
       </p>
     </footer>
 
