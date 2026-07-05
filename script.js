@@ -303,11 +303,11 @@ function setupShell() {
   // ¡AQUÍ ESTÁ LA VARIABLE! (Asegúrate de que solo exista esta vez en todo tu archivo)
   const fakeFileSystem = {
     "sobre_mi.txt":
-      "Soy un desarrollador apasionado por la tecnología retro, los sistemas embebidos y el desarrollo web limpio.",
+      "Estudiante de Ingeniería de Sistemas (UNAL, 2022-2027) y Data Analyst Assistant. Frontend developer con base sólida en DevOps, análisis de datos, aprendizaje rápido y liderazgo de equipos.",
     "proyectos.json":
-      '[\n  {\n    "nombre": "Cyber-Portfolio",\n    "status": "Completado"\n  }\n]',
+      '[\n  {\n    "nombre": "AgroWeb.app",\n    "status": "Online"\n  },\n  {\n    "nombre": "Arquisoft.app (FinOps)",\n    "status": "Online"\n  },\n  {\n    "nombre": "UwUteca.app",\n    "status": "Online"\n  },\n  {\n    "nombre": "ECDSA.app",\n    "status": "Online"\n  }\n]',
     "contacto.sh":
-      "#!/bin/bash\necho 'Email: tu@email.com'\necho 'GitHub: github.com/tu-usuario'",
+      "#!/bin/bash\necho 'Email: tu@email.com'\necho 'GitHub: github.com/DanielS1103'\necho 'LinkedIn: linkedin.com/in/daniel-alejandro-acosta-avila'",
   };
 
   const history = [];
@@ -560,7 +560,7 @@ function logConsoleEasterEgg() {
     "color:#ffa62b;font-family:monospace;font-size:14px;font-weight:bold;",
   );
   console.log(
-    "%c¿Inspeccionando el código? Bien, eso me gusta.\nSi querés hablar de una oportunidad: tu@email.com",
+    "%c¿Inspeccionando el código? Bien, eso me gusta.\nSi querés hablar de una oportunidad: tu@email.com\nGitHub: github.com/DanielS1103",
     "color:#55d6c2;font-family:monospace;font-size:12px;",
   );
 }
