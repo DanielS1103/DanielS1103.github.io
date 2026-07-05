@@ -614,6 +614,14 @@ main {
   font-size: 10px;
   letter-spacing: 0.06em;
   color: rgba(255, 255, 255, 0.55);
+  overflow: hidden; /* <-- agrega esto */
+}
+
+.thumb img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover; /* llena el espacio */
 }
 .thumb--a {
   background: linear-gradient(135deg, #7a2f52, #e0507a);
