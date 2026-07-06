@@ -18,11 +18,11 @@ const bootLines = [
   " ┴  └─┘┴└─ ┴ └  └─┘┴─┘┴└─┘",
   "SYS_NAME: PORTFOLIO_CORE_v1.0",
   "KERNEL: 6.5.0-WEB",
-  "INIT: cargando módulos de presentación...",
-  "MOUNT: /proyectos  /habilidades  /contacto  ... OK",
-  "CHECK: accesibilidad ......... OK",
+  "INIT: loading presentation modules...",
+  "MOUNT: /projects  /skills  /contact  ... OK",
+  "CHECK: accessibility ......... OK",
   "CHECK: responsive ............ OK",
-  "STATUS: listo para renderizar UI",
+  "STATUS: ready to render UI",
 ];
 
 function runBoot() {
@@ -39,7 +39,7 @@ function runBoot() {
 
   function typeLine() {
     if (i >= bootLines.length) {
-      out += '\n> listo. <span class="cursor-blink"></span>';
+      out += '\n> ready. <span class="cursor-blink"></span>';
       textEl.innerHTML = out;
       setTimeout(() => overlay.classList.add("is-hidden"), 500);
       return;
@@ -323,7 +323,7 @@ function setupShell() {
 
   function printCmd(cmd) {
     print(
-      `<span class="prompt" style="color: var(--cyan); font-weight: bold; margin-right: 8px; text-shadow: 0 0 3px rgba(85, 214, 194, 0.3);">visitante@portfolio:~$</span> <span style="color: #ffffff;">${cmd}</span>`,
+      `<span class="prompt" style="color: var(--cyan); font-weight: bold; margin-right: 8px; text-shadow: 0 0 3px rgba(85, 214, 194, 0.3);">visitant@portfolio:~$</span> <span style="color: #ffffff;">${cmd}</span>`,
       "line-cmd",
     );
   }
@@ -331,7 +331,7 @@ function setupShell() {
   const commands = {
     help() {
       print(
-        "Comandos disponibles: <span style='color: var(--cyan)'>ls, cat, whoami, neofetch, clear, sudo</span>",
+        "Commands: <span style='color: var(--cyan)'>ls, cat, whoami, neofetch, clear, sudo</span>",
       );
     },
     ls() {
@@ -344,21 +344,21 @@ function setupShell() {
           return `<span>${f}</span>`;
         })
         .join("    ");
-      print(files || "Directorio vacío.");
+      print(files || "Directory empty.");
     },
     cat(args) {
       if (!args) {
-        print("Uso: cat [nombre_archivo]", "line-err");
+        print("Usage: cat [filename]", "line-err");
         return;
       }
       if (fakeFileSystem[args]) {
         print(fakeFileSystem[args].replace(/\n/g, "<br>"));
       } else {
-        print(`cat: ${args}: No se encontró el archivo.`, "line-err");
+        print(`cat: ${args}: File not found.`, "line-err");
       }
     },
     whoami() {
-      print("visitante@portfolio — Privilegios: Invitado");
+      print("visitant@portfolio — Privileges: Guest");
     },
     neofetch() {
       print(
@@ -377,7 +377,7 @@ function setupShell() {
     },
     sudo() {
       print(
-        "Access granted. Tus privilegios han sido escalados de forma temporal.",
+        "Access granted. Your privileges have been escalated temporarily.",
         "line-dim",
       );
     },
@@ -413,7 +413,7 @@ function setupShell() {
         commands[cmd](args);
       } else {
         print(
-          `bash: ${cmd}: comando no encontrado — escribe "<span style='color: var(--amber)'>help</span>"`,
+          `bash: ${cmd}: command not found — type "<span style='color: var(--amber)'>help</span>"`,
           "line-err",
         );
       }
