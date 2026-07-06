@@ -1,0 +1,1491 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Macintosh Pixel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=VT323&family=Caveat:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --scene-1: #6f9ab8;
+        --scene-2: #4c6f8f;
+        --key: #d7cba9;
+        --key-dark: #a99872;
+        --screen-mint: #dff2e4;
+        --screen-mint-deep: #c9e9d9;
+        --screen-text: #0c3a2f;
+        --screen-frame: #241f14;
+        --screen-dark: #0c2f28;
+        --pixel-font: "VT323", monospace;
+        --script-font: "Caveat", cursive;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: transparent;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--pixel-font);
+        overflow: visible;
+        image-rendering: pixelated;
+      }
+      .scene-wrap {
+        transform-origin: top center;
+      }
+      .stage {
+        position: relative;
+        width: 470px;
+        height: 400px;
+        user-select: none;
+      }
+      svg {
+        display: block;
+      }
+
+      /* ============ SOMBRA PLANA (sin blur = pixel art) ============ */
+      .flat-shadow {
+        position: absolute;
+        background: rgba(20, 30, 40, 0.28);
+      }
+
+      /* ============ MAC CASE ============ */
+      .mac-unit {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        width: 470px;
+        height: 400px;
+      }
+      .case-side {
+        position: absolute;
+        left: 335px;
+        top: 18px;
+        width: 120px;
+        height: 336px;
+      }
+      .case-side .vents {
+        position: absolute;
+        right: 20px;
+        bottom: 44px;
+        display: grid;
+        grid-template-columns: repeat(3, 10px);
+        gap: 6px;
+        z-index: 2;
+      }
+      .case-side .vents span {
+        height: 6px;
+        background: #3a3122;
+      }
+
+      .case-front {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 360px;
+        height: 360px;
+      }
+
+      .screen-bezel {
+        position: absolute;
+        left: 30px;
+        top: 30px;
+        width: 300px;
+        height: 228px;
+        padding: 18px;
+      }
+      .bezel-bg {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+      }
+      .crt {
+        position: relative;
+        width: 264px;
+        height: 192px;
+        background: var(--screen-dark);
+        overflow: hidden;
+        cursor: pointer;
+        border: 3px solid var(--screen-frame);
+        clip-path: polygon(
+          8px 0,
+          calc(100% - 8px) 0,
+          100% 8px,
+          100% calc(100% - 8px),
+          calc(100% - 8px) 100%,
+          8px 100%,
+          0 calc(100% - 8px),
+          0 8px
+        );
+      }
+      .crt-glare {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          115deg,
+          rgba(255, 255, 255, 0.16) 0%,
+          rgba(255, 255, 255, 0.16) 18%,
+          transparent 18%,
+          transparent 100%
+        );
+        pointer-events: none;
+        z-index: 50;
+      }
+      .scanlines {
+        position: absolute;
+        inset: 0;
+        background: repeating-linear-gradient(
+          rgba(0, 0, 0, 0) 0,
+          rgba(0, 0, 0, 0) 2px,
+          rgba(0, 0, 0, 0.14) 3px
+        );
+        pointer-events: none;
+        z-index: 49;
+      }
+
+      .apple-badge {
+        position: absolute;
+        left: 34px;
+        top: 272px;
+        width: 26px;
+        height: 26px;
+        z-index: 2;
+      }
+      .floppy-slot {
+        position: absolute;
+        left: 118px;
+        top: 288px;
+        width: 114px;
+        height: 10px;
+        background: #3a3122;
+        z-index: 2;
+      }
+      .floppy-slot span {
+        position: absolute;
+        top: 3px;
+        left: 8px;
+        right: 8px;
+        height: 2px;
+        background: #000;
+        opacity: 0.4;
+      }
+      .brand-label {
+        position: absolute;
+        left: 34px;
+        top: 305px;
+        font-family: var(--script-font);
+        font-size: 19px;
+        color: #5c4f36;
+        letter-spacing: 0.5px;
+        z-index: 2;
+      }
+      .power-btn {
+        position: absolute;
+        left: 262px;
+        top: 306px;
+        width: 36px;
+        height: 16px;
+        background: #c3b587;
+        border: 2px solid #5c4f36;
+        border-radius: 0;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--pixel-font);
+        font-size: 11px;
+        color: #40371f;
+        padding: 0;
+        z-index: 2;
+      }
+      .power-btn:active {
+        transform: translate(1px, 1px);
+      }
+      .power-led {
+        position: absolute;
+        left: 306px;
+        top: 308px;
+        width: 12px;
+        height: 12px;
+        z-index: 2;
+      }
+
+      .mac-base {
+        position: absolute;
+        left: 4px;
+        top: 346px;
+        width: 352px;
+        height: 14px;
+        background: #5c4f36;
+        z-index: 1;
+      }
+
+      /* ============ KEYBOARD ============ */
+      .keyboard {
+        position: absolute;
+        left: 20px;
+        top: 470px;
+        width: 420px;
+        height: 96px;
+      }
+      .keyboard-bg {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+      }
+      .kb-keys {
+        position: absolute;
+        left: 14px;
+        top: 12px;
+        right: 14px;
+        bottom: 12px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        z-index: 1;
+      }
+      .kb-row {
+        display: flex;
+        gap: 5px;
+      }
+      .key {
+        height: 14px;
+        flex: 1;
+        background: var(--key);
+        border-radius: 0;
+        box-shadow: 2px 2px 0 var(--key-dark);
+      }
+      .key.wide {
+        flex: 2.4;
+      }
+      .key.space {
+        flex: 8;
+      }
+
+      /* ============ MOUSE ============ */
+      .mouse-wrap {
+        position: absolute;
+        left: 520px;
+        top: 512px;
+        width: 96px;
+        height: 78px;
+      }
+      .mouse-bg {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+      }
+      .mouse-seam {
+        position: absolute;
+        left: 10px;
+        top: 16px;
+        right: 10px;
+        height: 4px;
+        background: #8d7f5c;
+        z-index: 1;
+      }
+
+      /* ============ SCREEN CONTENT LAYERS ============ */
+      .layer {
+        position: absolute;
+        inset: 0;
+      }
+      .off-screen {
+        background: radial-gradient(
+          ellipse at 50% 40%,
+          #163530 0%,
+          #041210 70%
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #1f5c4d;
+        font-size: 13px;
+        letter-spacing: 1px;
+        opacity: 1;
+        transition: opacity 0.25s;
+      }
+      .boot-screen {
+        background: var(--screen-mint);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s;
+      }
+      .boot-screen.show {
+        opacity: 1;
+      }
+      .boot-icon {
+        width: 52px;
+        height: 52px;
+      }
+      .boot-bar {
+        width: 140px;
+        height: 10px;
+        border: 2px solid var(--screen-text);
+        overflow: hidden;
+        background: rgba(12, 58, 47, 0.08);
+      }
+      .boot-bar-fill {
+        height: 100%;
+        width: 0%;
+        background: var(--screen-text);
+        transition: width 1.2s linear;
+      }
+      .hello-screen {
+        background: var(--screen-mint);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.35s;
+      }
+      .hello-screen.show {
+        opacity: 1;
+      }
+      #helloCanvas {
+        width: 230px;
+        height: 90px;
+        image-rendering: pixelated;
+        image-rendering: -moz-crisp-edges;
+        image-rendering: crisp-edges;
+      }
+
+      .desktop-layer {
+        background: var(--screen-mint);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.4s;
+        display: flex;
+        flex-direction: column;
+      }
+      .desktop-layer.show {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .menubar {
+        height: 18px;
+        background: #f2f8f4;
+        border-bottom: 2px solid var(--screen-text);
+        display: flex;
+        align-items: center;
+        padding: 0 5px;
+        gap: 2px;
+        position: relative;
+        z-index: 100;
+        flex-shrink: 0;
+      }
+      .menu-apple {
+        width: 12px;
+        height: 12px;
+        cursor: pointer;
+        margin-right: 4px;
+      }
+      .menu-item {
+        font-size: 12px;
+        color: var(--screen-text);
+        padding: 0 6px;
+        cursor: pointer;
+        line-height: 16px;
+      }
+      .menu-item:hover,
+      .menu-item.active {
+        background: var(--screen-text);
+        color: var(--screen-mint);
+      }
+      .menu-clock {
+        margin-left: auto;
+        font-size: 11px;
+        color: var(--screen-text);
+        padding-right: 3px;
+      }
+
+      .menu-dropdown {
+        position: absolute;
+        top: 18px;
+        left: 0;
+        min-width: 130px;
+        background: #f2f8f4;
+        border: 2px solid var(--screen-text);
+        border-top: none;
+        display: none;
+        flex-direction: column;
+        z-index: 200;
+        box-shadow: 2px 3px 0 rgba(0, 0, 0, 0.2);
+      }
+      .menu-dropdown.open {
+        display: flex;
+      }
+      .menu-dropdown div {
+        font-size: 12px;
+        color: var(--screen-text);
+        padding: 2px 8px;
+        cursor: pointer;
+        white-space: nowrap;
+      }
+      .menu-dropdown div:hover {
+        background: var(--screen-text);
+        color: var(--screen-mint);
+      }
+      .menu-dropdown hr {
+        border: none;
+        border-top: 1px solid var(--screen-text);
+        opacity: 0.35;
+        margin: 2px 0;
+      }
+
+      .desktop-icons {
+        position: relative;
+        flex: 1;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-content: flex-start;
+        gap: 4px;
+        overflow: hidden;
+      }
+      .desk-icon {
+        width: 52px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+        cursor: default;
+        padding: 2px;
+      }
+      .desk-icon .glyph {
+        width: 28px;
+        height: 28px;
+      }
+      .desk-icon .lbl {
+        font-size: 11px;
+        color: var(--screen-text);
+        text-align: center;
+        line-height: 1;
+        padding: 1px 2px;
+      }
+      .desk-icon.selected .lbl {
+        background: var(--screen-text);
+        color: var(--screen-mint);
+      }
+
+      #windows-layer {
+        position: absolute;
+        left: 0;
+        top: 18px;
+        right: 0;
+        bottom: 0;
+        z-index: 150;
+        pointer-events: none;
+      }
+      .win {
+        position: absolute;
+        background: var(--screen-mint);
+        border: 2px solid var(--screen-text);
+        box-shadow: 3px 4px 0 rgba(12, 58, 47, 0.35);
+        display: flex;
+        flex-direction: column;
+        pointer-events: auto;
+        animation: winPop 0.12s ease-out;
+      }
+      @keyframes winPop {
+        from {
+          transform: scale(0.9);
+          opacity: 0;
+        }
+        to {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+      .win-titlebar {
+        height: 18px;
+        flex-shrink: 0;
+        background-image: repeating-linear-gradient(
+          to bottom,
+          var(--screen-text) 0 2px,
+          var(--screen-mint) 2px 4px
+        );
+        border-bottom: 2px solid var(--screen-text);
+        display: flex;
+        align-items: center;
+        padding: 0 4px;
+        cursor: grab;
+        gap: 5px;
+      }
+      .win-titlebar:active {
+        cursor: grabbing;
+      }
+      .win-close {
+        width: 10px;
+        height: 10px;
+        background: var(--screen-mint);
+        border: 2px solid var(--screen-text);
+        cursor: pointer;
+        flex-shrink: 0;
+      }
+      .win-title {
+        background: var(--screen-mint);
+        padding: 0 7px;
+        font-size: 11px;
+        color: var(--screen-text);
+        margin: 0 auto;
+      }
+      .win-body {
+        flex: 1;
+        overflow: auto;
+        padding: 9px;
+        font-size: 13px;
+        color: var(--screen-text);
+        line-height: 1.35;
+      }
+      .win-body b {
+        font-weight: 700;
+      }
+      .mini-icon-row {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+      .mini-icon {
+        width: 54px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+        cursor: default;
+      }
+      .mini-icon .glyph {
+        width: 28px;
+        height: 28px;
+      }
+      .mini-icon .lbl {
+        font-size: 11px;
+        text-align: center;
+      }
+
+      .paint-toolbar {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        margin-bottom: 6px;
+      }
+      .swatch {
+        width: 14px;
+        height: 14px;
+        border: 2px solid var(--screen-text);
+        cursor: pointer;
+      }
+      .swatch.active {
+        outline: 2px solid #d9534f;
+        outline-offset: 1px;
+      }
+      .paint-btn {
+        font-family: var(--pixel-font);
+        font-size: 12px;
+        border: 2px solid var(--screen-text);
+        background: var(--screen-mint);
+        color: var(--screen-text);
+        cursor: pointer;
+        padding: 1px 7px;
+      }
+      .paint-btn:hover {
+        background: var(--screen-text);
+        color: var(--screen-mint);
+      }
+      .paint-grid {
+        display: grid;
+        border: 2px solid var(--screen-text);
+        width: max-content;
+      }
+      .paint-cell {
+        width: 9px;
+        height: 9px;
+        background: #ffffff;
+        outline: 1px solid #cfe6da;
+      }
+
+      ::-webkit-scrollbar {
+        width: 9px;
+        height: 9px;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--screen-text);
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--screen-mint-deep);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="scene-wrap" id="sceneWrap">
+      <div class="stage">
+        <!-- ============ MAC ============ -->
+        <div class="mac-unit">
+          <div class="case-side" id="caseSide">
+            <div class="vents">
+              <span></span><span></span><span></span><span></span><span></span
+              ><span></span>
+            </div>
+          </div>
+          <div class="case-front" id="caseFront">
+            <div class="screen-bezel">
+              <div class="bezel-bg" id="bezelBg"></div>
+              <div class="crt" id="crt" title="Clic para encender">
+                <div class="layer off-screen" id="offScreen">
+                  ● pantalla apagada ●
+                </div>
+
+                <div class="layer boot-screen" id="bootScreen">
+                  <div class="boot-icon" id="bootIcon"></div>
+                  <div class="boot-bar">
+                    <div class="boot-bar-fill" id="bootBarFill"></div>
+                  </div>
+                </div>
+
+                <div class="layer hello-screen" id="helloScreen">
+                  <canvas id="helloCanvas" width="140" height="55"></canvas>
+                </div>
+
+                <div class="layer desktop-layer" id="desktopLayer">
+                  <div class="menubar" id="menubar">
+                    <div class="menu-apple" id="menuApple"></div>
+                    <div class="menu-item" data-menu="file">Archivo</div>
+                    <div class="menu-item" data-menu="edit">Edición</div>
+                    <div class="menu-item" data-menu="view">Ver</div>
+                    <div class="menu-item" data-menu="special">Especial</div>
+                    <div class="menu-clock" id="menuClock">12:00</div>
+
+                    <div class="menu-dropdown" id="dd-apple">
+                      <div data-action="about">Acerca de esta Macintosh…</div>
+                    </div>
+                    <div class="menu-dropdown" id="dd-file">
+                      <div data-action="newfolder">Nueva carpeta</div>
+                      <div data-action="closeall">Cerrar ventanas</div>
+                    </div>
+                    <div class="menu-dropdown" id="dd-edit">
+                      <div data-action="noop">Copiar</div>
+                      <div data-action="noop">Pegar</div>
+                    </div>
+                    <div class="menu-dropdown" id="dd-view">
+                      <div data-action="noop">por Icono</div>
+                      <div data-action="noop">por Nombre</div>
+                    </div>
+                    <div class="menu-dropdown" id="dd-special">
+                      <div data-action="emptytrash">Vaciar Papelera</div>
+                      <hr />
+                      <div data-action="restart">Reiniciar</div>
+                      <div data-action="shutdown">Apagar</div>
+                    </div>
+                  </div>
+
+                  <div class="desktop-icons" id="desktopIcons"></div>
+                </div>
+
+                <div id="windows-layer"></div>
+                <div class="crt-glare"></div>
+                <div class="scanlines"></div>
+              </div>
+            </div>
+            <div class="apple-badge" id="appleBadge"></div>
+            <div class="floppy-slot"><span></span></div>
+            <div class="brand-label">Macintosh</div>
+            <button class="power-btn" id="powerBtn">⏻</button>
+            <div class="power-led" id="powerLed"></div>
+            <div class="mac-base"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      /* ============================================================
+   MOTOR DE PIXEL ART — genera relleno de bloques cuadrados
+   ============================================================ */
+      function pixelIcon(rows, palette) {
+        const w = Math.max(...rows.map((r) => r.length));
+        const h = rows.length;
+        const norm = rows.map((r) => (r + ".".repeat(w)).slice(0, w));
+        let rects = "";
+        for (let y = 0; y < h; y++) {
+          for (let x = 0; x < w; x++) {
+            const c = norm[y][x];
+            if (c === ".") continue;
+            const color = palette[c];
+            if (!color) continue;
+            rects += `<rect x="${x}" y="${y}" width="1.02" height="1.02" fill="${color}"/>`;
+          }
+        }
+        return `<svg viewBox="0 0 ${w} ${h}" width="100%" height="100%" preserveAspectRatio="none" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg">${rects}</svg>`;
+      }
+
+      /* Genera un panel rectangular con esquinas escalonadas (pixel-round)
+   y bandas de sombreado planas — así el "cuerpo" del equipo también
+   queda hecho de píxeles, sin gradientes ni radios suaves. */
+      function pixelPanel(cols, rows, opts) {
+        const {
+          corner = 4,
+          outline = "#000000",
+          light = "#ffffff",
+          base = "#cccccc",
+          dark = "#888888",
+          lightBand = 0.28,
+          darkBand = 0.24,
+        } = opts;
+
+        function inShape(x, y) {
+          if (x < 0 || y < 0 || x >= cols || y >= rows) return false;
+          const r = corner;
+          let cx = null,
+            cy = null;
+          if (x < r && y < r) {
+            cx = r - 1;
+            cy = r - 1;
+          } else if (x >= cols - r && y < r) {
+            cx = cols - r;
+            cy = r - 1;
+          } else if (x < r && y >= rows - r) {
+            cx = r - 1;
+            cy = rows - r;
+          } else if (x >= cols - r && y >= rows - r) {
+            cx = cols - r;
+            cy = rows - r;
+          }
+          if (cx === null) return true;
+          const dx = x - cx,
+            dy = y - cy;
+          return dx * dx + dy * dy <= r * r + r;
+        }
+
+        let rects = "";
+        for (let y = 0; y < rows; y++) {
+          for (let x = 0; x < cols; x++) {
+            if (!inShape(x, y)) continue;
+            const isEdge =
+              !inShape(x - 1, y) ||
+              !inShape(x + 1, y) ||
+              !inShape(x, y - 1) ||
+              !inShape(x, y + 1);
+            let color;
+            if (isEdge) {
+              color = outline;
+            } else {
+              const t = (x / cols) * 0.5 + (y / rows) * 0.5;
+              if (t < lightBand) color = light;
+              else if (t > 1 - darkBand) color = dark;
+              else color = base;
+            }
+            rects += `<rect x="${x}" y="${y}" width="1.02" height="1.02" fill="${color}"/>`;
+          }
+        }
+        return `<svg viewBox="0 0 ${cols} ${rows}" width="100%" height="100%" preserveAspectRatio="none" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg">${rects}</svg>`;
+      }
+
+      const ICONS = {};
+
+      ICONS.disk = pixelIcon(
+        [
+          "............",
+          "............",
+          "..kkkkkkkk..",
+          ".kwwwwwwwwk.",
+          ".kwwwwwwwwk.",
+          ".kwkkkkkkwk.",
+          ".kwwwwwwwwk.",
+          ".kwwwwwwwwk.",
+          ".kwwwwwwwwk.",
+          ".kkkkkkkkkk.",
+          "............",
+          "............",
+        ],
+        { k: "#3a4a48", w: "#eef6f1" },
+      );
+
+      ICONS.folder = pixelIcon(
+        [
+          "............",
+          "...kkkk.....",
+          "..kyyyk.....",
+          ".kkkkkkkkkk.",
+          ".kyyyyyyyyk.",
+          ".kyyyyyyyyk.",
+          ".kyyyyyyyyk.",
+          ".kyyyyyyyyk.",
+          ".kyyyyyyyyk.",
+          ".kkkkkkkkkk.",
+          "............",
+          "............",
+        ],
+        { k: "#6b5423", y: "#f0c419" },
+      );
+
+      ICONS.trash = pixelIcon(
+        [
+          "............",
+          "....kkkk....",
+          "...kwwwwk...",
+          "..kkkkkkkk..",
+          ".kwwwwwwwwk.",
+          ".kwkwwkwwkk.",
+          ".kwwwwwwwwk.",
+          ".kwkwwkwwkk.",
+          ".kwwwwwwwwk.",
+          "..kkkkkkkk..",
+          "............",
+          "............",
+        ],
+        { k: "#3a3a3a", w: "#d4d4d4" },
+      );
+
+      ICONS.file = pixelIcon(
+        [
+          "............",
+          ".kkkkkkk....",
+          ".kwwwwwky...",
+          ".kwwwwwky...",
+          ".kwkkkkky...",
+          ".kwwwwwky...",
+          ".kwkkkkky...",
+          ".kwwwwwky...",
+          ".kwkkkkky...",
+          ".kkkkkkkky..",
+          "............",
+          "............",
+        ],
+        { k: "#333333", w: "#ffffff", y: "#9a9a9a" },
+      );
+
+      ICONS.brush = pixelIcon(
+        [
+          "............",
+          "..........k.",
+          ".........kwk",
+          "........kwwk",
+          ".......kwwk.",
+          "......kwwk..",
+          ".....kwwk...",
+          "....kbbk....",
+          "...kbbk.....",
+          "..kbbk......",
+          ".kbbk.......",
+          "kbbk........",
+        ],
+        { k: "#332211", w: "#c9c9c9", b: "#8a5a2a" },
+      );
+
+      ICONS.appleRainbow = pixelIcon(
+        [
+          "...kk.....",
+          "..gg......",
+          ".gggggg...",
+          "yyyyyyyyy.",
+          "yyyyyyyyy.",
+          "oooooooo..",
+          "rrrrrrr...",
+          "ppppppppp.",
+          "bbbbbbbbb.",
+          "..........",
+        ],
+        {
+          k: "#5b3a29",
+          g: "#4d9c3d",
+          y: "#f4d13d",
+          o: "#f2a13d",
+          r: "#e5533d",
+          p: "#a34dbb",
+          b: "#3d7dd8",
+        },
+      );
+
+      ICONS.happyMac = pixelIcon(
+        [
+          "..kkkkkkkkkkkk..",
+          ".kwwwwwwwwwwwwk.",
+          ".kwwwwwwwwwwwwk.",
+          ".kwwkkwwwwkkwwk.",
+          ".kwwkkwwwwkkwwk.",
+          ".kwwwwwwwwwwwwk.",
+          ".kwwwkwwwwkwwwk.",
+          ".kwwwwkkkkwwwwk.",
+          ".kwwwwwwwwwwwwk.",
+          ".kkkkkkkkkkkkkk.",
+          "...kkk....kkk...",
+          "...kkk....kkk...",
+          "..kkkkk..kkkkk..",
+          "................",
+        ],
+        { k: "#0c3a2f", w: "#eef8f2" },
+      );
+
+      ICONS.ledDiamond = pixelIcon(
+        ["..k..", ".kkk.", "kkkkk", ".kkk.", "..k.."],
+        { k: "#5a4a2a" },
+      );
+      const LED_OFF = ICONS.ledDiamond;
+      const LED_ON = pixelIcon(["..k..", ".kkk.", "kkkkk", ".kkk.", "..k.."], {
+        k: "#7CFC7C",
+      });
+
+      /* ============================================================
+   CUERPO FÍSICO: paneles pixel-art generados
+   ============================================================ */
+      const CASE_PALETTE = {
+        corner: 5,
+        outline: "#4a3f28",
+        light: "#f4ecd2",
+        base: "#ddd0ae",
+        dark: "#b19d6c",
+      };
+      const SIDE_PALETTE = {
+        corner: 3,
+        outline: "#3a3120",
+        light: "#e6d9b3",
+        base: "#c9ba8c",
+        dark: "#9c8c60",
+        lightBand: 0.06,
+        darkBand: 0.55,
+      };
+      const BEZEL_PALETTE = {
+        corner: 3,
+        outline: "#151109",
+        light: "#8a7c58",
+        base: "#6a5f44",
+        dark: "#443b29",
+      };
+      const KB_PALETTE = {
+        corner: 3,
+        outline: "#4a3f28",
+        light: "#f2e9cc",
+        base: "#ddd0ae",
+        dark: "#b19d6c",
+      };
+      const MOUSE_PALETTE = {
+        corner: 4,
+        outline: "#4a3f28",
+        light: "#f4ecd2",
+        base: "#ddd0ae",
+        dark: "#b19d6c",
+      };
+
+      document.getElementById("caseFront").style.zIndex = 0;
+      document
+        .getElementById("caseFront")
+        .insertAdjacentHTML(
+          "afterbegin",
+          `<div style="position:absolute;inset:0;z-index:-1;">${pixelPanel(60, 60, CASE_PALETTE)}</div>`,
+        );
+      document
+        .getElementById("caseSide")
+        .insertAdjacentHTML(
+          "afterbegin",
+          `<div style="position:absolute;inset:0;z-index:-1;">${pixelPanel(20, 56, SIDE_PALETTE)}</div>`,
+        );
+      document.getElementById("bezelBg").innerHTML = pixelPanel(
+        50,
+        38,
+        BEZEL_PALETTE,
+      );
+
+      document.getElementById("bootIcon").innerHTML = ICONS.happyMac;
+      document.getElementById("appleBadge").innerHTML = ICONS.appleRainbow;
+      document.getElementById("menuApple").innerHTML = ICONS.appleRainbow;
+      document.getElementById("powerLed").innerHTML = LED_OFF;
+
+      /* ============================================================
+   ESTADO Y ARRANQUE
+   ============================================================ */
+      const crt = document.getElementById("crt");
+      const offScreen = document.getElementById("offScreen");
+      const bootScreen = document.getElementById("bootScreen");
+      const bootBarFill = document.getElementById("bootBarFill");
+      const helloScreen = document.getElementById("helloScreen");
+      const desktopLayer = document.getElementById("desktopLayer");
+      const powerLed = document.getElementById("powerLed");
+      const powerBtn = document.getElementById("powerBtn");
+
+      let machineState = "off"; // off | booting | hello | desktop
+      let bootTimers = [];
+
+      function clearBootTimers() {
+        bootTimers.forEach((t) => clearTimeout(t));
+        bootTimers = [];
+      }
+
+      function drawHello() {
+        try {
+          const c = document.getElementById("helloCanvas");
+          if (!c) return;
+          const ctx = c.getContext("2d");
+          if (!ctx) return;
+          ctx.clearRect(0, 0, c.width, c.height);
+          ctx.fillStyle = "#0c3a2f";
+          ctx.font = "italic 40px 'Caveat', cursive";
+          ctx.textBaseline = "middle";
+          ctx.textAlign = "center";
+          ctx.fillText("hello", c.width / 2, c.height / 2 + 4);
+        } catch (err) {
+          /* Si el navegador bloquea el canvas (protección de privacidad, etc.)
+       esto no debe romper el resto del script: el Mac debe encender igual. */
+          console.warn("No se pudo dibujar el saludo de bienvenida:", err);
+        }
+      }
+      try {
+        if (document.fonts && document.fonts.ready) {
+          document.fonts
+            .load("40px 'Caveat'")
+            .then(drawHello)
+            .catch(() => {});
+          document.fonts.ready.then(drawHello).catch(() => {});
+        } else {
+          drawHello();
+        }
+      } catch (err) {
+        console.warn("No se pudo cargar la fuente de bienvenida:", err);
+      }
+
+      function powerOn() {
+        if (machineState !== "off") return;
+        clearBootTimers();
+        machineState = "booting";
+        offScreen.style.opacity = "0";
+        bootScreen.classList.add("show");
+        bootBarFill.style.width = "0%";
+        powerLed.innerHTML = LED_ON;
+        requestAnimationFrame(() =>
+          requestAnimationFrame(() => {
+            bootBarFill.style.width = "100%";
+          }),
+        );
+
+        bootTimers.push(
+          setTimeout(() => {
+            bootScreen.classList.remove("show");
+            machineState = "hello";
+            drawHello();
+            helloScreen.classList.add("show");
+          }, 1500),
+        );
+
+        bootTimers.push(
+          setTimeout(() => {
+            helloScreen.classList.remove("show");
+            machineState = "desktop";
+            desktopLayer.classList.add("show");
+          }, 3400),
+        );
+      }
+
+      function powerOff() {
+        clearBootTimers();
+        machineState = "off";
+        bootScreen.classList.remove("show");
+        helloScreen.classList.remove("show");
+        desktopLayer.classList.remove("show");
+        offScreen.style.opacity = "1";
+        powerLed.innerHTML = LED_OFF;
+        closeAllWindows();
+        closeAllMenus();
+      }
+
+      function restartMachine() {
+        powerOff();
+        setTimeout(powerOn, 350);
+      }
+
+      crt.addEventListener("click", () => {
+        if (machineState === "off") {
+          powerOn();
+        }
+      });
+      powerBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        if (machineState === "off") {
+          powerOn();
+        } else {
+          powerOff();
+        }
+      });
+
+      /* ============================================================
+   RELOJ DEL MENU
+   ============================================================ */
+      function tickClock() {
+        const now = new Date();
+        let h = now.getHours();
+        const m = now.getMinutes();
+        const ampm = h >= 12 ? "PM" : "AM";
+        h = h % 12;
+        if (h === 0) h = 12;
+        document.getElementById("menuClock").textContent =
+          h + ":" + String(m).padStart(2, "0") + " " + ampm;
+      }
+      tickClock();
+      setInterval(tickClock, 5000);
+
+      /* ============================================================
+   MENÚS DESPLEGABLES
+   ============================================================ */
+      const menuMap = {
+        file: "dd-file",
+        edit: "dd-edit",
+        view: "dd-view",
+        special: "dd-special",
+      };
+      function closeAllMenus() {
+        document
+          .querySelectorAll(".menu-dropdown")
+          .forEach((d) => d.classList.remove("open"));
+        document
+          .querySelectorAll(".menu-item")
+          .forEach((d) => d.classList.remove("active"));
+      }
+      document.querySelectorAll(".menu-item[data-menu]").forEach((item) => {
+        item.addEventListener("click", (e) => {
+          e.stopPropagation();
+          const key = item.dataset.menu;
+          const dd = document.getElementById(menuMap[key]);
+          const wasOpen = dd.classList.contains("open");
+          closeAllMenus();
+          if (!wasOpen) {
+            dd.classList.add("open");
+            item.classList.add("active");
+          }
+        });
+      });
+      document.getElementById("menuApple").addEventListener("click", (e) => {
+        e.stopPropagation();
+        const dd = document.getElementById("dd-apple");
+        const wasOpen = dd.classList.contains("open");
+        closeAllMenus();
+        if (!wasOpen) dd.classList.add("open");
+      });
+      document.addEventListener("click", closeAllMenus);
+
+      document
+        .querySelectorAll(".menu-dropdown div[data-action]")
+        .forEach((opt) => {
+          opt.addEventListener("click", (e) => {
+            e.stopPropagation();
+            closeAllMenus();
+            const action = opt.dataset.action;
+            if (action === "about") openAboutWindow();
+            else if (action === "shutdown") powerOff();
+            else if (action === "restart") restartMachine();
+            else if (action === "emptytrash") openTrashWindow();
+            else if (action === "closeall") closeAllWindows();
+            else if (action === "newfolder")
+              openWindow({
+                id: "w-newfolder-" + Date.now(),
+                title: "carpeta sin título",
+                x: 260,
+                y: 110,
+                w: 190,
+                h: 110,
+                content: `<div style="text-align:center;padding-top:16px;">${iconHTML("folder", 36)}<div style="margin-top:6px;">carpeta sin título</div></div>`,
+              });
+          });
+        });
+
+      /* ============================================================
+   GESTOR DE VENTANAS
+   ============================================================ */
+      const winLayer = document.getElementById("windows-layer");
+      let zTop = 10;
+      let openWins = {};
+
+      function iconHTML(name, size) {
+        return `<div style="width:${size}px;height:${size}px;margin:0 auto;">${ICONS[name]}</div>`;
+      }
+
+      function closeAllWindows() {
+        Object.keys(openWins).forEach((id) => {
+          const el = document.getElementById(id);
+          if (el) el.remove();
+        });
+        openWins = {};
+      }
+
+      function focusWindow(el) {
+        el.style.zIndex = ++zTop;
+      }
+
+      function openWindow({ id, title, x, y, w, h, content, onReady }) {
+        if (document.getElementById(id)) {
+          focusWindow(document.getElementById(id));
+          return;
+        }
+        const win = document.createElement("div");
+        win.className = "win";
+        win.id = id;
+        win.style.left = x + "px";
+        win.style.top = y + "px";
+        win.style.width = w + "px";
+        win.style.height = h + "px";
+        win.style.zIndex = ++zTop;
+        win.innerHTML = `
+    <div class="win-titlebar">
+      <div class="win-close"></div>
+      <div class="win-title">${title}</div>
+    </div>
+    <div class="win-body">${content}</div>
+  `;
+        winLayer.appendChild(win);
+        openWins[id] = true;
+
+        win.addEventListener("mousedown", () => focusWindow(win));
+        win.querySelector(".win-close").addEventListener("click", (e) => {
+          e.stopPropagation();
+          win.remove();
+          delete openWins[id];
+        });
+
+        makeDraggable(win, win.querySelector(".win-titlebar"));
+        if (onReady) onReady(win);
+        return win;
+      }
+
+      function makeDraggable(win, handle) {
+        let dragging = false,
+          offX = 0,
+          offY = 0;
+        handle.addEventListener("mousedown", (e) => {
+          if (e.target.classList.contains("win-close")) return;
+          dragging = true;
+          const rect = win.getBoundingClientRect();
+          offX = e.clientX - rect.left;
+          offY = e.clientY - rect.top;
+          focusWindow(win);
+          e.preventDefault();
+        });
+        window.addEventListener("mousemove", (e) => {
+          if (!dragging) return;
+          const parentRect = winLayer.getBoundingClientRect();
+          let nx = e.clientX - parentRect.left - offX;
+          let ny = e.clientY - parentRect.top - offY;
+          nx = Math.max(0, Math.min(nx, parentRect.width - win.offsetWidth));
+          ny = Math.max(0, Math.min(ny, parentRect.height - win.offsetHeight));
+          win.style.left = nx + "px";
+          win.style.top = ny + "px";
+        });
+        window.addEventListener("mouseup", () => (dragging = false));
+      }
+
+      /* ---- Ventanas de contenido ---- */
+      function openAboutWindow() {
+        openWindow({
+          id: "w-about",
+          title: "Acerca de esta Macintosh",
+          x: 210,
+          y: 50,
+          w: 220,
+          h: 180,
+          content: `
+      <div style="text-align:center;">
+        <div style="width:40px;height:40px;margin:0 auto 6px;">${ICONS.appleRainbow}</div>
+        <b>Macintosh Pixel</b><br>
+        Sistema 1.0 (hecho a mano)<br><br>
+        Procesador: 6 píxeles/seg<br>
+        Memoria: 512 sprites<br>
+        Sonido: 1-bit, muy retro<br><br>
+        Sencillo, honesto, con encanto.
+      </div>`,
+        });
+      }
+
+      function openTrashWindow() {
+        openWindow({
+          id: "w-trash",
+          title: "Papelera",
+          x: 180,
+          y: 120,
+          w: 180,
+          h: 140,
+          content: `<div style="text-align:center;padding-top:8px;">
+      ${iconHTML("trash", 36)}
+      <div style="margin-top:8px;">La Papelera está vacía.<br>0 elementos.</div>
+    </div>`,
+        });
+      }
+
+      function openReadmeWindow() {
+        openWindow({
+          id: "w-readme",
+          title: "Léeme",
+          x: 240,
+          y: 60,
+          w: 230,
+          h: 170,
+          content: `¡Hola! 👋<br><br>
+      Soy tu Macintosh de bolsillo, pixel a pixel.<br>
+      Nací en tu navegador, sin disquetes de verdad.<br><br>
+      Haz doble clic en todo lo que veas: aquí nada se rompe.<br><br>
+      Cuando quieras descansar, ve a <b>Especial &gt; Apagar</b>.<br><br>
+      Gracias por visitarme.`,
+        });
+      }
+
+      function openDocumentsWindow() {
+        openWindow({
+          id: "w-documents",
+          title: "Documentos",
+          x: 220,
+          y: 80,
+          w: 200,
+          h: 130,
+          content: `<div class="mini-icon-row">
+      <div class="mini-icon" ondblclick="openReadmeWindow()">
+        ${iconHTML("file", 28)}
+        <div class="lbl">Léeme</div>
+      </div>
+    </div>`,
+        });
+      }
+
+      function openMacHDWindow() {
+        openWindow({
+          id: "w-machd",
+          title: "Macintosh HD",
+          x: 170,
+          y: 50,
+          w: 240,
+          h: 150,
+          content: `<div class="mini-icon-row">
+      <div class="mini-icon" ondblclick="openDocumentsWindow()">
+        ${iconHTML("folder", 28)}
+        <div class="lbl">Documentos</div>
+      </div>
+      <div class="mini-icon" ondblclick="openPaintWindow()">
+        ${iconHTML("brush", 28)}
+        <div class="lbl">PixelPaint</div>
+      </div>
+    </div>`,
+        });
+      }
+
+      /* ---- App de dibujo pixel art (PixelPaint) ---- */
+      function openPaintWindow() {
+        const cols = 20,
+          rows = 13;
+        openWindow({
+          id: "w-paint",
+          title: "PixelPaint",
+          x: 120,
+          y: 30,
+          w: 230,
+          h: 220,
+          content: `
+      <div class="paint-toolbar">
+        <div class="swatch active" data-color="#0c3a2f" style="background:#0c3a2f"></div>
+        <div class="swatch" data-color="#e5533d" style="background:#e5533d"></div>
+        <div class="swatch" data-color="#3d7dd8" style="background:#3d7dd8"></div>
+        <div class="swatch" data-color="#f4d13d" style="background:#f4d13d"></div>
+        <div class="swatch" data-color="#ffffff" style="background:#ffffff"></div>
+        <button class="paint-btn" id="paintClear">Borrar</button>
+      </div>
+      <div class="paint-grid" id="paintGrid" style="grid-template-columns:repeat(${cols},9px);"></div>
+    `,
+          onReady: (win) => {
+            const grid = win.querySelector("#paintGrid");
+            let current = "#0c3a2f";
+            let painting = false;
+            for (let i = 0; i < cols * rows; i++) {
+              const cell = document.createElement("div");
+              cell.className = "paint-cell";
+              cell.addEventListener("mousedown", (e) => {
+                painting = true;
+                cell.style.background = current;
+                e.preventDefault();
+              });
+              cell.addEventListener("mouseenter", () => {
+                if (painting) cell.style.background = current;
+              });
+              grid.appendChild(cell);
+            }
+            win.addEventListener("mouseup", () => (painting = false));
+            window.addEventListener("mouseup", () => (painting = false));
+            win.querySelectorAll(".swatch").forEach((sw) => {
+              sw.addEventListener("click", () => {
+                win
+                  .querySelectorAll(".swatch")
+                  .forEach((s) => s.classList.remove("active"));
+                sw.classList.add("active");
+                current = sw.dataset.color;
+              });
+            });
+            win.querySelector("#paintClear").addEventListener("click", () => {
+              win
+                .querySelectorAll(".paint-cell")
+                .forEach((c) => (c.style.background = "#ffffff"));
+            });
+          },
+        });
+      }
+
+      /* ============================================================
+   ICONOS DEL ESCRITORIO
+   ============================================================ */
+      const desktopIcons = [
+        { name: "disk", label: "Macintosh HD", onOpen: openMacHDWindow },
+        { name: "folder", label: "Documentos", onOpen: openDocumentsWindow },
+        { name: "brush", label: "PixelPaint", onOpen: openPaintWindow },
+        { name: "trash", label: "Papelera", onOpen: openTrashWindow },
+      ];
+      const desktopIconsEl = document.getElementById("desktopIcons");
+      desktopIcons.forEach((cfg) => {
+        const el = document.createElement("div");
+        el.className = "desk-icon";
+        el.innerHTML = `<div class="glyph">${ICONS[cfg.name]}</div><div class="lbl">${cfg.label}</div>`;
+        el.addEventListener("click", (e) => {
+          e.stopPropagation();
+          document
+            .querySelectorAll(".desk-icon")
+            .forEach((d) => d.classList.remove("selected"));
+          el.classList.add("selected");
+        });
+        el.addEventListener("dblclick", (e) => {
+          e.stopPropagation();
+          cfg.onOpen();
+        });
+        desktopIconsEl.appendChild(el);
+      });
+      document.getElementById("desktopIcons").addEventListener("click", () => {
+        document
+          .querySelectorAll(".desk-icon")
+          .forEach((d) => d.classList.remove("selected"));
+      });
+
+      /* ============================================================
+   ESCALADO RESPONSIVE DEL ESCENARIO
+   ============================================================ */
+      function fitStage() {
+        const wrap = document.getElementById("sceneWrap");
+        const scale = Math.min(
+          1,
+          (window.innerWidth * 0.95) / 470,
+          (window.innerHeight * 0.95) / 400,
+        );
+        wrap.style.transform = `scale(${scale})`;
+      }
+      fitStage();
+      window.addEventListener("resize", fitStage);
+    </script>
+  </body>
+</html>

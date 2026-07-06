@@ -440,122 +440,11 @@ function setupShell() {
 }
 
 /* =========================================================
-   10) BOOT_STATION — MAC RETRO INTERACTIVA
-========================================================= */
-const macBootLines = [
-  "MacBoot v1.0 ...",
-  "Cargando System 6 ...",
-  "Montando /portfolio ...",
-  "Listo.",
-];
-
-function setupRetroMac() {
-  const root = document.getElementById("retro-mac");
-  if (!root) return;
-
-  const powerBtn = document.getElementById("mac-power");
-  const bootEl = document.getElementById("mac-boot");
-  const appleBtn = document.getElementById("mac-apple-btn");
-  const appleMenu = document.getElementById("mac-apple-menu");
-  const aboutBtn = document.getElementById("mac-about-btn");
-  const shutdownBtn = document.getElementById("mac-shutdown-btn");
-  const icons = root.querySelectorAll(".mac__icon");
-  const windows = root.querySelectorAll(".mac__window");
-  const closeButtons = root.querySelectorAll(".mac__window-close");
-
-  function setState(state) {
-    root.dataset.state = state;
-  }
-
-  function closeAllWindows() {
-    windows.forEach((w) => {
-      w.hidden = true;
-    });
-  }
-
-  function openWindow(name) {
-    windows.forEach((w) => {
-      w.hidden = w.dataset.window !== name;
-    });
-  }
-
-  function closeMenu() {
-    appleMenu.classList.remove("is-open");
-    appleBtn.setAttribute("aria-expanded", "false");
-  }
-
-  function bootMac() {
-    setState("booting");
-    bootEl.textContent = "";
-
-    if (reduceMotion) {
-      bootEl.textContent = macBootLines.join("\n");
-      setState("on");
-      return;
-    }
-
-    let i = 0;
-    function step() {
-      if (i >= macBootLines.length) {
-        setTimeout(() => setState("on"), 300);
-        return;
-      }
-      bootEl.textContent += (i > 0 ? "\n" : "") + macBootLines[i];
-      i++;
-      setTimeout(step, 260);
-    }
-    step();
-  }
-
-  function shutdownMac() {
-    closeAllWindows();
-    closeMenu();
-    setState("off");
-  }
-
-  powerBtn.addEventListener("click", () => {
-    if (root.dataset.state === "off") {
-      bootMac();
-    } else {
-      shutdownMac();
-    }
-  });
-
-  appleBtn.addEventListener("click", (e) => {
-    e.stopPropagation();
-    const isOpen = appleMenu.classList.toggle("is-open");
-    appleBtn.setAttribute("aria-expanded", isOpen ? "true" : "false");
-  });
-
-  document.addEventListener("click", closeMenu);
-
-  aboutBtn.addEventListener("click", () => {
-    if (root.dataset.state !== "on") return;
-    openWindow("about-mac");
-    closeMenu();
-  });
-
-  shutdownBtn.addEventListener("click", () => {
-    closeMenu();
-    shutdownMac();
-  });
-
-  icons.forEach((btn) => {
-    btn.addEventListener("click", () => openWindow(btn.dataset.window));
-  });
-
-  closeButtons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      btn.closest(".mac__window").hidden = true;
-    });
-  });
-}
-
-/* =========================================================
-   11) REVEAL ON SCROLL (aparición progresiva de tarjetas)
+   10) REVEAL ON SCROLL (aparición progresiva de tarjetas)
 ========================================================= */
 function setupRevealOnScroll() {
-  const selector = ".project-card, .badge-box, .changelog__entry, .gallery-item, .mw";
+  const selector =
+    ".project-card, .badge-box, .changelog__entry, .gallery-item, .mw";
   const targets = document.querySelectorAll(selector);
   if (!targets.length) return;
 
@@ -585,7 +474,7 @@ function setupRevealOnScroll() {
 }
 
 /* =========================================================
-   12) EASTER EGG DE CONSOLA
+   11) EASTER EGG DE CONSOLA
 ========================================================= */
 function logConsoleEasterEgg() {
   console.log(
@@ -613,7 +502,6 @@ document.addEventListener("DOMContentLoaded", () => {
   setupSysMeter();
   setupStatusLog();
   setupKonami();
-  setupRetroMac();
   setupRevealOnScroll();
   logConsoleEasterEgg();
   document.getElementById("year").textContent = new Date().getFullYear();

@@ -1088,136 +1088,27 @@ message:   viste el código Konami. eso ya dice bastante de vos.
             <ul class="stat-list retro-station__specs">
               <li><span>CPU</span><span>Motorola 68000 @ 8MHz*</span></li>
               <li><span>RAM</span><span>128K*</span></li>
-              <li><span>OS</span><span>System 6*</span></li>
-              <li><span>REAL_STACK</span><span>HTML · CSS · JS</span></li>
+              <li><span>OS</span><span>System 1.0*</span></li>
+              <li>
+                <span>REAL_STACK</span
+                ><span>HTML · CSS · JS + SVG pixel-art</span>
+              </li>
             </ul>
             <p class="retro-station__hint">
               *nostalgia incluida — hardware no.
             </p>
           </div>
 
-          <div class="mac" id="retro-mac" data-state="off">
-            <div class="mac__chassis">
-              <div class="mac__led" id="mac-led" aria-hidden="true"></div>
-              <div class="mac__screen-bezel">
-                <div class="mac__menubar">
-                  <button
-                    class="mac__apple"
-                    id="mac-apple-btn"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                    aria-label="Menú Apple"
-                  >
-                    ◆
-                  </button>
-                  <span>Archivo</span>
-                  <span>Edición</span>
-                  <span>Ver</span>
-                  <span>Especial</span>
-
-                  <div class="mac__menu" id="mac-apple-menu" role="menu">
-                    <button role="menuitem" id="mac-about-btn">
-                      Acerca de esta Mac...
-                    </button>
-                    <button role="menuitem" id="mac-shutdown-btn">
-                      Apagar
-                    </button>
-                  </div>
-                </div>
-
-                <div class="mac__screen" id="mac-screen">
-                  <div class="mac__standby">STANDBY</div>
-                  <pre class="mac__boot" id="mac-boot"></pre>
-
-                  <div class="mac__desktop" id="mac-desktop">
-                    <button class="mac__icon" data-window="about-me">
-                      <span class="mac__icon-glyph">▤</span>SOBRE_MI.TXT
-                    </button>
-                    <button class="mac__icon" data-window="skills">
-                      <span class="mac__icon-glyph">◆</span>HABILIDADES.PKG
-                    </button>
-                    <button class="mac__icon" data-window="contact">
-                      <span class="mac__icon-glyph">✉</span>CONTACTO.SH
-                    </button>
-
-                    <div class="mac__window" data-window="about-me" hidden>
-                      <div class="mac__window-bar">
-                        <span class="mac__window-close" data-close></span>
-                        <span class="mac__window-title">sobre_mi.txt</span>
-                      </div>
-                      <div class="mac__window-body">
-                        <p>
-                          Hola, soy Daniel Acosta — estudiante de Ingeniería de
-                          Sistemas en la Universidad Nacional de Colombia y Data
-                          Analyst Assistant. Construyo interfaces frontend
-                          sólidas con buenas prácticas de DevOps detrás. Me
-                          obsesiona la simplicidad y los sistemas bien pensados.
-                        </p>
-                      </div>
-                    </div>
-
-                    <div class="mac__window" data-window="skills" hidden>
-                      <div class="mac__window-bar">
-                        <span class="mac__window-close" data-close></span>
-                        <span class="mac__window-title">habilidades.pkg</span>
-                      </div>
-                      <div class="mac__window-body">
-                        <div class="mac__tags">
-                          <span>REACT</span>
-                          <span>FLASK</span>
-                          <span>DJANGO</span>
-                          <span>AWS</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="mac__window" data-window="contact" hidden>
-                      <div class="mac__window-bar">
-                        <span class="mac__window-close" data-close></span>
-                        <span class="mac__window-title">contacto.sh</span>
-                      </div>
-                      <div class="mac__window-body">
-                        <p>&gt; echo $EMAIL</p>
-                        <p class="mac__window-link">
-                          <a href="mailto:tu@email.com">tu@email.com</a>
-                        </p>
-                        <p>
-                          <a href="#contacto">ir a la sección de contacto →</a>
-                        </p>
-                      </div>
-                    </div>
-
-                    <div class="mac__window" data-window="about-mac" hidden>
-                      <div class="mac__window-bar">
-                        <span class="mac__window-close" data-close></span>
-                        <span class="mac__window-title"
-                          >Acerca de esta Mac</span
-                        >
-                      </div>
-                      <div class="mac__window-body">
-                        <p>MacPortfolio SE</p>
-                        <p>System 6.0.8 (emulado con cariño)</p>
-                        <p>Memoria: 128K sobre RAM real, ∞ sobre café.</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="mac__front">
-                <span class="mac__brand">MacPortfolio <small>SE</small></span>
-                <button
-                  class="mac__power"
-                  id="mac-power"
-                  aria-label="Encender o apagar la Mac"
-                >
-                  <span aria-hidden="true">⏻</span>
-                </button>
-              </div>
-              <div class="mac__vents" aria-hidden="true"></div>
-            </div>
-            <div class="mac__base" aria-hidden="true"></div>
-            <p class="mac__caption">click en el botón de encendido ⏻</p>
+          <div class="retro-mac-frame">
+            <iframe
+              class="retro-mac-frame__iframe"
+              src="assets/macintosh-pixel-art.html"
+              title="Macintosh Pixel — mini equipo interactivo hecho en pixel art"
+              loading="lazy"
+            ></iframe>
+            <p class="mac__caption">
+              clic en la pantalla o el botón ⏻ para encender
+            </p>
           </div>
         </div>
       </section>
