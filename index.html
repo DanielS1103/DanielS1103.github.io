@@ -488,7 +488,7 @@ message:   viste el código Konami. eso ya dice bastante de vos.
                 role="tab"
                 aria-selected="false"
               >
-                info.sh
+                education.sh
               </button>
               <button
                 class="tab"
@@ -728,14 +728,6 @@ message:   viste el código Konami. eso ya dice bastante de vos.
                         <span>LOCATION</span><span>Bogotá, Colombia</span>
                       </li>
                       <li>
-                        <span>EDUCATION</span
-                        ><span>Universidad Nacional (2022–2027)</span>
-                      </li>
-                      <li>
-                        <span>EXCHANGE</span
-                        ><span>Universidad de los Andes (2026)</span>
-                      </li>
-                      <li>
                         <span>LANGUAGES</span
                         ><span>ES (nativo) · DE (básico)</span>
                       </li>
@@ -815,47 +807,55 @@ message:   viste el código Konami. eso ya dice bastante de vos.
                     <span class="mw__title">./execute_approach</span>
                     <span class="mw__ext">.SH</span>
                   </div>
-                  <div class="mw__body">
-                    <ol class="mw-steps">
-                      <li>Github.</li>
-                      <li>Linkedin.</li>
-                      <li>Leetcode.</li>
-                      <li>itch.io.</li>
-                    </ol>
-                  </div>
-                </div>
-
-                <div class="mw">
-                  <div class="mw__bar mw__bar--plain">
-                    <span class="mw__title">CURRENT_STATE</span>
-                    <span class="mw__badge"
-                      ><span class="dot dot--live" aria-hidden="true"></span
-                      >LIVE_FEED</span
-                    >
-                  </div>
-                  <div class="mw__body">
-                    <p class="mw-state__flag">[ Acknowledgments ]</p>
-                    <ul class="deploy-list">
-                      <li>
-                        <span class="dot dot--live" aria-hidden="true"></span>
-                        Top Average Award - 2020 II.app
-                        <a href="#" target="_blank" rel="noopener"
-                          >ver_en_vivo
-                          <svg class="icon-sm open__ico">
-                            <use href="#i-external"></use></svg
-                        ></a>
-                      </li>
-                      <li>
-                        <span class="dot dot--live" aria-hidden="true"></span>
-                        Top GPA engineering program.app
-                        <a href="#" target="_blank" rel="noopener"
-                          >ver_en_vivo
-                          <svg class="icon-sm open__ico">
-                            <use href="#i-external"></use></svg
-                        ></a>
-                      </li>
-                    </ul>
-                  </div>
+                      <!-- "cat" preview del contenido de skills/ -->
+                      <div class="tree-preview">
+                        <p class="tree-preview__label">
+                          <span class="prompt">$</span> cat social_media.deps
+                        </p>
+                        <ul class="dep-list">
+                          <li>
+                            <span class="dep-name">react</span
+                            ><span class="dep-leader"></span
+                            ><span class="dep-version">^18.2.0</span>
+                          </li>
+                          <li>
+                            <span class="dep-name">flask</span
+                            ><span class="dep-leader"></span
+                            ><span class="dep-version">^3.0.0</span>
+                          </li>
+                          <li>
+                            <span class="dep-name">django</span
+                            ><span class="dep-leader"></span
+                            ><span class="dep-version">^5.0.0</span>
+                          </li>
+                          <li>
+                            <span class="dep-name">python</span
+                            ><span class="dep-leader"></span
+                            ><span class="dep-version">^3.11.0</span>
+                          </li>
+                          <li>
+                            <span class="dep-name">aws-cli</span
+                            ><span class="dep-leader"></span
+                            ><span class="dep-version">^2.15.0</span>
+                          </li>
+                          <li>
+                            <span class="dep-name">terraform</span
+                            ><span class="dep-leader"></span
+                            ><span class="dep-version">^1.7.0</span>
+                          </li>
+                          <li>
+                            <span class="dep-name">auth0</span
+                            ><span class="dep-leader"></span
+                            ><span class="dep-version">^4.0.0</span>
+                          </li>
+                          <li>
+                            <span class="dep-name">github-actions</span
+                            ><span class="dep-leader"></span
+                            ><span class="dep-version">^4.0.0</span>
+                          </li>
+                        </ul>
+                      </div>
+                    </details>
                 </div>
               </div>
 
@@ -906,28 +906,6 @@ message:   viste el código Konami. eso ya dice bastante de vos.
                 <div class="mw-stack">
                   <div class="mw">
                     <div class="mw__bar mw__bar--plain">
-                      <span class="mw__title">CAPABILITIES.JSON</span>
-                    </div>
-                    <div class="mw__body">
-                      <div class="mw-tags">
-                        <span>"arquitectura_de_software"</span>
-                        <span>"desarrollo_front_end"</span>
-                        <span>"desarrollo_back_end"</span>
-                        <span>"análisis_de_datos"</span>
-                        <span>"análisis_estadístico"</span>
-                        <span>"liderazgo_de_equipos"</span>
-                        <span>"metodologías_ágiles"</span>
-                        <span>"aprendizaje_rápido"</span>
-                      </div>
-                      <p class="mw-tags__meta">
-                        { "claridad": true, "complejidad": "reducida",
-                        "escalable": true }
-                      </p>
-                    </div>
-                  </div>
-
-                  <div class="mw">
-                    <div class="mw__bar mw__bar--plain">
                       <span class="mw__title">⚡ SYSTEM_TOOLS.BIN</span>
                     </div>
                     <div class="mw__body">
@@ -975,8 +953,8 @@ message:   viste el código Konami. eso ya dice bastante de vos.
             <!-- ===== PANEL: info.sh (file-tree explorer) ===== -->
             <div class="tab-panel" data-panel="info">
               <p class="cmd-line">
-                <span class="prompt">user@portfolio:~$</span> tree ./info -L 2
-                --dirsfirst
+                <span class="prompt">user@portfolio:~$</span> tree ./education
+                -L 2 --dirsfirst
               </p>
 
               <div class="file-tree">
@@ -994,38 +972,23 @@ message:   viste el código Konami. eso ya dice bastante de vos.
                         <svg class="tree-ico tree-ico--dir">
                           <use href="#i-folder"></use></svg
                         ><span class="tree-name tree-name--dir">education/</span
-                        ><span class="tree-count">4 files</span>
+                        ><span class="tree-count">2 files</span>
                       </summary>
                       <ul class="tree">
                         <li class="tree__item tree__item--file">
-                          <svg class="tree-ico">
-                            <use href="#i-file"></use></svg
-                          ><span class="tree-name">degree.info</span
+                          <svg class="tree-ico tree-ico--pkg">
+                            <use href="#i-award"></use></svg
+                          ><span class="tree-name">Universidad Nacional de Colombia</span
                           ><span class="tree-desc"
-                            >Systems Engineering — Universidad Nacional de
-                            Colombia</span
+                            >2022-2027</span
                           >
                         </li>
                         <li class="tree__item tree__item--file">
-                          <svg class="tree-ico">
-                            <use href="#i-file"></use></svg
-                          ><span class="tree-name">period.info</span
-                          ><span class="tree-desc">2022 – 2027</span>
-                        </li>
-                        <li class="tree__item tree__item--file">
-                          <svg class="tree-ico">
-                            <use href="#i-file"></use></svg
-                          ><span class="tree-name">exchange.info</span
+                          <svg class="tree-ico tree-ico--pkg">
+                            <use href="#i-award"></use></svg
+                          ><span class="tree-name">Universidad de los Andes</span
                           ><span class="tree-desc"
-                            >Universidad de los Andes · 2026</span
-                          >
-                        </li>
-                        <li class="tree__item tree__item--file">
-                          <svg class="tree-ico">
-                            <use href="#i-file"></use></svg
-                          ><span class="tree-name">languages.info</span
-                          ><span class="tree-desc"
-                            >ES (nativo) · DE (básico)</span
+                            >EXCHANGE</span
                           >
                         </li>
                       </ul>
@@ -1038,162 +1001,11 @@ message:   viste el código Konami. eso ya dice bastante de vos.
                       <summary>
                         <svg class="tree-ico tree-ico--dir">
                           <use href="#i-folder"></use></svg
-                        ><span class="tree-name tree-name--dir">links/</span
+                        ><span class="tree-name tree-name--dir"
+                          >technical_skills/</span
                         ><span class="tree-count">5 files</span>
                       </summary>
                       <ul class="tree">
-                        <li class="tree__item tree__item--file">
-                          <svg class="tree-ico tree-ico--link">
-                            <use href="#i-link"></use></svg
-                          ><a
-                            class="tree-name tree-name--link"
-                            href="https://github.com/DanielS1103"
-                            target="_blank"
-                            rel="noopener"
-                            >github.url</a
-                          ><span class="tree-desc">github.com/DanielS1103</span
-                          ><svg class="tree-ico-go">
-                            <use href="#i-external"></use>
-                          </svg>
-                        </li>
-                        <li class="tree__item tree__item--file">
-                          <svg class="tree-ico tree-ico--link">
-                            <use href="#i-link"></use></svg
-                          ><a
-                            class="tree-name tree-name--link"
-                            href="https://www.linkedin.com/in/daniel-alejandro-acosta-avila"
-                            target="_blank"
-                            rel="noopener"
-                            >linkedin.url</a
-                          ><span class="tree-desc"
-                            >/in/daniel-alejandro-acosta-avila</span
-                          ><svg class="tree-ico-go">
-                            <use href="#i-external"></use>
-                          </svg>
-                        </li>
-                        <li class="tree__item tree__item--file">
-                          <svg class="tree-ico tree-ico--link">
-                            <use href="#i-link"></use></svg
-                          ><a
-                            class="tree-name tree-name--link"
-                            href="#"
-                            target="_blank"
-                            rel="noopener"
-                            >leetcode.url</a
-                          ><!-- TODO: reemplaza # por tu perfil real de LeetCode -->
-                          <span class="tree-desc">EN_CONSTRUCCIÓN</span
-                          ><svg class="tree-ico-go">
-                            <use href="#i-external"></use>
-                          </svg>
-                        </li>
-                        <li class="tree__item tree__item--file">
-                          <svg class="tree-ico tree-ico--link">
-                            <use href="#i-link"></use></svg
-                          ><a
-                            class="tree-name tree-name--link"
-                            href="#"
-                            target="_blank"
-                            rel="noopener"
-                            >itch-io.url</a
-                          ><!-- TODO: reemplaza # por tu perfil real de itch.io -->
-                          <span class="tree-desc">EN_CONSTRUCCIÓN</span
-                          ><svg class="tree-ico-go">
-                            <use href="#i-external"></use>
-                          </svg>
-                        </li>
-                        <li class="tree__item tree__item--file">
-                          <svg class="tree-ico tree-ico--link">
-                            <use href="#i-envelope"></use></svg
-                          ><a
-                            class="tree-name tree-name--link"
-                            href="mailto:danielacosta130602@gmail.com"
-                            >email.url</a
-                          ><span class="tree-desc"
-                            >danielacosta130602@gmail.com</span
-                          ><svg class="tree-ico-go">
-                            <use href="#i-external"></use>
-                          </svg>
-                        </li>
-                      </ul>
-                    </details>
-                  </li>
-
-                  <!-- ===== skills/ ===== -->
-                  <li class="tree__item">
-                    <details class="tree-folder">
-                      <summary>
-                        <svg class="tree-ico tree-ico--dir">
-                          <use href="#i-folder"></use></svg
-                        ><span class="tree-name tree-name--dir">skills/</span
-                        ><span class="tree-count">2 files</span>
-                      </summary>
-                      <ul class="tree">
-                        <li class="tree__item tree__item--file">
-                          <svg class="tree-ico tree-ico--pkg">
-                            <use href="#i-chip"></use></svg
-                          ><span class="tree-name">stack.deps</span
-                          ><span class="tree-desc"
-                            >lenguajes, frameworks y herramientas</span
-                          >
-                        </li>
-                        <li class="tree__item tree__item--file">
-                          <svg class="tree-ico tree-ico--pkg">
-                            <use href="#i-award"></use></svg
-                          ><span class="tree-name">soft_skills.tags</span
-                          ><span class="tree-desc"
-                            >capacidades transversales</span
-                          >
-                        </li>
-                      </ul>
-
-                      <!-- "cat" preview del contenido de skills/ -->
-                      <div class="tree-preview">
-                        <p class="tree-preview__label">
-                          <span class="prompt">$</span> cat stack.deps
-                        </p>
-                        <ul class="dep-list">
-                          <li>
-                            <span class="dep-name">react</span
-                            ><span class="dep-leader"></span
-                            ><span class="dep-version">^18.2.0</span>
-                          </li>
-                          <li>
-                            <span class="dep-name">flask</span
-                            ><span class="dep-leader"></span
-                            ><span class="dep-version">^3.0.0</span>
-                          </li>
-                          <li>
-                            <span class="dep-name">django</span
-                            ><span class="dep-leader"></span
-                            ><span class="dep-version">^5.0.0</span>
-                          </li>
-                          <li>
-                            <span class="dep-name">python</span
-                            ><span class="dep-leader"></span
-                            ><span class="dep-version">^3.11.0</span>
-                          </li>
-                          <li>
-                            <span class="dep-name">aws-cli</span
-                            ><span class="dep-leader"></span
-                            ><span class="dep-version">^2.15.0</span>
-                          </li>
-                          <li>
-                            <span class="dep-name">terraform</span
-                            ><span class="dep-leader"></span
-                            ><span class="dep-version">^1.7.0</span>
-                          </li>
-                          <li>
-                            <span class="dep-name">auth0</span
-                            ><span class="dep-leader"></span
-                            ><span class="dep-version">^4.0.0</span>
-                          </li>
-                          <li>
-                            <span class="dep-name">github-actions</span
-                            ><span class="dep-leader"></span
-                            ><span class="dep-version">^4.0.0</span>
-                          </li>
-                        </ul>
-
                         <p class="tree-preview__label">
                           <span class="prompt">$</span> cat soft_skills.tags
                         </p>
@@ -1205,7 +1017,7 @@ message:   viste el código Konami. eso ya dice bastante de vos.
                           <span>"metodologías_ágiles"</span>
                           <span>"aprendizaje_rápido"</span>
                         </div>
-                      </div>
+                      </ul>
                     </details>
                   </li>
                 </ul>
@@ -2096,6 +1908,39 @@ message:   viste el código Konami. eso ya dice bastante de vos.
                   </div>
                 </div>
 
+                                <div class="mw">
+                  <div class="mw__bar mw__bar--plain">
+                    <span class="mw__title">CURRENT_STATE</span>
+                    <span class="mw__badge"
+                      ><span class="dot dot--live" aria-hidden="true"></span
+                      >LIVE_FEED</span
+                    >
+                  </div>
+                  <div class="mw__body">
+                    <p class="mw-state__flag">[ Acknowledgments ]</p>
+                    <ul class="deploy-list">
+                      <li>
+                        <span class="dot dot--live" aria-hidden="true"></span>
+                        Top Average Award - 2020 II.app
+                        <a href="#" target="_blank" rel="noopener"
+                          >ver_en_vivo
+                          <svg class="icon-sm open__ico">
+                            <use href="#i-external"></use></svg
+                        ></a>
+                      </li>
+                      <li>
+                        <span class="dot dot--live" aria-hidden="true"></span>
+                        Top GPA engineering program.app
+                        <a href="#" target="_blank" rel="noopener"
+                          >ver_en_vivo
+                          <svg class="icon-sm open__ico">
+                            <use href="#i-external"></use></svg
+                        ></a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
                 <!-- ===== recuadro extra 2: neofetch-style card ===== -->
                 <div class="mw neofetch-card">
                   <div class="mw__bar">
@@ -2368,7 +2213,7 @@ message:   viste el código Konami. eso ya dice bastante de vos.
             class="contact__icon-link"
             title="Ver GitHub"
           >
-            <svg class="icon"><use href="#i-link"></use></svg>
+            <svg class="icon"><use href="#i-terminal"></use></svg>
             <span>GITHUB</span>
           </a>
           <a
@@ -2378,14 +2223,14 @@ message:   viste el código Konami. eso ya dice bastante de vos.
             class="contact__icon-link"
             title="Ver LinkedIn"
           >
-            <svg class="icon"><use href="#i-link"></use></svg>
+            <svg class="icon"><use href="#i-briefcase"></use></svg>
             <span>LINKEDIN</span>
           </a>
         </div>
         <div class="contact__panel">
           <p><span class="prompt">$</span> cat contact.json</p>
           <pre class="contact__json">{
-  "email": "<a href="mailto:tu@email.com">danielacosta130602@gmail.com</a>", <!-- TODO: reemplaza por tu email real -->
+  "email": "<a href="mailto:tu@email.com">danielacosta130602@gmail.com</a>",
   "github": "<a href="https://github.com/DanielS1103" target="_blank" rel="noopener">github.com/DanielS1103</a>",
   "linkedin": "<a href="https://www.linkedin.com/in/daniel-alejandro-acosta-avila" target="_blank" rel="noopener">linkedin.com/in/daniel-alejandro-acosta-avila</a>",
   "state": "open for work"
