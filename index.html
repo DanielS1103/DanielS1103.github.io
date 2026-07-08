@@ -94,6 +94,22 @@
           fill="none"
         />
       </symbol>
+      <symbol id="i-file" viewBox="0 0 20 20">
+        <path
+          d="M5.5 2.5h6l4 4v10a1 1 0 0 1-1 1h-9a1 1 0 0 1-1-1v-13a1 1 0 0 1 1-1Z"
+          stroke="currentColor"
+          stroke-width="1.4"
+          stroke-linejoin="round"
+          fill="none"
+        />
+        <path
+          d="M11.5 2.5V6a1 1 0 0 0 1 1h3.5"
+          stroke="currentColor"
+          stroke-width="1.4"
+          stroke-linejoin="round"
+          fill="none"
+        />
+      </symbol>
       <symbol id="i-folder" viewBox="0 0 20 20">
         <path
           d="M2.5 5.5h5l1.5 2h8.5v8a1 1 0 0 1-1 1h-13a1 1 0 0 1-1-1v-9a1 1 0 0 1 1-1Z"
@@ -468,11 +484,11 @@ message:   viste el código Konami. eso ya dice bastante de vos.
               </button>
               <button
                 class="tab"
-                data-panel="gallery"
+                data-panel="info"
                 role="tab"
                 aria-selected="false"
               >
-                gallery.sh
+                info.sh
               </button>
               <button
                 class="tab"
@@ -956,23 +972,1198 @@ message:   viste el código Konami. eso ya dice bastante de vos.
               </p>
             </div>
 
-            <!-- ===== PANEL: gallery.sh ===== -->
-            <div class="tab-panel" data-panel="gallery">
+            <!-- ===== PANEL: info.sh (file-tree explorer) ===== -->
+            <div class="tab-panel" data-panel="info">
               <p class="cmd-line">
-                <span class="prompt">user@portfolio:~$</span> ./gallery.sh
-                --thumbnails
+                <span class="prompt">user@portfolio:~$</span> tree ./info -L 2
+                --dirsfirst
               </p>
-              <div class="gallery-grid">
-                <div class="gallery-item thumb--a"><span>IMG_01.png</span></div>
-                <div class="gallery-item thumb--b"><span>IMG_02.png</span></div>
-                <div class="gallery-item thumb--c"><span>IMG_03.png</span></div>
-                <div class="gallery-item thumb--d"><span>IMG_04.png</span></div>
-                <div class="gallery-item thumb--a"><span>IMG_05.png</span></div>
-                <div class="gallery-item thumb--b"><span>IMG_06.png</span></div>
+
+              <div class="file-tree">
+                <p class="file-tree__root">
+                  <svg class="tree-ico tree-ico--dir">
+                    <use href="#i-folder"></use></svg
+                  >info/
+                </p>
+
+                <ul class="tree">
+                  <!-- ===== education/ ===== -->
+                  <li class="tree__item">
+                    <details class="tree-folder" open>
+                      <summary>
+                        <svg class="tree-ico tree-ico--dir">
+                          <use href="#i-folder"></use></svg
+                        ><span class="tree-name tree-name--dir">education/</span
+                        ><span class="tree-count">4 files</span>
+                      </summary>
+                      <ul class="tree">
+                        <li class="tree__item tree__item--file">
+                          <svg class="tree-ico">
+                            <use href="#i-file"></use></svg
+                          ><span class="tree-name">degree.info</span
+                          ><span class="tree-desc"
+                            >Systems Engineering — Universidad Nacional de
+                            Colombia</span
+                          >
+                        </li>
+                        <li class="tree__item tree__item--file">
+                          <svg class="tree-ico">
+                            <use href="#i-file"></use></svg
+                          ><span class="tree-name">period.info</span
+                          ><span class="tree-desc">2022 – 2027</span>
+                        </li>
+                        <li class="tree__item tree__item--file">
+                          <svg class="tree-ico">
+                            <use href="#i-file"></use></svg
+                          ><span class="tree-name">exchange.info</span
+                          ><span class="tree-desc"
+                            >Universidad de los Andes · 2026</span
+                          >
+                        </li>
+                        <li class="tree__item tree__item--file">
+                          <svg class="tree-ico">
+                            <use href="#i-file"></use></svg
+                          ><span class="tree-name">languages.info</span
+                          ><span class="tree-desc"
+                            >ES (nativo) · DE (básico)</span
+                          >
+                        </li>
+                      </ul>
+                    </details>
+                  </li>
+
+                  <!-- ===== links/ ===== -->
+                  <li class="tree__item">
+                    <details class="tree-folder">
+                      <summary>
+                        <svg class="tree-ico tree-ico--dir">
+                          <use href="#i-folder"></use></svg
+                        ><span class="tree-name tree-name--dir">links/</span
+                        ><span class="tree-count">5 files</span>
+                      </summary>
+                      <ul class="tree">
+                        <li class="tree__item tree__item--file">
+                          <svg class="tree-ico tree-ico--link">
+                            <use href="#i-link"></use></svg
+                          ><a
+                            class="tree-name tree-name--link"
+                            href="https://github.com/DanielS1103"
+                            target="_blank"
+                            rel="noopener"
+                            >github.url</a
+                          ><span class="tree-desc">github.com/DanielS1103</span
+                          ><svg class="tree-ico-go">
+                            <use href="#i-external"></use>
+                          </svg>
+                        </li>
+                        <li class="tree__item tree__item--file">
+                          <svg class="tree-ico tree-ico--link">
+                            <use href="#i-link"></use></svg
+                          ><a
+                            class="tree-name tree-name--link"
+                            href="https://www.linkedin.com/in/daniel-alejandro-acosta-avila"
+                            target="_blank"
+                            rel="noopener"
+                            >linkedin.url</a
+                          ><span class="tree-desc"
+                            >/in/daniel-alejandro-acosta-avila</span
+                          ><svg class="tree-ico-go">
+                            <use href="#i-external"></use>
+                          </svg>
+                        </li>
+                        <li class="tree__item tree__item--file">
+                          <svg class="tree-ico tree-ico--link">
+                            <use href="#i-link"></use></svg
+                          ><a
+                            class="tree-name tree-name--link"
+                            href="#"
+                            target="_blank"
+                            rel="noopener"
+                            >leetcode.url</a
+                          ><!-- TODO: reemplaza # por tu perfil real de LeetCode -->
+                          <span class="tree-desc">EN_CONSTRUCCIÓN</span
+                          ><svg class="tree-ico-go">
+                            <use href="#i-external"></use>
+                          </svg>
+                        </li>
+                        <li class="tree__item tree__item--file">
+                          <svg class="tree-ico tree-ico--link">
+                            <use href="#i-link"></use></svg
+                          ><a
+                            class="tree-name tree-name--link"
+                            href="#"
+                            target="_blank"
+                            rel="noopener"
+                            >itch-io.url</a
+                          ><!-- TODO: reemplaza # por tu perfil real de itch.io -->
+                          <span class="tree-desc">EN_CONSTRUCCIÓN</span
+                          ><svg class="tree-ico-go">
+                            <use href="#i-external"></use>
+                          </svg>
+                        </li>
+                        <li class="tree__item tree__item--file">
+                          <svg class="tree-ico tree-ico--link">
+                            <use href="#i-envelope"></use></svg
+                          ><a
+                            class="tree-name tree-name--link"
+                            href="mailto:danielacosta130602@gmail.com"
+                            >email.url</a
+                          ><span class="tree-desc"
+                            >danielacosta130602@gmail.com</span
+                          ><svg class="tree-ico-go">
+                            <use href="#i-external"></use>
+                          </svg>
+                        </li>
+                      </ul>
+                    </details>
+                  </li>
+
+                  <!-- ===== skills/ ===== -->
+                  <li class="tree__item">
+                    <details class="tree-folder">
+                      <summary>
+                        <svg class="tree-ico tree-ico--dir">
+                          <use href="#i-folder"></use></svg
+                        ><span class="tree-name tree-name--dir">skills/</span
+                        ><span class="tree-count">2 files</span>
+                      </summary>
+                      <ul class="tree">
+                        <li class="tree__item tree__item--file">
+                          <svg class="tree-ico tree-ico--pkg">
+                            <use href="#i-chip"></use></svg
+                          ><span class="tree-name">stack.deps</span
+                          ><span class="tree-desc"
+                            >lenguajes, frameworks y herramientas</span
+                          >
+                        </li>
+                        <li class="tree__item tree__item--file">
+                          <svg class="tree-ico tree-ico--pkg">
+                            <use href="#i-award"></use></svg
+                          ><span class="tree-name">soft_skills.tags</span
+                          ><span class="tree-desc"
+                            >capacidades transversales</span
+                          >
+                        </li>
+                      </ul>
+
+                      <!-- "cat" preview del contenido de skills/ -->
+                      <div class="tree-preview">
+                        <p class="tree-preview__label">
+                          <span class="prompt">$</span> cat stack.deps
+                        </p>
+                        <ul class="dep-list">
+                          <li>
+                            <span class="dep-name">react</span
+                            ><span class="dep-leader"></span
+                            ><span class="dep-version">^18.2.0</span>
+                          </li>
+                          <li>
+                            <span class="dep-name">flask</span
+                            ><span class="dep-leader"></span
+                            ><span class="dep-version">^3.0.0</span>
+                          </li>
+                          <li>
+                            <span class="dep-name">django</span
+                            ><span class="dep-leader"></span
+                            ><span class="dep-version">^5.0.0</span>
+                          </li>
+                          <li>
+                            <span class="dep-name">python</span
+                            ><span class="dep-leader"></span
+                            ><span class="dep-version">^3.11.0</span>
+                          </li>
+                          <li>
+                            <span class="dep-name">aws-cli</span
+                            ><span class="dep-leader"></span
+                            ><span class="dep-version">^2.15.0</span>
+                          </li>
+                          <li>
+                            <span class="dep-name">terraform</span
+                            ><span class="dep-leader"></span
+                            ><span class="dep-version">^1.7.0</span>
+                          </li>
+                          <li>
+                            <span class="dep-name">auth0</span
+                            ><span class="dep-leader"></span
+                            ><span class="dep-version">^4.0.0</span>
+                          </li>
+                          <li>
+                            <span class="dep-name">github-actions</span
+                            ><span class="dep-leader"></span
+                            ><span class="dep-version">^4.0.0</span>
+                          </li>
+                        </ul>
+
+                        <p class="tree-preview__label">
+                          <span class="prompt">$</span> cat soft_skills.tags
+                        </p>
+                        <div class="mw-tags">
+                          <span>"arquitectura_de_software"</span>
+                          <span>"análisis_de_datos"</span>
+                          <span>"análisis_estadístico"</span>
+                          <span>"liderazgo_de_equipos"</span>
+                          <span>"metodologías_ágiles"</span>
+                          <span>"aprendizaje_rápido"</span>
+                        </div>
+                      </div>
+                    </details>
+                  </li>
+                </ul>
               </div>
+
               <p class="ls-footer">
-                reemplaza cada bloque con capturas reales de tu trabajo
+                3 directories, 11 files · clic en cada carpeta para
+                expandir/colapsar
               </p>
+
+              <!-- ===== recuadro extra 1: pixel-art profile card ===== -->
+              <div class="mw-grid mw-grid--2 info-extra-grid">
+                <div class="mw pixel-card">
+                  <div class="mw__bar">
+                    <span class="mw__dots"
+                      ><span></span><span></span><span></span
+                    ></span>
+                    <span class="mw__title">: ~/daniel/profile (zsh)</span>
+                  </div>
+                  <div class="mw__crumbs">
+                    <span class="mw__crumb mw__crumb--path"
+                      >~/p/daniel-portfolio</span
+                    >
+                    <span class="mw__crumb-sep">›</span>
+                    <span class="mw__crumb mw__crumb--branch"
+                      ><svg class="icon-xs"><use href="#i-bolt"></use></svg
+                      >main</span
+                    >
+                    <span class="mw__crumb-sep">›</span>
+                    <span class="mw__crumb mw__crumb--file">./whoami.js</span>
+                  </div>
+                  <div class="mw__body pixel-card__body">
+                    <div class="pixel-card__frame">
+                      <svg
+                        class="pixel-avatar"
+                        viewBox="0 0 80 128"
+                        shape-rendering="crispEdges"
+                        aria-label="Pixel art avatar de Daniel"
+                        role="img"
+                      >
+                        <rect
+                          x="16"
+                          y="0"
+                          width="8"
+                          height="8"
+                          fill="var(--amber)"
+                        />
+                        <rect
+                          x="24"
+                          y="0"
+                          width="8"
+                          height="8"
+                          fill="var(--amber)"
+                        />
+                        <rect
+                          x="32"
+                          y="0"
+                          width="8"
+                          height="8"
+                          fill="var(--amber)"
+                        />
+                        <rect
+                          x="40"
+                          y="0"
+                          width="8"
+                          height="8"
+                          fill="var(--amber)"
+                        />
+                        <rect
+                          x="48"
+                          y="0"
+                          width="8"
+                          height="8"
+                          fill="var(--amber)"
+                        />
+                        <rect
+                          x="56"
+                          y="0"
+                          width="8"
+                          height="8"
+                          fill="var(--amber)"
+                        />
+                        <rect
+                          x="8"
+                          y="8"
+                          width="8"
+                          height="8"
+                          fill="var(--amber)"
+                        />
+                        <rect
+                          x="16"
+                          y="8"
+                          width="8"
+                          height="8"
+                          fill="var(--amber)"
+                        />
+                        <rect
+                          x="24"
+                          y="8"
+                          width="8"
+                          height="8"
+                          fill="var(--amber)"
+                        />
+                        <rect
+                          x="32"
+                          y="8"
+                          width="8"
+                          height="8"
+                          fill="var(--amber)"
+                        />
+                        <rect
+                          x="40"
+                          y="8"
+                          width="8"
+                          height="8"
+                          fill="var(--amber)"
+                        />
+                        <rect
+                          x="48"
+                          y="8"
+                          width="8"
+                          height="8"
+                          fill="var(--amber)"
+                        />
+                        <rect
+                          x="56"
+                          y="8"
+                          width="8"
+                          height="8"
+                          fill="var(--amber)"
+                        />
+                        <rect
+                          x="64"
+                          y="8"
+                          width="8"
+                          height="8"
+                          fill="var(--amber)"
+                        />
+                        <rect
+                          x="0"
+                          y="16"
+                          width="8"
+                          height="8"
+                          fill="var(--amber)"
+                        />
+                        <rect
+                          x="8"
+                          y="16"
+                          width="8"
+                          height="8"
+                          fill="var(--amber)"
+                        />
+                        <rect
+                          x="16"
+                          y="16"
+                          width="8"
+                          height="8"
+                          fill="var(--amber)"
+                        />
+                        <rect
+                          x="24"
+                          y="16"
+                          width="8"
+                          height="8"
+                          fill="var(--amber)"
+                        />
+                        <rect
+                          x="32"
+                          y="16"
+                          width="8"
+                          height="8"
+                          fill="var(--amber)"
+                        />
+                        <rect
+                          x="40"
+                          y="16"
+                          width="8"
+                          height="8"
+                          fill="var(--amber)"
+                        />
+                        <rect
+                          x="48"
+                          y="16"
+                          width="8"
+                          height="8"
+                          fill="var(--amber)"
+                        />
+                        <rect
+                          x="56"
+                          y="16"
+                          width="8"
+                          height="8"
+                          fill="var(--amber)"
+                        />
+                        <rect
+                          x="64"
+                          y="16"
+                          width="8"
+                          height="8"
+                          fill="var(--amber)"
+                        />
+                        <rect
+                          x="72"
+                          y="16"
+                          width="8"
+                          height="8"
+                          fill="var(--amber)"
+                        />
+                        <rect
+                          x="0"
+                          y="24"
+                          width="8"
+                          height="8"
+                          fill="var(--amber)"
+                        />
+                        <rect
+                          x="8"
+                          y="24"
+                          width="8"
+                          height="8"
+                          fill="var(--amber)"
+                        />
+                        <rect
+                          x="16"
+                          y="24"
+                          width="8"
+                          height="8"
+                          fill="var(--amber)"
+                        />
+                        <rect
+                          x="24"
+                          y="24"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="32"
+                          y="24"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="40"
+                          y="24"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="48"
+                          y="24"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="56"
+                          y="24"
+                          width="8"
+                          height="8"
+                          fill="var(--amber)"
+                        />
+                        <rect
+                          x="64"
+                          y="24"
+                          width="8"
+                          height="8"
+                          fill="var(--amber)"
+                        />
+                        <rect
+                          x="72"
+                          y="24"
+                          width="8"
+                          height="8"
+                          fill="var(--amber)"
+                        />
+                        <rect
+                          x="8"
+                          y="32"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="16"
+                          y="32"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="24"
+                          y="32"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="32"
+                          y="32"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="40"
+                          y="32"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="48"
+                          y="32"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="56"
+                          y="32"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="64"
+                          y="32"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="8"
+                          y="40"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="16"
+                          y="40"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="24"
+                          y="40"
+                          width="8"
+                          height="8"
+                          fill="var(--bg-panel)"
+                        />
+                        <rect
+                          x="32"
+                          y="40"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="40"
+                          y="40"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="48"
+                          y="40"
+                          width="8"
+                          height="8"
+                          fill="var(--bg-panel)"
+                        />
+                        <rect
+                          x="56"
+                          y="40"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="64"
+                          y="40"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="8"
+                          y="48"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="16"
+                          y="48"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="24"
+                          y="48"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="32"
+                          y="48"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="40"
+                          y="48"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="48"
+                          y="48"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="56"
+                          y="48"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="64"
+                          y="48"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="16"
+                          y="56"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="24"
+                          y="56"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="32"
+                          y="56"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="40"
+                          y="56"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="48"
+                          y="56"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="56"
+                          y="56"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="8"
+                          y="64"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="16"
+                          y="64"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="24"
+                          y="64"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="32"
+                          y="64"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="40"
+                          y="64"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="48"
+                          y="64"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="56"
+                          y="64"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="64"
+                          y="64"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="0"
+                          y="72"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="8"
+                          y="72"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="16"
+                          y="72"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="24"
+                          y="72"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="32"
+                          y="72"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="40"
+                          y="72"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="48"
+                          y="72"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="56"
+                          y="72"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="64"
+                          y="72"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="72"
+                          y="72"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="0"
+                          y="80"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="8"
+                          y="80"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="16"
+                          y="80"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="24"
+                          y="80"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="32"
+                          y="80"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="40"
+                          y="80"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="48"
+                          y="80"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="56"
+                          y="80"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="64"
+                          y="80"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="72"
+                          y="80"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="0"
+                          y="88"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="8"
+                          y="88"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="24"
+                          y="88"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="32"
+                          y="88"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="40"
+                          y="88"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="48"
+                          y="88"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="64"
+                          y="88"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="72"
+                          y="88"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="0"
+                          y="96"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="24"
+                          y="96"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="32"
+                          y="96"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="40"
+                          y="96"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="48"
+                          y="96"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="72"
+                          y="96"
+                          width="8"
+                          height="8"
+                          fill="var(--cyan)"
+                        />
+                        <rect
+                          x="16"
+                          y="104"
+                          width="8"
+                          height="8"
+                          fill="var(--amber)"
+                        />
+                        <rect
+                          x="24"
+                          y="104"
+                          width="8"
+                          height="8"
+                          fill="var(--amber)"
+                        />
+                        <rect
+                          x="32"
+                          y="104"
+                          width="8"
+                          height="8"
+                          fill="var(--amber)"
+                        />
+                        <rect
+                          x="40"
+                          y="104"
+                          width="8"
+                          height="8"
+                          fill="var(--amber)"
+                        />
+                        <rect
+                          x="48"
+                          y="104"
+                          width="8"
+                          height="8"
+                          fill="var(--amber)"
+                        />
+                        <rect
+                          x="56"
+                          y="104"
+                          width="8"
+                          height="8"
+                          fill="var(--amber)"
+                        />
+                        <rect
+                          x="16"
+                          y="112"
+                          width="8"
+                          height="8"
+                          fill="var(--amber)"
+                        />
+                        <rect
+                          x="24"
+                          y="112"
+                          width="8"
+                          height="8"
+                          fill="var(--amber)"
+                        />
+                        <rect
+                          x="48"
+                          y="112"
+                          width="8"
+                          height="8"
+                          fill="var(--amber)"
+                        />
+                        <rect
+                          x="56"
+                          y="112"
+                          width="8"
+                          height="8"
+                          fill="var(--amber)"
+                        />
+                        <rect
+                          x="16"
+                          y="120"
+                          width="8"
+                          height="8"
+                          fill="var(--bg)"
+                        />
+                        <rect
+                          x="24"
+                          y="120"
+                          width="8"
+                          height="8"
+                          fill="var(--bg)"
+                        />
+                        <rect
+                          x="48"
+                          y="120"
+                          width="8"
+                          height="8"
+                          fill="var(--bg)"
+                        />
+                        <rect
+                          x="56"
+                          y="120"
+                          width="8"
+                          height="8"
+                          fill="var(--bg)"
+                        />
+                      </svg>
+                    </div>
+                    <div class="pixel-card__lines">
+                      <p>Daniel</p>
+                      <p>Acosta</p>
+                      <p class="pixel-card__lines--accent">Ávila</p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- ===== recuadro extra 2: neofetch-style card ===== -->
+                <div class="mw neofetch-card">
+                  <div class="mw__bar">
+                    <span class="mw__dots"
+                      ><span></span><span></span><span></span
+                    ></span>
+                    <span class="mw__title">daniel@portfolio: ~ — zsh</span>
+                  </div>
+                  <div class="mw__body neofetch-card__body">
+                    <p class="cmd-line neofetch-card__cmd">
+                      <span class="prompt">➜</span> neofetch
+                    </p>
+                    <div class="neofetch-card__grid">
+                      <div class="neofetch-card__logo" aria-hidden="true">
+                        <svg><use href="#i-chip"></use></svg>
+                      </div>
+                      <ul class="neofetch-card__stats">
+                        <li class="neofetch-card__header">
+                          <span>daniel@portfolio</span>
+                        </li>
+                        <li class="neofetch-card__sep"></li>
+                        <li>
+                          <span>OS</span><span>DanielOS (Debian-based)</span>
+                        </li>
+                        <li>
+                          <span>Host</span
+                          ><span>Systems Eng. @ Universidad Nacional</span>
+                        </li>
+                        <li><span>Kernel</span><span>6th semester</span></li>
+                        <li>
+                          <span>Uptime</span><span>3+ años programando</span>
+                        </li>
+                        <li>
+                          <span>Packages</span
+                          ><span>12+ proyectos shippeados</span>
+                        </li>
+                        <li><span>Shell</span><span>bash / zsh</span></li>
+                        <li>
+                          <span>Editor</span><span>VS Code + Neovim</span>
+                        </li>
+                        <li>
+                          <span>Terminal</span><span>este mismo sitio :)</span>
+                        </li>
+                        <li>
+                          <span>CPU</span><span>Problem-Solving Core™</span>
+                        </li>
+                        <li>
+                          <span>Memory</span
+                          ><span>React · Flask · Django · Python · AWS</span>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="neofetch-card__palette" aria-hidden="true">
+                      <span style="background: var(--bg)"></span>
+                      <span style="background: var(--bg-panel)"></span>
+                      <span style="background: var(--bg-panel-2)"></span>
+                      <span style="background: var(--border)"></span>
+                      <span style="background: var(--amber)"></span>
+                      <span style="background: var(--cyan)"></span>
+                      <span style="background: var(--red)"></span>
+                      <span style="background: var(--text)"></span>
+                    </div>
+                    <p class="neofetch-card__palette-label">
+                      // this-site --palette
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <!-- ===== PANEL: live_deploys.sh ===== -->

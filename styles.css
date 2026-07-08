@@ -708,6 +708,365 @@ main {
   border: 1px solid var(--border-soft);
 }
 
+/* =========================================================
+   INFO.SH — recuadros extra (pixel-art card + neofetch card)
+========================================================= */
+.info-extra-grid {
+  margin-top: 20px;
+}
+
+/* --- breadcrumb bar (estilo VS Code / terminal-pixel-art) --- */
+.mw__crumbs {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 12px;
+  background: var(--bg-panel-2);
+  border-bottom: 1px solid var(--border-soft);
+  font-size: 11px;
+  flex-wrap: wrap;
+}
+.mw__crumb-sep {
+  color: var(--text-faint);
+  font-size: 11px;
+}
+.mw__crumb {
+  padding: 3px 9px;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+.mw__crumb--path {
+  background: var(--cyan);
+  color: var(--bg);
+  font-weight: 700;
+}
+.mw__crumb--branch {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--amber);
+  color: var(--bg);
+  font-weight: 700;
+}
+.mw__crumb--branch .icon-xs {
+  width: 9px;
+  height: 9px;
+}
+.mw__crumb--file {
+  color: var(--text-dim);
+  padding-left: 2px;
+}
+
+/* --- pixel-art profile card --- */
+.pixel-card__body {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  flex-wrap: wrap;
+}
+.pixel-card__frame {
+  flex-shrink: 0;
+  background: var(--bg-panel);
+  border: 1px solid var(--border-soft);
+  padding: 10px;
+  border-radius: 2px;
+}
+.pixel-avatar {
+  width: 74px;
+  height: 118px;
+  display: block;
+}
+.pixel-card__lines {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 21px;
+  line-height: 1.35;
+  color: var(--text);
+}
+.pixel-card__lines p {
+  margin: 0;
+}
+.pixel-card__lines--accent {
+  color: var(--cyan);
+}
+
+/* --- neofetch-style card --- */
+.neofetch-card__body {
+  padding: 16px;
+}
+.neofetch-card__cmd {
+  margin: 0 0 14px;
+}
+.neofetch-card__grid {
+  display: flex;
+  gap: 22px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+.neofetch-card__logo {
+  width: 60px;
+  height: 60px;
+  flex-shrink: 0;
+  border: 1px dashed var(--border-soft);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--cyan);
+}
+.neofetch-card__logo svg {
+  width: 30px;
+  height: 30px;
+}
+.neofetch-card__stats {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 12.5px;
+  flex: 1;
+  min-width: 230px;
+}
+.neofetch-card__stats li {
+  display: flex;
+  gap: 10px;
+  padding: 2px 0;
+}
+.neofetch-card__stats li span:first-child {
+  color: var(--cyan);
+  font-weight: 600;
+  min-width: 78px;
+  flex-shrink: 0;
+}
+.neofetch-card__stats li span:last-child {
+  color: var(--text-dim);
+}
+.neofetch-card__header span {
+  color: var(--text);
+  font-weight: 700;
+  font-size: 13px;
+}
+.neofetch-card__sep {
+  height: 0;
+  border-top: 1px dashed var(--border-soft);
+  margin: 4px 0 6px;
+  padding: 0 !important;
+}
+.neofetch-card__palette {
+  display: flex;
+  gap: 5px;
+  margin-top: 18px;
+  flex-wrap: wrap;
+}
+.neofetch-card__palette span {
+  width: 22px;
+  height: 16px;
+  border-radius: 2px;
+  border: 1px solid var(--border-soft);
+  display: inline-block;
+}
+.neofetch-card__palette-label {
+  margin: 6px 0 0;
+  font-size: 10px;
+  color: var(--text-faint);
+}
+
+@media (max-width: 780px) {
+  .neofetch-card__grid {
+    flex-direction: column;
+  }
+}
+
+/* =========================================================
+   FILE TREE (info.sh — explorador de directorios interactivo)
+========================================================= */
+.file-tree {
+  font-family: var(--font-display);
+  font-size: 13px;
+}
+.file-tree__root {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 0 4px;
+  color: var(--cyan);
+  font-weight: 700;
+}
+
+.tree {
+  list-style: none;
+  margin: 0;
+  padding-left: 20px;
+  border-left: 1px dashed var(--border-soft);
+}
+
+.tree__item {
+  position: relative;
+  padding: 3px 0 3px 18px;
+}
+.tree__item::before {
+  content: "";
+  position: absolute;
+  left: -1px;
+  top: 0;
+  width: 17px;
+  height: 13px;
+  border-left: 1px dashed var(--border-soft);
+  border-bottom: 1px dashed var(--border-soft);
+}
+.tree__item:last-child::after {
+  content: "";
+  position: absolute;
+  left: -1px;
+  top: 13px;
+  bottom: -4px;
+  width: 2px;
+  background: var(--bg-panel);
+}
+
+.tree-folder > summary {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  cursor: pointer;
+  list-style: none;
+  padding: 2px 0;
+  color: var(--text);
+}
+.tree-folder > summary::-webkit-details-marker {
+  display: none;
+}
+.tree-folder > summary::marker {
+  content: "";
+}
+.tree-folder > summary::before {
+  content: "▸";
+  font-size: 10px;
+  color: var(--text-faint);
+  transition: transform 0.15s ease;
+  transform-origin: center;
+}
+.tree-folder[open] > summary::before {
+  transform: rotate(90deg);
+}
+.tree-folder > .tree {
+  margin-top: 4px;
+}
+.tree-folder:hover > summary .tree-name--dir {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.tree-ico {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  color: var(--text-faint);
+}
+.tree-ico--dir {
+  color: var(--cyan);
+}
+.tree-ico--link {
+  color: var(--amber);
+}
+.tree-ico--pkg {
+  color: var(--amber);
+}
+.tree-ico-go {
+  width: 12px;
+  height: 12px;
+  color: var(--text-faint);
+  flex-shrink: 0;
+}
+
+.tree-name--dir {
+  color: var(--cyan);
+  font-weight: 600;
+}
+.tree-count {
+  margin-left: auto;
+  font-size: 11px;
+  color: var(--text-faint);
+}
+
+.tree__item--file {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+  color: var(--text-dim);
+}
+.tree-name {
+  color: var(--text);
+  white-space: nowrap;
+}
+.tree-name--link {
+  color: var(--amber);
+  text-decoration: none;
+}
+.tree-name--link:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.tree-desc {
+  margin-left: auto;
+  font-size: 12px;
+  color: var(--text-faint);
+}
+
+/* preview tipo "cat" dentro de skills/ */
+.tree-preview {
+  margin: 10px 0 4px 20px;
+  padding: 12px 14px;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius);
+  background: var(--bg-panel-2);
+}
+.tree-preview__label {
+  margin: 0 0 8px;
+  font-size: 12px;
+  color: var(--text-faint);
+}
+.tree-preview__label .prompt {
+  color: var(--cyan);
+  margin-right: 4px;
+}
+.tree-preview__label + .dep-list {
+  margin-bottom: 16px;
+}
+
+.dep-list {
+  list-style: none;
+  margin: 0 0 16px;
+  padding: 0;
+  font-size: 12.5px;
+}
+.dep-list li {
+  display: flex;
+  align-items: baseline;
+  padding: 2px 0;
+}
+.dep-name {
+  color: var(--text);
+  white-space: nowrap;
+}
+.dep-leader {
+  flex: 1;
+  height: 0;
+  margin: 0 6px;
+  border-bottom: 1px dotted var(--border-soft);
+}
+.dep-version {
+  color: var(--cyan);
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .tree-desc {
+    margin-left: 22px;
+    flex-basis: 100%;
+  }
+}
+
 /* deploys */
 .deploy-list {
   list-style: none;
