@@ -373,6 +373,17 @@ main {
   font-size: 13px;
   color: var(--amber);
   letter-spacing: 0.02em;
+  overflow: hidden; /* evita que el gif se salga de la caja */
+}
+
+.avatar-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: bottom; /* ancla el gato hacia abajo dentro del cuadro */
+  display: block;
+  transform: scale(2);
+  transform-origin: bottom center; /* el zoom crece hacia arriba, no hacia abajo */
 }
 
 .badge {
@@ -421,6 +432,23 @@ main {
   border: 1px solid var(--border-soft);
   padding: 8px 10px;
 }
+
+.badge-box__logo {
+  width: 16px;
+  height: 16px;
+  vertical-align: middle;
+  margin-right: 6px;
+}
+
+.badge-box,
+.badge-box:link,
+.badge-box:visited,
+.badge-box:hover,
+.badge-box:active {
+  text-decoration: none;
+  color: inherit;
+}
+
 .badge-box--accent {
   border-color: var(--amber-dim);
 }
