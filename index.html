@@ -810,23 +810,44 @@ message:   viste el código Konami. eso ya dice bastante de vos.
                         <p class="tree-preview__label">
                           <span class="prompt">$</span> cat social_media.deps
                         </p>
-                        <ul class="dep-list">
-                          <li>
-                            <span class="dep-name">itch.io</span
-                            ><span class="dep-leader"></span
-                            ><span class="dep-version">logo</span>
-                          </li>
-                          <li>
-                            <span class="dep-name">medium</span
-                            ><span class="dep-leader"></span
-                            ><span class="dep-version">logo</span>
-                          </li>
-                          <li>
-                            <span class="dep-name">leetcode</span
-                            ><span class="dep-leader"></span
-                            ><span class="dep-version">logo</span>
-                          </li>
-                        </ul>
+                        <div class="social-deps">
+                          <a
+                            href="#"
+                            target="_blank"
+                            rel="noopener"
+                            class="social-deps__item"
+                          >
+                            <i class="social-deps__ico">IT</i>
+                            <span class="social-deps__name">itch.io</span>
+                            <svg class="icon-xs social-deps__go open__ico">
+                              <use href="#i-external"></use>
+                            </svg>
+                          </a>
+                          <a
+                            href="#"
+                            target="_blank"
+                            rel="noopener"
+                            class="social-deps__item"
+                          >
+                            <i class="social-deps__ico">ME</i>
+                            <span class="social-deps__name">medium</span>
+                            <svg class="icon-xs social-deps__go open__ico">
+                              <use href="#i-external"></use>
+                            </svg>
+                          </a>
+                          <a
+                            href="#"
+                            target="_blank"
+                            rel="noopener"
+                            class="social-deps__item"
+                          >
+                            <i class="social-deps__ico">LC</i>
+                            <span class="social-deps__name">leetcode</span>
+                            <svg class="icon-xs social-deps__go open__ico">
+                              <use href="#i-external"></use>
+                            </svg>
+                          </a>
+                        </div>
                       </div>
                     </details>
                 </div>
@@ -942,22 +963,52 @@ message:   viste el código Konami. eso ya dice bastante de vos.
                         ><span class="tree-name tree-name--dir">education/</span
                         ><span class="tree-count">2 files</span>
                       </summary>
-                      <ul class="tree">
-                        <li class="tree__item tree__item--file">
-                          <svg class="tree-ico tree-ico--pkg">
-                            <use href="#i-award"></use></svg
-                          ><span class="tree-name">Universidad Nacional de Colombia</span
-                          ><span class="tree-desc"
-                            >2022-2027</span
-                          >
+                      <ul class="tree edu-list">
+                        <li class="edu-item">
+                          <div class="edu-card">
+                            <div class="edu-card__logo">
+                              <img
+                                src="assets/unal.png"
+                                alt="Universidad Nacional de Colombia"
+                                loading="lazy"
+                              />
+                            </div>
+                            <div class="edu-card__info">
+                              <span class="edu-card__name"
+                                >Universidad Nacional de Colombia</span
+                              >
+                              <span class="edu-card__date"
+                                ><svg class="icon-xs">
+                                  <use href="#i-award"></use></svg
+                                >2022 — 2027</span
+                              >
+                            </div>
+                            <span class="edu-card__badge edu-card__badge--active"
+                              >IN_PROGRESS</span
+                            >
+                          </div>
                         </li>
-                        <li class="tree__item tree__item--file">
-                          <svg class="tree-ico tree-ico--pkg">
-                            <use href="#i-award"></use></svg
-                          ><span class="tree-name">Universidad de los Andes</span
-                          ><span class="tree-desc"
-                            >EXCHANGE</span
-                          >
+                        <li class="edu-item">
+                          <div class="edu-card">
+                            <div class="edu-card__logo">
+                              <img
+                                src="assets/andes.png"
+                                alt="Universidad de los Andes"
+                                loading="lazy"
+                              />
+                            </div>
+                            <div class="edu-card__info">
+                              <span class="edu-card__name"
+                                >Universidad de los Andes</span
+                              >
+                              <span class="edu-card__date"
+                                ><svg class="icon-xs">
+                                  <use href="#i-award"></use></svg
+                                >EXCHANGE (2026)</span
+                              >
+                            </div>
+                            <span class="edu-card__badge edu-card__badge--active">IN_PROGRESS</span>
+                          </div>
                         </li>
                       </ul>
                     </details>
@@ -992,8 +1043,7 @@ message:   viste el código Konami. eso ya dice bastante de vos.
               </div>
 
               <p class="ls-footer">
-                3 directories, 11 files · clic en cada carpeta para
-                expandir/colapsar
+                3 directories · 11 files
               </p>
 
               <!-- ===== recuadro extra 1: pixel-art profile card ===== -->
