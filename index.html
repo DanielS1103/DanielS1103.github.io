@@ -402,48 +402,67 @@ message: you saw the Konami code. that already says a lot about you.
             <p>&gt; SHIP_IT.</p>
           </blockquote>
 
-          <p class="section-label section-label--tight">QUICK_ACCESS</p>
-          <nav class="quick-access" aria-label="Accesos rápidos">
-            <a href="#workspace" data-tab="details">
-              <svg class="qa-icon"><use href="#i-terminal"></use></svg>
-              <span class="qa-label"
-                >[ ABOUT_ME ]<small>MY_DETAILS.JSON</small></span
-              >
-              <svg class="qa-arrow"><use href="#i-arrow"></use></svg>
-            </a>
-            <a href="#workspace" data-tab="cases">
-              <svg class="qa-icon"><use href="#i-folder"></use></svg>
-              <span class="qa-label"
-                >[ PROJECTS ]<small>CASE_STUDIES.SH</small></span
-              >
-              <svg class="qa-arrow"><use href="#i-arrow"></use></svg>
-            </a>
-            <a href="#info">
-              <svg class="qa-icon"><use href="#i-award"></use></svg>
-              <span class="qa-label"
-                >[ EDUCATION ]<small>INFO.JSON</small></span
-              >
-              <svg class="qa-arrow"><use href="#i-arrow"></use></svg>
-            </a>
-            <a href="#changelog">
-              <svg class="qa-icon"><use href="#i-briefcase"></use></svg>
-              <span class="qa-label"
-                >[ EXPERIENCE ]<small>CHANGELOG.LOG</small></span
-              >
-              <svg class="qa-arrow"><use href="#i-arrow"></use></svg>
-            </a>
-            <a href="#workspace" data-tab="resume">
-              <svg class="qa-icon"><use href="#i-download"></use></svg>
-              <span class="qa-label">[ RESUME ]<small>RESUME.PDF</small></span>
-              <svg class="qa-arrow"><use href="#i-arrow"></use></svg>
-            </a>
-            <a href="#retro-station">
-              <svg class="qa-icon"><use href="#i-cpu"></use></svg>
-              <span class="qa-label"
-                >[ MAC_RETRO ]<small>BOOT_STATION.EXE</small></span
-              >
-              <svg class="qa-arrow"><use href="#i-arrow"></use></svg>
-            </a>
+          <button
+            type="button"
+            class="section-label section-label--tight quick-access__toggle"
+            id="quick-access-toggle"
+            aria-expanded="false"
+            aria-controls="quick-access-nav"
+          >
+            QUICK_ACCESS
+            <svg class="quick-access__toggle-ico">
+              <use href="#i-arrow"></use>
+            </svg>
+          </button>
+          <nav
+            class="quick-access"
+            id="quick-access-nav"
+            aria-label="Accesos rápidos"
+          >
+            <div class="quick-access__inner">
+              <a href="#workspace" data-tab="details">
+                <svg class="qa-icon"><use href="#i-terminal"></use></svg>
+                <span class="qa-label"
+                  >[ ABOUT_ME ]<small>MY_DETAILS.JSON</small></span
+                >
+                <svg class="qa-arrow"><use href="#i-arrow"></use></svg>
+              </a>
+              <a href="#workspace" data-tab="cases">
+                <svg class="qa-icon"><use href="#i-folder"></use></svg>
+                <span class="qa-label"
+                  >[ PROJECTS ]<small>CASE_STUDIES.SH</small></span
+                >
+                <svg class="qa-arrow"><use href="#i-arrow"></use></svg>
+              </a>
+              <a href="#workspace" data-tab="info">
+                <svg class="qa-icon"><use href="#i-award"></use></svg>
+                <span class="qa-label"
+                  >[ EDUCATION ]<small>INFO.JSON</small></span
+                >
+                <svg class="qa-arrow"><use href="#i-arrow"></use></svg>
+              </a>
+              <a href="#workspace" data-tab="changelog">
+                <svg class="qa-icon"><use href="#i-briefcase"></use></svg>
+                <span class="qa-label"
+                  >[ EXPERIENCE ]<small>CHANGELOG.LOG</small></span
+                >
+                <svg class="qa-arrow"><use href="#i-arrow"></use></svg>
+              </a>
+              <a href="#workspace" data-tab="resume">
+                <svg class="qa-icon"><use href="#i-download"></use></svg>
+                <span class="qa-label"
+                  >[ RESUME ]<small>RESUME.PDF</small></span
+                >
+                <svg class="qa-arrow"><use href="#i-arrow"></use></svg>
+              </a>
+              <a href="#retro-station">
+                <svg class="qa-icon"><use href="#i-cpu"></use></svg>
+                <span class="qa-label"
+                  >[ MAC_RETRO ]<small>BOOT_STATION.EXE</small></span
+                >
+                <svg class="qa-arrow"><use href="#i-arrow"></use></svg>
+              </a>
+            </div>
           </nav>
 
           <a href="#contacto" class="cta">

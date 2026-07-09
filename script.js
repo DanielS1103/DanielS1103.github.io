@@ -45,6 +45,83 @@ const bootLines = [
   "STATUS: ready to render UI",
 ];
 
+/* Versión corta del boot: el ASCII art grande de arriba está pensado para
+   pantallas anchas — en celular solo se ve rota/gigante y hace el arranque
+   eterno. En mobile usamos un boot más simple, rápido y legible. */
+const bootLinesMobile = [
+  " ┌─┐┌─┐┬─┐┌┬┐┌─┐┌─┐┬  ┬┌─┐",
+  " ├─┘│ │├┬┘ │ ├┤ │ ││  │ │",
+  " ┴  └─┘┴└─ ┴ └  └─┘┴─┘┴└─┘",
+  "                                  _______",
+  "                           _,,ad8888888888bba,_",
+  "                        ,ad88888I888888888888888ba,",
+  "                      ,88888888I88888888888888888888a,",
+  "                    ,d888888888I8888888888888888888888b,",
+  '                   d88888PP"""" ""YY88888888888888888888b,',
+  "                 ,d88\"'__,,--------,,,,.;ZZZY8888888888888,",
+  '                ,8IIl\'"                ;;l"ZZZIII8888888888,',
+  "               ,I88l;'                  ;lZZZZZ888III8888888,",
+  "             ,II88Zl;.                  ;llZZZZZ888888I888888,",
+  "            ,II888Zl;.                .;;;;;lllZZZ888888I8888b",
+  "           ,II8888Z;;                 `;;;;;''llZZ8888888I8888,",
+  "           II88888Z;'                        .;lZZZ8888888I888b",
+  "           II88888Z; _,aaa,      .,aaaaa,__.l;llZZZ88888888I888",
+  "           II88888IZZZZZZZZZ,  .ZZZZZZZZZZZZZZ;llZZ88888888I888,",
+  "           II88888IZZ<'(@@>Z|  |ZZZ<'(@@>ZZZZ;;llZZ888888888I88I",
+  '          ,II88888;   `""" ;|  |ZZ; `"""     ;;llZ8888888888I888',
+  "          II888888l            `;;          .;llZZ8888888888I888,",
+  "         ,II888888Z;           ;;;        .;;llZZZ8888888888I888I",
+  "         III888888Zl;    ..,   `;;       ,;;lllZZZ88888888888I888",
+  "         II88888888Z;;...;(_    _)      ,;;;llZZZZ88888888888I888,",
+  "         II88888888Zl;;;;;' `--'Z;.   .,;;;;llZZZZ88888888888I888b",
+  "         ]I888888888Z;;;;'   \";llllll;..;;;lllZZZZ88888888888I8888,",
+  '         II888888888Zl.;;"Y88bd888P";;,..;lllZZZZZ88888888888I8888I',
+  '         II8888888888Zl;.; \`"PPP";;;,..;lllZZZZZZZ88888888888I88888',
+  "         II888888888888Zl;;. `;;;l;;;;lllZZZZZZZZW88888888888I88888",
+  "         `II8888888888888Zl;.    ,;;lllZZZZZZZZWMZ88888888888I88888",
+  "          II8888888888888888ZbaalllZZZZZZZZZWWMZZZ8888888888I888888,",
+  '          `II88888888888888888b"WWZZZZZWWWMMZZZZZZI888888888I888888b',
+  "           `II88888888888888888;ZZMMMMMMZZZZZZZZllI888888888I8888888",
+  "            `II8888888888888888 `;lZZZZZZZZZZZlllll888888888I8888888,",
+  "             II8888888888888888, `;lllZZZZllllll;;.Y88888888I8888888b,",
+  "            ,II8888888888888888b   .;;lllllll;;;.;..88888888I88888888b,",
+  "            II888888888888888PZI;.  .`;;;.;;;..; ...88888888I8888888888,",
+  "            II888888888888PZ;;';;.   ;. .;.  .;. .. Y8888888I88888888888b,",
+  "           ,II888888888PZ;;'                        `8888888I8888888888888b,",
+  "           II888888888'                              888888I8888888888888888b",
+  "          ,II888888888                              ,888888I88888888888888888",
+  "         ,d88888888888                              d888888I8888888888ZZZZZZZ",
+  "      ,ad888888888888I                              8888888I8888ZZZZZZZZZZZZZ",
+  "    ,d888888888888888'                              888888IZZZZZZZZZZZZZZZZZZ",
+  "  ,d888888888888P'8P'                               Y888ZZZZZZZZZZZZZZZZZZZZZ",
+  ' ,8888888888888,  "                                 ,ZZZZZZZZZZZZZZZZZZZZZZZZ',
+  "d888888888888888,                                ,ZZZZZZZZZZZZZZZZZZZZZZZZZZZ",
+  "888888888888888888a,      _                    ,ZZZZZZZZZZZZZZZZZZZZ888888888",
+  "888888888888888888888ba,_d'                  ,ZZZZZZZZZZZZZZZZZ88888888888888",
+  "8888888888888888888888888888bbbaaa,,,______,ZZZZZZZZZZZZZZZ888888888888888888",
+  "88888888888888888888888888888888888888888ZZZZZZZZZZZZZZZ888888888888888888888",
+  "8888888888888888888888888888888888888888ZZZZZZZZZZZZZZ88888888888888888888888",
+  "888888888888888888888888888888888888888ZZZZZZZZZZZZZZ888888888888888888888888",
+  "8888888888888888888888888888888888888ZZZZZZZZZZZZZZ88888888888888888888888888",
+  "88888888888888888888888888888888888ZZZZZZZZZZZZZZ8888888888888888888888888888",
+  "8888888888888888888888888888888888ZZZZZZZZZZZZZZ88888888888888888 Normand  88",
+  "88888888888888888888888888888888ZZZZZZZZZZZZZZ8888888888888888888 Veilleux 88",
+  "8888888888888888888888888888888ZZZZZZZZZZZZZZ88888888888888888888888888888888",
+  "",
+  "DANIEL ACOSTA :: PORTFOLIO_CORE_v1.0",
+  "",
+  "SYS_NAME: PORTFOLIO_CORE_v1.0",
+  "KERNEL: 6.5.0-WEB",
+  "INIT: loading presentation modules...",
+  "MOUNT: /projects /skills /contact ... OK",
+  "CHECK: mobile viewport ....... OK",
+  "STATUS: ready to render UI",
+];
+
+function isMobileViewport() {
+  return window.matchMedia("(max-width: 640px)").matches;
+}
+
 function runBoot() {
   const overlay = document.getElementById("boot-overlay");
   const textEl = document.getElementById("boot-text");
@@ -54,20 +131,23 @@ function runBoot() {
     return;
   }
 
+  const lines = isMobileViewport() ? bootLinesMobile : bootLines;
+  const lineDelay = isMobileViewport() ? 90 : 160;
+
   let i = 0;
   let out = "";
 
   function typeLine() {
-    if (i >= bootLines.length) {
+    if (i >= lines.length) {
       out += '\n> ready. <span class="cursor-blink"></span>';
       textEl.innerHTML = out;
-      setTimeout(() => overlay.classList.add("is-hidden"), 500);
+      setTimeout(() => overlay.classList.add("is-hidden"), 400);
       return;
     }
-    out += (i > 0 ? "\n" : "") + bootLines[i];
+    out += (i > 0 ? "\n" : "") + lines[i];
     textEl.innerHTML = out + ' <span class="cursor-blink"></span>';
     i++;
-    setTimeout(typeLine, 160);
+    setTimeout(typeLine, lineDelay);
   }
   typeLine();
 }
@@ -124,6 +204,41 @@ function setupQuickAccess() {
         behavior: reduceMotion ? "auto" : "smooth",
         block: "start",
       });
+    });
+  });
+}
+
+/* Desplegable de QUICK_ACCESS en móvil/tablet (<= 980px).
+   En desktop el botón no hace nada (bloqueado por CSS/pointer-events),
+   así que el nav queda siempre visible ahí. */
+const QUICK_ACCESS_BREAKPOINT = "(max-width: 980px)";
+
+function setupQuickAccessToggle() {
+  const toggle = document.getElementById("quick-access-toggle");
+  const nav = document.getElementById("quick-access-nav");
+  if (!toggle || !nav) return;
+
+  const mq = window.matchMedia(QUICK_ACCESS_BREAKPOINT);
+
+  function setOpen(open) {
+    nav.classList.toggle("is-open", open);
+    toggle.setAttribute("aria-expanded", open ? "true" : "false");
+  }
+
+  toggle.addEventListener("click", () => {
+    if (!mq.matches) return; // en desktop el nav siempre está visible
+    setOpen(!nav.classList.contains("is-open"));
+  });
+
+  // Si el usuario ensancha/achica la ventana, evita quedar en un estado inconsistente
+  mq.addEventListener("change", (e) => {
+    if (!e.matches) setOpen(false);
+  });
+
+  // Si activan una tab desde el nav en móvil, colapsa el desplegable
+  nav.querySelectorAll("a[data-tab]").forEach((link) => {
+    link.addEventListener("click", () => {
+      if (mq.matches) setOpen(false);
     });
   });
 }
@@ -516,6 +631,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setInterval(tickClock, 1000);
   setupTabs();
   setupQuickAccess();
+  setupQuickAccessToggle();
   setupShell();
   setupMatrixRain();
   setupScrambleName();

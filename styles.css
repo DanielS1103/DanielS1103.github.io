@@ -89,6 +89,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 @media (prefers-reduced-motion: reduce) {
   html {
@@ -111,6 +112,7 @@ body {
   font-size: 15px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
 a {
@@ -165,6 +167,13 @@ code {
   margin-left: 2px;
   animation: blink 1s steps(1) infinite;
   vertical-align: text-bottom;
+}
+@media (max-width: 640px) {
+  #boot-overlay {
+    padding: 20px 16px;
+    font-size: 11px;
+    overflow-y: auto;
+  }
 }
 
 /* =========================================================
@@ -519,11 +528,37 @@ main {
   color: var(--amber);
 }
 
+.quick-access__toggle {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: default;
+  pointer-events: none;
+  font-family: var(--font-body);
+  text-align: left;
+}
+.quick-access__toggle-ico {
+  display: none;
+  width: 12px;
+  height: 12px;
+  color: var(--text-faint);
+  transition: transform 0.2s ease;
+}
+.quick-access__toggle[aria-expanded="true"] .quick-access__toggle-ico {
+  transform: rotate(90deg);
+}
+
 .quick-access {
+  margin-bottom: 22px;
+}
+.quick-access__inner {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  margin-bottom: 22px;
 }
 .quick-access a {
   display: flex;
@@ -2048,6 +2083,29 @@ main {
   .retro-station__text {
     max-width: 60ch;
   }
+
+  /* QUICK_ACCESS pasa a ser un desplegable en móvil/tablet */
+  .quick-access__toggle {
+    cursor: pointer;
+    pointer-events: auto;
+  }
+  .quick-access__toggle-ico {
+    display: block;
+  }
+  .quick-access {
+    display: grid;
+    grid-template-rows: 0fr;
+    margin-bottom: 0;
+    transition: grid-template-rows 0.25s ease;
+  }
+  .quick-access__inner {
+    min-height: 0;
+    overflow: hidden;
+  }
+  .quick-access.is-open {
+    grid-template-rows: 1fr;
+    margin-bottom: 22px;
+  }
 }
 
 @media (max-width: 640px) {
@@ -2060,8 +2118,40 @@ main {
   .statusbar {
     font-size: 10px;
     padding: 8px 14px;
+    gap: 8px;
   }
   .mw-state__grid {
+    grid-template-columns: 1fr;
+  }
+  main {
+    padding: 0 16px;
+  }
+  .split {
+    padding-top: 24px;
+    gap: 20px;
+  }
+  .sidebar {
+    padding: 18px 16px;
+  }
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 400px) {
+  .statusbar {
+    flex-wrap: wrap;
+    row-gap: 4px;
+    justify-content: center;
+    text-align: center;
+  }
+  .statusbar__left,
+  .statusbar__right {
+    flex-basis: 100%;
+    justify-content: center;
+    display: flex;
+  }
+  .gallery-grid {
     grid-template-columns: 1fr;
   }
 }
