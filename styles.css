@@ -853,6 +853,9 @@ main {
 }
 
 /* --- neofetch-style card --- */
+.neofetch-card {
+  grid-column: 1 / -1;
+}
 .neofetch-card__body {
   padding: 16px;
 }
@@ -861,18 +864,18 @@ main {
 }
 .neofetch-card__grid {
   display: flex;
-  gap: 22px;
-  align-items: flex-start;
-  flex-wrap: wrap;
+  gap: 28px;
+  align-items: center;
+  flex-wrap: nowrap;
 }
 .neofetch-card__logo {
-  flex-shrink: 0;
+  flex: 0 1 auto;
   min-width: 0;
-  max-width: 100%;
+  max-width: 55%;
   margin: 0;
   overflow-x: auto;
   font-family: var(--font-display);
-  font-size: 6px;
+  font-size: 7px;
   line-height: 1.15;
   letter-spacing: -0.02em;
   color: var(--cyan);
@@ -890,7 +893,7 @@ main {
   padding: 0;
   font-size: 12.5px;
   flex: 1;
-  min-width: 230px;
+  min-width: 0;
 }
 .neofetch-card__stats li {
   display: flex;
@@ -939,6 +942,12 @@ main {
 @media (max-width: 780px) {
   .neofetch-card__grid {
     flex-direction: column;
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+  .neofetch-card__logo {
+    max-width: 100%;
+    font-size: 6px;
   }
 }
 
