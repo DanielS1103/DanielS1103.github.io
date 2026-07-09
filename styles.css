@@ -866,19 +866,23 @@ main {
   flex-wrap: wrap;
 }
 .neofetch-card__logo {
-  width: 60px;
-  height: 60px;
   flex-shrink: 0;
-  border: 1px dashed var(--border-soft);
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  min-width: 0;
+  max-width: 100%;
+  margin: 0;
+  overflow-x: auto;
+  font-family: var(--font-display);
+  font-size: 6px;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
   color: var(--cyan);
+  white-space: pre;
 }
-.neofetch-card__logo svg {
-  width: 30px;
-  height: 30px;
+.neofetch-card__logo::-webkit-scrollbar {
+  height: 4px;
+}
+.neofetch-card__logo::-webkit-scrollbar-thumb {
+  background: var(--border);
 }
 .neofetch-card__stats {
   list-style: none;
