@@ -386,6 +386,33 @@ main {
   transform-origin: bottom center; /* el zoom crece hacia arriba, no hacia abajo */
 }
 
+.wizzard-box {
+  flex: none;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border);
+  background: linear-gradient(145deg, var(--amber-dim), var(--bg-panel-2));
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--amber);
+  letter-spacing: 0.02em;
+  overflow: hidden; /* evita que el gif se salga de la caja */
+}
+
+.wizzard-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: bottom; /* ancla el gato hacia abajo dentro del cuadro */
+  display: block;
+  transform: scale(0.8);
+  transform-origin: bottom center; /* el zoom crece hacia arriba, no hacia abajo */
+}
+
 .badge {
   display: inline-flex;
   align-items: center;
