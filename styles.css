@@ -2101,6 +2101,19 @@ main {
   .quick-access__toggle {
     cursor: pointer;
     pointer-events: auto;
+    gap: 8px;
+    padding: 14px 18px;
+    border: 1px solid var(--amber);
+    color: var(--amber);
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 0.03em;
+    width: 100%;
+    justify-content: center;
+    transition:
+      background 0.15s ease,
+      color 0.15s ease;
+  }
   }
   .quick-access__toggle-ico {
     display: block;
