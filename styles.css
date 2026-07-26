@@ -1494,6 +1494,7 @@ main {
 }
 .mw-code__kw {
   color: var(--cyan);
+  font-family: "Fira Code", monospace;
 }
 .mw-code__fn,
 .mw-code__str {
@@ -2114,7 +2115,7 @@ main {
       background 0.15s ease,
       color 0.15s ease;
   }
-  }
+
   .quick-access__toggle-ico {
     display: block;
   }
