@@ -18,8 +18,8 @@
         --screen-mint: #dff2e4;
         --screen-mint-deep: #c9e9d9;
         --screen-text: #0c3a2f;
-        --screen-frame: #241f14;
         --screen-dark: #0c2f28;
+        --screen-frame: #241f14;
         --pixel-font: "VT323", monospace;
         --script-font: "Caveat", cursive;
       }
@@ -29,42 +29,41 @@
       html,
       body {
         height: 100%;
+        margin: 0;
+        overflow: hidden;
       }
       body {
-        margin: 0;
-        min-height: 100vh;
         background: transparent;
         display: flex;
         align-items: center;
         justify-content: center;
         font-family: var(--pixel-font);
-        overflow: visible;
         image-rendering: pixelated;
       }
+
+      /* ============ SCENE WRAP — responsive scale ============ */
       .scene-wrap {
-        transform-origin: top center;
+        transform-origin: center center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
       .stage {
         position: relative;
         width: 470px;
-        height: 400px;
+        height: 590px; /* taller to include keyboard+mouse */
         user-select: none;
+        flex-shrink: 0;
       }
       svg {
         display: block;
       }
 
-      /* ============ SOMBRA PLANA (sin blur = pixel art) ============ */
-      .flat-shadow {
-        position: absolute;
-        background: rgba(20, 30, 40, 0.28);
-      }
-
       /* ============ MAC CASE ============ */
       .mac-unit {
         position: absolute;
-        left: 0px;
-        top: 0px;
+        left: 0;
+        top: 0;
         width: 470px;
         height: 400px;
       }
@@ -88,7 +87,6 @@
         height: 6px;
         background: #3a3122;
       }
-
       .case-front {
         position: absolute;
         left: 0;
@@ -96,7 +94,6 @@
         width: 360px;
         height: 360px;
       }
-
       .screen-bezel {
         position: absolute;
         left: 30px;
@@ -136,8 +133,7 @@
           115deg,
           rgba(255, 255, 255, 0.16) 0%,
           rgba(255, 255, 255, 0.16) 18%,
-          transparent 18%,
-          transparent 100%
+          transparent 18%
         );
         pointer-events: none;
         z-index: 50;
@@ -153,7 +149,6 @@
         pointer-events: none;
         z-index: 49;
       }
-
       .apple-badge {
         position: absolute;
         left: 34px;
@@ -220,7 +215,6 @@
         height: 12px;
         z-index: 2;
       }
-
       .mac-base {
         position: absolute;
         left: 4px;
@@ -235,7 +229,7 @@
       .keyboard {
         position: absolute;
         left: 20px;
-        top: 470px;
+        top: 400px;
         width: 420px;
         height: 96px;
       }
@@ -263,7 +257,6 @@
         height: 14px;
         flex: 1;
         background: var(--key);
-        border-radius: 0;
         box-shadow: 2px 2px 0 var(--key-dark);
       }
       .key.wide {
@@ -276,8 +269,8 @@
       /* ============ MOUSE ============ */
       .mouse-wrap {
         position: absolute;
-        left: 520px;
-        top: 512px;
+        left: 460px;
+        top: 440px;
         width: 96px;
         height: 78px;
       }
@@ -366,7 +359,6 @@
         image-rendering: -moz-crisp-edges;
         image-rendering: crisp-edges;
       }
-
       .desktop-layer {
         background: var(--screen-mint);
         opacity: 0;
@@ -379,7 +371,6 @@
         opacity: 1;
         pointer-events: auto;
       }
-
       .menubar {
         height: 18px;
         background: #f2f8f4;
@@ -416,7 +407,6 @@
         color: var(--screen-text);
         padding-right: 3px;
       }
-
       .menu-dropdown {
         position: absolute;
         top: 18px;
@@ -451,6 +441,7 @@
         margin: 2px 0;
       }
 
+      /* ============ DESKTOP ============ */
       .desktop-icons {
         position: relative;
         flex: 1;
@@ -487,6 +478,7 @@
         color: var(--screen-mint);
       }
 
+      /* ============ WINDOWS ============ */
       #windows-layer {
         position: absolute;
         left: 0;
@@ -573,15 +565,12 @@
         gap: 2px;
         cursor: default;
       }
-      .mini-icon .glyph {
-        width: 28px;
-        height: 28px;
-      }
       .mini-icon .lbl {
         font-size: 11px;
         text-align: center;
       }
 
+      /* ============ PIXELPAINT ============ */
       .paint-toolbar {
         display: flex;
         align-items: center;
@@ -619,10 +608,88 @@
       .paint-cell {
         width: 9px;
         height: 9px;
-        background: #ffffff;
+        background: #fff;
         outline: 1px solid #cfe6da;
       }
 
+      /* ============ PONG ============ */
+      .pong-wrap {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        height: 100%;
+        padding: 4px;
+      }
+      .pong-canvas {
+        display: block;
+        image-rendering: pixelated;
+        border: 2px solid var(--screen-text);
+        background: var(--screen-dark);
+        cursor: none;
+        flex: 1;
+        min-height: 0;
+        width: 100%;
+      }
+      .pong-ui {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        font-size: 13px;
+        color: var(--screen-text);
+        flex-shrink: 0;
+      }
+      .pong-btn {
+        font-family: var(--pixel-font);
+        font-size: 12px;
+        border: 2px solid var(--screen-text);
+        background: var(--screen-mint);
+        color: var(--screen-text);
+        cursor: pointer;
+        padding: 1px 8px;
+      }
+      .pong-btn:hover {
+        background: var(--screen-text);
+        color: var(--screen-mint);
+      }
+      .pong-touch-controls {
+        display: none;
+        flex-direction: row;
+        gap: 8px;
+        flex-shrink: 0;
+      }
+      .pong-touch-btn {
+        font-family: var(--pixel-font);
+        font-size: 18px;
+        border: 2px solid var(--screen-text);
+        background: var(--screen-mint);
+        color: var(--screen-text);
+        cursor: pointer;
+        width: 36px;
+        height: 28px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: none;
+      }
+      .pong-touch-btn:active {
+        background: var(--screen-text);
+        color: var(--screen-mint);
+      }
+
+      /* show touch controls on touch devices */
+      @media (pointer: coarse) {
+        .pong-touch-controls {
+          display: flex;
+        }
+        .pong-canvas {
+          cursor: default;
+        }
+      }
+
+      /* ============ SCROLLBAR ============ */
       ::-webkit-scrollbar {
         width: 9px;
         height: 9px;
@@ -638,11 +705,11 @@
   <body>
     <div class="scene-wrap" id="sceneWrap">
       <div class="stage">
-        <!-- ============ MAC ============ -->
+        <!-- MAC -->
         <div class="mac-unit">
           <div class="case-side" id="caseSide">
             <div class="vents">
-              <span></span><span></span><span></span><span></span><span></span
+              <span></span><span></span><span></span> <span></span><span></span
               ><span></span>
             </div>
           </div>
@@ -653,27 +720,22 @@
                 <div class="layer off-screen" id="offScreen">
                   ● screen off ●
                 </div>
-
                 <div class="layer boot-screen" id="bootScreen">
                   <div class="boot-icon" id="bootIcon"></div>
                   <div class="boot-bar">
                     <div class="boot-bar-fill" id="bootBarFill"></div>
                   </div>
                 </div>
-
                 <div class="layer hello-screen" id="helloScreen">
                   <canvas id="helloCanvas" width="140" height="55"></canvas>
                 </div>
-
                 <div class="layer desktop-layer" id="desktopLayer">
                   <div class="menubar" id="menubar">
                     <div class="menu-apple" id="menuApple"></div>
                     <div class="menu-item" data-menu="file">File</div>
                     <div class="menu-item" data-menu="edit">Edit</div>
-                    <div class="menu-item" data-menu="view">View</div>
                     <div class="menu-item" data-menu="special">Special</div>
                     <div class="menu-clock" id="menuClock">12:00</div>
-
                     <div class="menu-dropdown" id="dd-apple">
                       <div data-action="about">About This Mac…</div>
                     </div>
@@ -685,10 +747,6 @@
                       <div data-action="noop">Copy</div>
                       <div data-action="noop">Paste</div>
                     </div>
-                    <div class="menu-dropdown" id="dd-view">
-                      <div data-action="noop">as Icons</div>
-                      <div data-action="noop">as List</div>
-                    </div>
                     <div class="menu-dropdown" id="dd-special">
                       <div data-action="emptytrash">Empty Trash</div>
                       <hr />
@@ -696,10 +754,8 @@
                       <div data-action="shutdown">Shut Down</div>
                     </div>
                   </div>
-
                   <div class="desktop-icons" id="desktopIcons"></div>
                 </div>
-
                 <div id="windows-layer"></div>
                 <div class="crt-glare"></div>
                 <div class="scanlines"></div>
@@ -713,19 +769,77 @@
             <div class="mac-base"></div>
           </div>
         </div>
+
+        <!-- KEYBOARD -->
+        <div class="keyboard">
+          <div class="keyboard-bg" id="kbBg"></div>
+          <div class="kb-keys">
+            <div class="kb-row">
+              <div class="key"></div>
+              <div class="key"></div>
+              <div class="key"></div>
+              <div class="key"></div>
+              <div class="key"></div>
+              <div class="key"></div>
+              <div class="key"></div>
+              <div class="key"></div>
+              <div class="key"></div>
+              <div class="key"></div>
+              <div class="key"></div>
+              <div class="key wide"></div>
+            </div>
+            <div class="kb-row">
+              <div class="key wide"></div>
+              <div class="key"></div>
+              <div class="key"></div>
+              <div class="key"></div>
+              <div class="key"></div>
+              <div class="key"></div>
+              <div class="key"></div>
+              <div class="key"></div>
+              <div class="key"></div>
+              <div class="key"></div>
+              <div class="key"></div>
+              <div class="key"></div>
+            </div>
+            <div class="kb-row">
+              <div class="key wide"></div>
+              <div class="key"></div>
+              <div class="key"></div>
+              <div class="key"></div>
+              <div class="key"></div>
+              <div class="key"></div>
+              <div class="key"></div>
+              <div class="key"></div>
+              <div class="key"></div>
+              <div class="key wide"></div>
+            </div>
+            <div class="kb-row">
+              <div class="key wide"></div>
+              <div class="key space"></div>
+              <div class="key wide"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- MOUSE -->
+        <div class="mouse-wrap">
+          <div class="mouse-bg" id="mouseBg"></div>
+          <div class="mouse-seam"></div>
+        </div>
       </div>
     </div>
 
     <script>
       /* ============================================================
-   MOTOR DE PIXEL ART — genera relleno de bloques cuadrados
-   ============================================================ */
+         PIXEL ART ENGINE
+      ============================================================ */
       function pixelIcon(rows, palette) {
         const w = Math.max(...rows.map((r) => r.length));
         const h = rows.length;
         const norm = rows.map((r) => (r + ".".repeat(w)).slice(0, w));
         let rects = "";
-        for (let y = 0; y < h; y++) {
+        for (let y = 0; y < h; y++)
           for (let x = 0; x < w; x++) {
             const c = norm[y][x];
             if (c === ".") continue;
@@ -733,24 +847,19 @@
             if (!color) continue;
             rects += `<rect x="${x}" y="${y}" width="1.02" height="1.02" fill="${color}"/>`;
           }
-        }
         return `<svg viewBox="0 0 ${w} ${h}" width="100%" height="100%" preserveAspectRatio="none" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg">${rects}</svg>`;
       }
 
-      /* Genera un panel rectangular con esquinas escalonadas (pixel-round)
-   y bandas de sombreado planas — así el "cuerpo" del equipo también
-   queda hecho de píxeles, sin gradientes ni radios suaves. */
       function pixelPanel(cols, rows, opts) {
         const {
           corner = 4,
-          outline = "#000000",
-          light = "#ffffff",
-          base = "#cccccc",
-          dark = "#888888",
+          outline = "#000",
+          light = "#fff",
+          base = "#ccc",
+          dark = "#888",
           lightBand = 0.28,
           darkBand = 0.24,
         } = opts;
-
         function inShape(x, y) {
           if (x < 0 || y < 0 || x >= cols || y >= rows) return false;
           const r = corner;
@@ -774,9 +883,8 @@
             dy = y - cy;
           return dx * dx + dy * dy <= r * r + r;
         }
-
         let rects = "";
-        for (let y = 0; y < rows; y++) {
+        for (let y = 0; y < rows; y++)
           for (let x = 0; x < cols; x++) {
             if (!inShape(x, y)) continue;
             const isEdge =
@@ -789,18 +897,15 @@
               color = outline;
             } else {
               const t = (x / cols) * 0.5 + (y / rows) * 0.5;
-              if (t < lightBand) color = light;
-              else if (t > 1 - darkBand) color = dark;
-              else color = base;
+              color = t < lightBand ? light : t > 1 - darkBand ? dark : base;
             }
             rects += `<rect x="${x}" y="${y}" width="1.02" height="1.02" fill="${color}"/>`;
           }
-        }
         return `<svg viewBox="0 0 ${cols} ${rows}" width="100%" height="100%" preserveAspectRatio="none" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg">${rects}</svg>`;
       }
 
+      /* ============ ICONS ============ */
       const ICONS = {};
-
       ICONS.disk = pixelIcon(
         [
           "............",
@@ -818,7 +923,6 @@
         ],
         { k: "#3a4a48", w: "#eef6f1" },
       );
-
       ICONS.folder = pixelIcon(
         [
           "............",
@@ -836,7 +940,6 @@
         ],
         { k: "#6b5423", y: "#f0c419" },
       );
-
       ICONS.trash = pixelIcon(
         [
           "............",
@@ -854,7 +957,6 @@
         ],
         { k: "#3a3a3a", w: "#d4d4d4" },
       );
-
       ICONS.file = pixelIcon(
         [
           "............",
@@ -870,9 +972,8 @@
           "............",
           "............",
         ],
-        { k: "#333333", w: "#ffffff", y: "#9a9a9a" },
+        { k: "#333", w: "#fff", y: "#9a9a9a" },
       );
-
       ICONS.brush = pixelIcon(
         [
           "............",
@@ -890,7 +991,6 @@
         ],
         { k: "#332211", w: "#c9c9c9", b: "#8a5a2a" },
       );
-
       ICONS.appleRainbow = pixelIcon(
         [
           "...kk.....",
@@ -914,7 +1014,6 @@
           b: "#3d7dd8",
         },
       );
-
       ICONS.happyMac = pixelIcon(
         [
           "..kkkkkkkkkkkk..",
@@ -934,7 +1033,36 @@
         ],
         { k: "#0c3a2f", w: "#eef8f2" },
       );
-
+      ICONS.pong = pixelIcon(
+        [
+          "k..........k",
+          "k..........k",
+          "k.....kk...k",
+          "k..........k",
+          "k..........k",
+          "k....kk....k",
+          "k..........k",
+          "k..........k",
+        ],
+        { k: "#0c3a2f" },
+      );
+      ICONS.weatherart = pixelIcon(
+        [
+          "....yyy.....",
+          "...yyyyy....",
+          "..yyyyyyy...",
+          "...yyyyy....",
+          "....yyy.....",
+          "............",
+          ".bbb..bbb...",
+          "bbbbb.bbbbb.",
+          ".bbb..bbb...",
+          "............",
+          "..rrrrrrrr..",
+          "..rrrrrrrr..",
+        ],
+        { y: "#f4d13d", b: "#3d7dd8", r: "#e5533d" },
+      );
       ICONS.ledDiamond = pixelIcon(
         ["..k..", ".kkk.", "kkkkk", ".kkk.", "..k.."],
         { k: "#5a4a2a" },
@@ -944,15 +1072,15 @@
         k: "#7CFC7C",
       });
 
-      /* ============================================================
-   CUERPO FÍSICO: paneles pixel-art generados
-   ============================================================ */
+      /* ============ PANELS ============ */
       const CASE_PALETTE = {
         corner: 5,
         outline: "#4a3f28",
-        light: "#f4ecd2",
-        base: "#ddd0ae",
-        dark: "#b19d6c",
+        light: "#f2e5c0",
+        base: "#dccfa0",
+        dark: "#a89a6a",
+        lightBand: 0.08,
+        darkBand: 0.3,
       };
       const SIDE_PALETTE = {
         corner: 3,
@@ -1003,15 +1131,41 @@
         38,
         BEZEL_PALETTE,
       );
-
+      document.getElementById("kbBg").innerHTML = pixelPanel(
+        70,
+        16,
+        KB_PALETTE,
+      );
+      document.getElementById("mouseBg").innerHTML = pixelPanel(
+        16,
+        13,
+        MOUSE_PALETTE,
+      );
       document.getElementById("bootIcon").innerHTML = ICONS.happyMac;
       document.getElementById("appleBadge").innerHTML = ICONS.appleRainbow;
       document.getElementById("menuApple").innerHTML = ICONS.appleRainbow;
       document.getElementById("powerLed").innerHTML = LED_OFF;
 
       /* ============================================================
-   ESTADO Y ARRANQUE
-   ============================================================ */
+         RESPONSIVE SCALING
+      ============================================================ */
+      function fitStage() {
+        const wrap = document.getElementById("sceneWrap");
+        const stageW = 470,
+          stageH = 590;
+        const avW = window.innerWidth * 0.98;
+        const avH = window.innerHeight * 0.98;
+        const scale = Math.min(1, avW / stageW, avH / stageH);
+        wrap.style.transform = `scale(${scale})`;
+        wrap.style.width = stageW + "px";
+        wrap.style.height = stageH + "px";
+      }
+      fitStage();
+      window.addEventListener("resize", fitStage);
+
+      /* ============================================================
+         BOOT SEQUENCE
+      ============================================================ */
       const crt = document.getElementById("crt");
       const offScreen = document.getElementById("offScreen");
       const bootScreen = document.getElementById("bootScreen");
@@ -1020,8 +1174,7 @@
       const desktopLayer = document.getElementById("desktopLayer");
       const powerLed = document.getElementById("powerLed");
       const powerBtn = document.getElementById("powerBtn");
-
-      let machineState = "off"; // off | booting | hello | desktop
+      let machineState = "off";
       let bootTimers = [];
 
       function clearBootTimers() {
@@ -1034,17 +1187,14 @@
           const c = document.getElementById("helloCanvas");
           if (!c) return;
           const ctx = c.getContext("2d");
-          if (!ctx) return;
           ctx.clearRect(0, 0, c.width, c.height);
           ctx.fillStyle = "#0c3a2f";
           ctx.font = "italic 40px 'Caveat', cursive";
           ctx.textBaseline = "middle";
           ctx.textAlign = "center";
           ctx.fillText("hello", c.width / 2, c.height / 2 + 4);
-        } catch (err) {
-          /* Si el navegador bloquea el canvas (protección de privacidad, etc.)
-       esto no debe romper el resto del script: el Mac debe encender igual. */
-          console.warn("No se pudo dibujar el saludo de bienvenida:", err);
+        } catch (e) {
+          console.warn("canvas error", e);
         }
       }
       try {
@@ -1057,9 +1207,7 @@
         } else {
           drawHello();
         }
-      } catch (err) {
-        console.warn("No se pudo cargar la fuente de bienvenida:", err);
-      }
+      } catch (e) {}
 
       function powerOn() {
         if (machineState !== "off") return;
@@ -1074,7 +1222,6 @@
             bootBarFill.style.width = "100%";
           }),
         );
-
         bootTimers.push(
           setTimeout(() => {
             bootScreen.classList.remove("show");
@@ -1083,7 +1230,6 @@
             helloScreen.classList.add("show");
           }, 1500),
         );
-
         bootTimers.push(
           setTimeout(() => {
             helloScreen.classList.remove("show");
@@ -1092,7 +1238,6 @@
           }, 3400),
         );
       }
-
       function powerOff() {
         clearBootTimers();
         machineState = "off";
@@ -1104,36 +1249,28 @@
         closeAllWindows();
         closeAllMenus();
       }
-
       function restartMachine() {
         powerOff();
         setTimeout(powerOn, 350);
       }
-
       crt.addEventListener("click", () => {
-        if (machineState === "off") {
-          powerOn();
-        }
+        if (machineState === "off") powerOn();
       });
       powerBtn.addEventListener("click", (e) => {
         e.stopPropagation();
-        if (machineState === "off") {
-          powerOn();
-        } else {
-          powerOff();
-        }
+        if (machineState === "off") powerOn();
+        else powerOff();
       });
 
       /* ============================================================
-   RELOJ DEL MENU
-   ============================================================ */
+         CLOCK
+      ============================================================ */
       function tickClock() {
         const now = new Date();
         let h = now.getHours();
         const m = now.getMinutes();
         const ampm = h >= 12 ? "PM" : "AM";
-        h = h % 12;
-        if (h === 0) h = 12;
+        h = h % 12 || 12;
         document.getElementById("menuClock").textContent =
           h + ":" + String(m).padStart(2, "0") + " " + ampm;
       }
@@ -1141,12 +1278,11 @@
       setInterval(tickClock, 5000);
 
       /* ============================================================
-   MENÚS DESPLEGABLES
-   ============================================================ */
+         MENUS
+      ============================================================ */
       const menuMap = {
         file: "dd-file",
         edit: "dd-edit",
-        view: "dd-view",
         special: "dd-special",
       };
       function closeAllMenus() {
@@ -1178,22 +1314,21 @@
         if (!wasOpen) dd.classList.add("open");
       });
       document.addEventListener("click", closeAllMenus);
-
       document
         .querySelectorAll(".menu-dropdown div[data-action]")
         .forEach((opt) => {
           opt.addEventListener("click", (e) => {
             e.stopPropagation();
             closeAllMenus();
-            const action = opt.dataset.action;
-            if (action === "about") openAboutWindow();
-            else if (action === "shutdown") powerOff();
-            else if (action === "restart") restartMachine();
-            else if (action === "emptytrash") openTrashWindow();
-            else if (action === "closeall") closeAllWindows();
-            else if (action === "newfolder")
+            const a = opt.dataset.action;
+            if (a === "about") openAboutWindow();
+            else if (a === "shutdown") powerOff();
+            else if (a === "restart") restartMachine();
+            else if (a === "emptytrash") openTrashWindow();
+            else if (a === "closeall") closeAllWindows();
+            else if (a === "newfolder")
               openWindow({
-                id: "w-newfolder-" + Date.now(),
+                id: "w-nf-" + Date.now(),
                 title: "carpeta sin título",
                 x: 260,
                 y: 110,
@@ -1205,16 +1340,15 @@
         });
 
       /* ============================================================
-   GESTOR DE VENTANAS
-   ============================================================ */
+         WINDOW MANAGER
+      ============================================================ */
+      let zTop = 10,
+        openWins = {};
       const winLayer = document.getElementById("windows-layer");
-      let zTop = 10;
-      let openWins = {};
 
       function iconHTML(name, size) {
         return `<div style="width:${size}px;height:${size}px;margin:0 auto;">${ICONS[name]}</div>`;
       }
-
       function closeAllWindows() {
         Object.keys(openWins).forEach((id) => {
           const el = document.getElementById(id);
@@ -1222,7 +1356,6 @@
         });
         openWins = {};
       }
-
       function focusWindow(el) {
         el.style.zIndex = ++zTop;
       }
@@ -1232,31 +1365,32 @@
           focusWindow(document.getElementById(id));
           return;
         }
+        // Center window in the available layer area
+        const layerRect = winLayer.getBoundingClientRect();
+        const layerW = layerRect.width || 264;
+        const layerH = layerRect.height || 174;
+        const cx = Math.max(2, Math.round((layerW - w) / 2));
+        const cy = Math.max(2, Math.round((layerH - h) / 2));
+        const finalX = x !== undefined ? cx : cx;
+        const finalY = y !== undefined ? cy : cy;
         const win = document.createElement("div");
         win.className = "win";
         win.id = id;
-        win.style.left = x + "px";
-        win.style.top = y + "px";
-        win.style.width = w + "px";
-        win.style.height = h + "px";
-        win.style.zIndex = ++zTop;
+        win.style.cssText = `left:${cx}px;top:${cy}px;width:${w}px;height:${h}px;z-index:${++zTop}`;
         win.innerHTML = `
-    <div class="win-titlebar">
-      <div class="win-close"></div>
-      <div class="win-title">${title}</div>
-    </div>
-    <div class="win-body">${content}</div>
-  `;
+          <div class="win-titlebar">
+            <div class="win-close"></div>
+            <div class="win-title">${title}</div>
+          </div>
+          <div class="win-body">${content}</div>`;
         winLayer.appendChild(win);
         openWins[id] = true;
-
         win.addEventListener("mousedown", () => focusWindow(win));
         win.querySelector(".win-close").addEventListener("click", (e) => {
           e.stopPropagation();
           win.remove();
           delete openWins[id];
         });
-
         makeDraggable(win, win.querySelector(".win-titlebar"));
         if (onReady) onReady(win);
         return win;
@@ -1266,6 +1400,7 @@
         let dragging = false,
           offX = 0,
           offY = 0;
+        // mouse
         handle.addEventListener("mousedown", (e) => {
           if (e.target.classList.contains("win-close")) return;
           dragging = true;
@@ -1277,135 +1412,146 @@
         });
         window.addEventListener("mousemove", (e) => {
           if (!dragging) return;
-          const parentRect = winLayer.getBoundingClientRect();
-          let nx = e.clientX - parentRect.left - offX;
-          let ny = e.clientY - parentRect.top - offY;
-          nx = Math.max(0, Math.min(nx, parentRect.width - win.offsetWidth));
-          ny = Math.max(0, Math.min(ny, parentRect.height - win.offsetHeight));
+          const pr = winLayer.getBoundingClientRect();
+          let nx = e.clientX - pr.left - offX;
+          let ny = e.clientY - pr.top - offY;
+          nx = Math.max(0, Math.min(nx, pr.width - win.offsetWidth));
+          ny = Math.max(0, Math.min(ny, pr.height - win.offsetHeight));
           win.style.left = nx + "px";
           win.style.top = ny + "px";
         });
         window.addEventListener("mouseup", () => (dragging = false));
+        // touch
+        handle.addEventListener(
+          "touchstart",
+          (e) => {
+            if (e.target.classList.contains("win-close")) return;
+            const t = e.touches[0];
+            dragging = true;
+            const rect = win.getBoundingClientRect();
+            offX = t.clientX - rect.left;
+            offY = t.clientY - rect.top;
+            focusWindow(win);
+            e.preventDefault();
+          },
+          { passive: false },
+        );
+        handle.addEventListener(
+          "touchmove",
+          (e) => {
+            if (!dragging) return;
+            const t = e.touches[0];
+            const pr = winLayer.getBoundingClientRect();
+            let nx = t.clientX - pr.left - offX;
+            let ny = t.clientY - pr.top - offY;
+            nx = Math.max(0, Math.min(nx, pr.width - win.offsetWidth));
+            ny = Math.max(0, Math.min(ny, pr.height - win.offsetHeight));
+            win.style.left = nx + "px";
+            win.style.top = ny + "px";
+            e.preventDefault();
+          },
+          { passive: false },
+        );
+        handle.addEventListener("touchend", () => (dragging = false));
       }
 
-      /* ---- Ventanas de contenido ---- */
+      /* ============================================================
+         WINDOW CONTENT
+      ============================================================ */
       function openAboutWindow() {
         openWindow({
           id: "w-about",
           title: "Acerca de esta Macintosh",
-          x: 210,
-          y: 50,
-          w: 220,
-          h: 180,
-          content: `
-      <div style="text-align:center;">
-        <div style="width:40px;height:40px;margin:0 auto 6px;">${ICONS.appleRainbow}</div>
-        <b>Macintosh Pixel</b><br>
-        Sistema 1.0 (hecho a mano)<br><br>
-        Procesador: 6 píxeles/seg<br>
-        Memoria: 512 sprites<br>
-        Sonido: 1-bit, muy retro<br><br>
-        Sencillo, honesto, con encanto.
-      </div>`,
+          x: 60,
+          y: 30,
+          w: 200,
+          h: 175,
+          content: `<div style="text-align:center;">
+            <div style="width:40px;height:40px;margin:0 auto 6px;">${ICONS.appleRainbow}</div>
+            <b>Macintosh Pixel</b><br>Sistema 1.0 (hecho a mano)<br><br>
+            CPU: 6 píxeles/seg<br>RAM: 512 sprites<br>Sonido: 1-bit, muy retro<br><br>
+            Sencillo, honesto, con encanto.</div>`,
         });
       }
-
       function openTrashWindow() {
         openWindow({
           id: "w-trash",
           title: "Papelera",
-          x: 180,
-          y: 120,
-          w: 180,
-          h: 140,
-          content: `<div style="text-align:center;padding-top:8px;">
-      ${iconHTML("trash", 36)}
-      <div style="margin-top:8px;">La Papelera está vacía.<br>0 elementos.</div>
-    </div>`,
+          x: 60,
+          y: 60,
+          w: 170,
+          h: 130,
+          content: `<div style="text-align:center;padding-top:8px;">${iconHTML("trash", 36)}<div style="margin-top:8px;">La Papelera está vacía.<br>0 elementos.</div></div>`,
         });
       }
-
       function openReadmeWindow() {
         openWindow({
           id: "w-readme",
           title: "Léeme",
-          x: 240,
-          y: 60,
-          w: 230,
-          h: 170,
-          content: `¡Hola! 👋<br><br>
-      Soy tu Macintosh de bolsillo, pixel a pixel.<br>
-      Nací en tu navegador, sin disquetes de verdad.<br><br>
-      Haz doble clic en todo lo que veas: aquí nada se rompe.<br><br>
-      Cuando quieras descansar, ve a <b>Especial &gt; Apagar</b>.<br><br>
-      Gracias por visitarme.`,
+          x: 60,
+          y: 30,
+          w: 210,
+          h: 165,
+          content: `¡Hola! 👋<br><br>Soy tu Macintosh de bolsillo.<br>Haz doble clic en los iconos.<br><br>Prueba <b>Pong.app</b> — ¡hay un juego!<br><br>Cuando quieras descansar, ve a <b>Special > Shut Down</b>.`,
         });
       }
-
       function openDocumentsWindow() {
         openWindow({
           id: "w-documents",
           title: "Documentos",
-          x: 220,
-          y: 80,
-          w: 200,
-          h: 130,
+          x: 60,
+          y: 30,
+          w: 190,
+          h: 120,
           content: `<div class="mini-icon-row">
-      <div class="mini-icon" ondblclick="openReadmeWindow()">
-        ${iconHTML("file", 28)}
-        <div class="lbl">Léeme</div>
-      </div>
-    </div>`,
+            <div class="mini-icon" ondblclick="openReadmeWindow()">
+              ${iconHTML("file", 28)}<div class="lbl">Léeme</div></div></div>`,
         });
       }
-
       function openMacHDWindow() {
         openWindow({
           id: "w-machd",
           title: "Macintosh HD",
-          x: 170,
-          y: 50,
-          w: 240,
-          h: 150,
+          x: 50,
+          y: 30,
+          w: 230,
+          h: 140,
           content: `<div class="mini-icon-row">
-      <div class="mini-icon" ondblclick="openDocumentsWindow()">
-        ${iconHTML("folder", 28)}
-        <div class="lbl">Documentos</div>
-      </div>
-      <div class="mini-icon" ondblclick="openPaintWindow()">
-        ${iconHTML("brush", 28)}
-        <div class="lbl">PixelPaint</div>
-      </div>
-    </div>`,
+            <div class="mini-icon" ondblclick="openDocumentsWindow()">
+              ${iconHTML("folder", 28)}<div class="lbl">Documentos</div></div>
+            <div class="mini-icon" ondblclick="openPaintWindow()">
+              ${iconHTML("brush", 28)}<div class="lbl">PixelPaint</div></div>
+            <div class="mini-icon" ondblclick="openPongWindow()">
+              ${iconHTML("pong", 28)}<div class="lbl">Pong.app</div></div>
+            </div>`,
         });
       }
 
-      /* ---- App de dibujo pixel art (PixelPaint) ---- */
+      /* ============ PIXELPAINT ============ */
       function openPaintWindow() {
         const cols = 20,
           rows = 13;
         openWindow({
           id: "w-paint",
           title: "PixelPaint",
-          x: 120,
-          y: 30,
+          x: 50,
+          y: 20,
           w: 230,
           h: 220,
           content: `
-      <div class="paint-toolbar">
-        <div class="swatch active" data-color="#0c3a2f" style="background:#0c3a2f"></div>
-        <div class="swatch" data-color="#e5533d" style="background:#e5533d"></div>
-        <div class="swatch" data-color="#3d7dd8" style="background:#3d7dd8"></div>
-        <div class="swatch" data-color="#f4d13d" style="background:#f4d13d"></div>
-        <div class="swatch" data-color="#ffffff" style="background:#ffffff"></div>
-        <button class="paint-btn" id="paintClear">Borrar</button>
-      </div>
-      <div class="paint-grid" id="paintGrid" style="grid-template-columns:repeat(${cols},9px);"></div>
-    `,
+            <div class="paint-toolbar">
+              <div class="swatch active" data-color="#0c3a2f" style="background:#0c3a2f"></div>
+              <div class="swatch" data-color="#e5533d" style="background:#e5533d"></div>
+              <div class="swatch" data-color="#3d7dd8" style="background:#3d7dd8"></div>
+              <div class="swatch" data-color="#f4d13d" style="background:#f4d13d"></div>
+              <div class="swatch" data-color="#fff" style="background:#fff"></div>
+              <button class="paint-btn" id="paintClear">Borrar</button>
+            </div>
+            <div class="paint-grid" id="paintGrid" style="grid-template-columns:repeat(${cols},9px);"></div>`,
           onReady: (win) => {
             const grid = win.querySelector("#paintGrid");
-            let current = "#0c3a2f";
-            let painting = false;
+            let current = "#0c3a2f",
+              painting = false;
             for (let i = 0; i < cols * rows; i++) {
               const cell = document.createElement("div");
               cell.className = "paint-cell";
@@ -1417,6 +1563,24 @@
               cell.addEventListener("mouseenter", () => {
                 if (painting) cell.style.background = current;
               });
+              cell.addEventListener(
+                "touchstart",
+                (e) => {
+                  painting = true;
+                  cell.style.background = current;
+                },
+                { passive: true },
+              );
+              cell.addEventListener(
+                "touchmove",
+                (e) => {
+                  const t = e.touches[0];
+                  const el = document.elementFromPoint(t.clientX, t.clientY);
+                  if (el && el.classList.contains("paint-cell"))
+                    el.style.background = current;
+                },
+                { passive: true },
+              );
               grid.appendChild(cell);
             }
             win.addEventListener("mouseup", () => (painting = false));
@@ -1433,19 +1597,711 @@
             win.querySelector("#paintClear").addEventListener("click", () => {
               win
                 .querySelectorAll(".paint-cell")
-                .forEach((c) => (c.style.background = "#ffffff"));
+                .forEach((c) => (c.style.background = "#fff"));
             });
           },
         });
       }
 
       /* ============================================================
-   ICONOS DEL ESCRITORIO
-   ============================================================ */
+         PONG GAME
+      ============================================================ */
+      function openPongWindow() {
+        const WIN_W = 230,
+          WIN_H = 210;
+        openWindow({
+          id: "w-pong",
+          title: "Pong.app",
+          x: 20,
+          y: 18,
+          w: WIN_W,
+          h: WIN_H,
+          content: `
+            <div class="pong-wrap" id="pongWrap">
+              <canvas class="pong-canvas" id="pongCanvas"></canvas>
+              <div class="pong-ui">
+                <span id="pongScore">0 — 0</span>
+                <button class="pong-btn" id="pongStart">Iniciar</button>
+              </div>
+              <div class="pong-touch-controls" id="pongTouchCtrl">
+                <button class="pong-touch-btn" id="pongUp">▲</button>
+                <button class="pong-touch-btn" id="pongDown">▼</button>
+              </div>
+            </div>`,
+          onReady: (win) => {
+            const canvas = win.querySelector("#pongCanvas");
+            const ctx = canvas.getContext("2d");
+            const scoreEl = win.querySelector("#pongScore");
+            const startBtn = win.querySelector("#pongStart");
+
+            // Sizing: fill available space
+            function resizeCanvas() {
+              const wrap = win.querySelector("#pongWrap");
+              const ui = win.querySelector(".pong-ui");
+              const tc = win.querySelector("#pongTouchCtrl");
+              const usedH =
+                (ui.offsetHeight || 24) + (tc.offsetHeight || 0) + 20;
+              const cw = Math.max(
+                100,
+                Math.floor((wrap.clientWidth || WIN_W - 18) - 4),
+              );
+              const ch = Math.max(
+                60,
+                Math.floor((wrap.clientHeight || WIN_H - 60) - usedH),
+              );
+              canvas.width = cw;
+              canvas.height = ch;
+            }
+            // Defer resize so layout is complete, then auto-start
+            setTimeout(() => {
+              resizeCanvas();
+              initGame();
+              running = true;
+              startBtn.textContent = "Reset";
+              raf = requestAnimationFrame(loop);
+            }, 60);
+
+            const PAD_W = 4,
+              PAD_GAP = 4;
+            let cW, cH, ballX, ballY, ballDX, ballDY, ballR;
+            let p1Y, p2Y, padH, padSpeed;
+            let score1 = 0,
+              score2 = 0;
+            let running = false,
+              raf = null;
+            let keys = {};
+
+            // Touch controls state
+            let touchUp = false,
+              touchDown = false;
+            const upBtn = win.querySelector("#pongUp");
+            const downBtn = win.querySelector("#pongDown");
+            upBtn.addEventListener(
+              "touchstart",
+              (e) => {
+                touchUp = true;
+                e.preventDefault();
+              },
+              { passive: false },
+            );
+            upBtn.addEventListener("touchend", () => (touchUp = false));
+            upBtn.addEventListener("mousedown", () => (touchUp = true));
+            upBtn.addEventListener("mouseup", () => (touchUp = false));
+            downBtn.addEventListener(
+              "touchstart",
+              (e) => {
+                touchDown = true;
+                e.preventDefault();
+              },
+              { passive: false },
+            );
+            downBtn.addEventListener("touchend", () => (touchDown = false));
+            downBtn.addEventListener("mousedown", () => (touchDown = true));
+            downBtn.addEventListener("mouseup", () => (touchDown = false));
+
+            // Mouse / touch control on canvas
+            canvas.addEventListener("mousemove", (e) => {
+              const rect = canvas.getBoundingClientRect();
+              const scaleY = canvas.height / rect.height;
+              p1Y = (e.clientY - rect.top) * scaleY - padH / 2;
+            });
+            canvas.addEventListener(
+              "touchmove",
+              (e) => {
+                const rect = canvas.getBoundingClientRect();
+                const scaleY = canvas.height / rect.height;
+                p1Y = (e.touches[0].clientY - rect.top) * scaleY - padH / 2;
+                e.preventDefault();
+              },
+              { passive: false },
+            );
+
+            // Listen on both document and the canvas to capture keys in iframe
+            function onKeyDown(e) {
+              keys[e.key] = true;
+            }
+            function onKeyUp(e) {
+              keys[e.key] = false;
+            }
+            document.addEventListener("keydown", onKeyDown);
+            document.addEventListener("keyup", onKeyUp);
+            // Also make canvas focusable so arrow keys work
+            canvas.setAttribute("tabindex", "0");
+            canvas.addEventListener("click", () => canvas.focus());
+            canvas.addEventListener("keydown", onKeyDown);
+            canvas.addEventListener("keyup", onKeyUp);
+
+            function initGame() {
+              cW = canvas.width;
+              cH = canvas.height;
+              ballR = Math.max(3, Math.round(cW * 0.025));
+              padH = Math.round(cH * 0.28);
+              padSpeed = Math.round(cH * 0.045);
+              ballX = cW / 2;
+              ballY = cH / 2;
+              const spd = cW * 0.025;
+              const ang = ((Math.random() * 60 - 30) * Math.PI) / 180;
+              ballDX = (Math.random() > 0.5 ? 1 : -1) * spd * Math.cos(ang);
+              ballDY = spd * Math.sin(ang);
+              p1Y = cH / 2 - padH / 2;
+              p2Y = cH / 2 - padH / 2;
+            }
+
+            function resetBall() {
+              ballX = cW / 2;
+              ballY = cH / 2;
+              const spd = cW * 0.025;
+              const ang = ((Math.random() * 60 - 30) * Math.PI) / 180;
+              ballDX = (Math.random() > 0.5 ? 1 : -1) * spd * Math.cos(ang);
+              ballDY = spd * Math.sin(ang);
+            }
+
+            function updateScore() {
+              scoreEl.textContent = score1 + " — " + score2;
+            }
+
+            function aiMove() {
+              const center = p2Y + padH / 2;
+              const speed = padSpeed * 0.72;
+              if (center < ballY - 4) p2Y = Math.min(p2Y + speed, cH - padH);
+              else if (center > ballY + 4) p2Y = Math.max(p2Y - speed, 0);
+            }
+
+            function playerMove() {
+              if (
+                (keys["ArrowUp"] || keys["w"] || keys["W"] || touchUp) &&
+                p1Y > 0
+              )
+                p1Y = Math.max(0, p1Y - padSpeed);
+              if (
+                (keys["ArrowDown"] || keys["s"] || keys["S"] || touchDown) &&
+                p1Y < cH - padH
+              )
+                p1Y = Math.min(cH - padH, p1Y + padSpeed);
+            }
+
+            function draw() {
+              ctx.fillStyle = "#041210";
+              ctx.fillRect(0, 0, cW, cH);
+
+              // dashed center line
+              ctx.setLineDash([4, 6]);
+              ctx.strokeStyle = "#1f5c4d";
+              ctx.lineWidth = 1;
+              ctx.beginPath();
+              ctx.moveTo(cW / 2, 0);
+              ctx.lineTo(cW / 2, cH);
+              ctx.stroke();
+              ctx.setLineDash([]);
+
+              // scores on screen
+              ctx.fillStyle = "#2a7a60";
+              ctx.font = `${Math.round(cH * 0.18)}px 'VT323', monospace`;
+              ctx.textAlign = "center";
+              ctx.fillText(score1, cW * 0.28, cH * 0.22);
+              ctx.fillText(score2, cW * 0.72, cH * 0.22);
+
+              // paddles
+              ctx.fillStyle = "#dff2e4";
+              ctx.fillRect(PAD_GAP, p1Y, PAD_W, padH);
+              ctx.fillRect(cW - PAD_GAP - PAD_W, p2Y, PAD_W, padH);
+
+              // ball (pixel square)
+              ctx.fillRect(
+                Math.round(ballX - ballR),
+                Math.round(ballY - ballR),
+                ballR * 2,
+                ballR * 2,
+              );
+            }
+
+            function loop() {
+              cW = canvas.width;
+              cH = canvas.height;
+
+              playerMove();
+              aiMove();
+
+              ballX += ballDX;
+              ballY += ballDY;
+
+              // top / bottom bounce
+              if (ballY - ballR <= 0) {
+                ballY = ballR;
+                ballDY = Math.abs(ballDY);
+              }
+              if (ballY + ballR >= cH) {
+                ballY = cH - ballR;
+                ballDY = -Math.abs(ballDY);
+              }
+
+              // paddle collision p1 (left)
+              if (
+                ballX - ballR <= PAD_GAP + PAD_W &&
+                ballY >= p1Y &&
+                ballY <= p1Y + padH &&
+                ballDX < 0
+              ) {
+                ballX = PAD_GAP + PAD_W + ballR;
+                const rel = (ballY - (p1Y + padH / 2)) / (padH / 2);
+                const spd = Math.sqrt(ballDX * ballDX + ballDY * ballDY) * 1.04;
+                const ang = (rel * 60 * Math.PI) / 180;
+                ballDX = Math.abs(spd * Math.cos(ang));
+                ballDY = spd * Math.sin(ang);
+              }
+              // paddle collision p2 (right)
+              if (
+                ballX + ballR >= cW - PAD_GAP - PAD_W &&
+                ballY >= p2Y &&
+                ballY <= p2Y + padH &&
+                ballDX > 0
+              ) {
+                ballX = cW - PAD_GAP - PAD_W - ballR;
+                const rel = (ballY - (p2Y + padH / 2)) / (padH / 2);
+                const spd = Math.sqrt(ballDX * ballDX + ballDY * ballDY) * 1.04;
+                const ang = (rel * 60 * Math.PI) / 180;
+                ballDX = -Math.abs(spd * Math.cos(ang));
+                ballDY = spd * Math.sin(ang);
+              }
+
+              // scoring
+              if (ballX < 0) {
+                score2++;
+                updateScore();
+                resetBall();
+              } else if (ballX > cW) {
+                score1++;
+                updateScore();
+                resetBall();
+              }
+
+              draw();
+              if (running) raf = requestAnimationFrame(loop);
+            }
+
+            startBtn.addEventListener("click", () => {
+              running = false;
+              if (raf) cancelAnimationFrame(raf);
+              score1 = 0;
+              score2 = 0;
+              updateScore();
+              resizeCanvas();
+              initGame();
+              draw();
+              running = true;
+              startBtn.textContent = "Reset";
+              raf = requestAnimationFrame(loop);
+            });
+
+            // stop game and clean up listeners when window closes
+            win.querySelector(".win-close").addEventListener("click", () => {
+              running = false;
+              if (raf) cancelAnimationFrame(raf);
+              document.removeEventListener("keydown", onKeyDown);
+              document.removeEventListener("keyup", onKeyUp);
+            });
+          },
+        });
+      }
+
+      /* ============================================================
+         WEATHER ART APP
+      ============================================================ */
+      function openWeatherArtWindow() {
+        /*
+         * WEATHER ART APP
+         * Real weather from Open-Meteo.
+         * Small city selector + text search.
+         */
+
+        const CITIES = [
+          { name: "Bogotá", lat: 4.711, lon: -74.0721 },
+          { name: "Medellín", lat: 6.2442, lon: -75.5812 },
+          { name: "Cali", lat: 3.4516, lon: -76.532 },
+          { name: "Cartagena", lat: 10.391, lon: -75.4794 },
+          { name: "Buenos Aires", lat: -34.6037, lon: -58.3816 },
+          { name: "Ciudad de México", lat: 19.4326, lon: -99.1332 },
+          { name: "París", lat: 48.8566, lon: 2.3522 },
+          { name: "Tokio", lat: 35.6762, lon: 139.6503 },
+        ];
+
+        const PAINTINGS = {
+          sunny: [
+            {
+              title: "Los girasoles",
+              artist: "Vincent van Gogh",
+              why: "Luz intensa y colores cálidos.",
+              url: "https://es.wikipedia.org/wiki/Los_girasoles",
+            },
+            {
+              title: "Impresión, sol naciente",
+              artist: "Claude Monet",
+              why: "Una atmósfera luminosa y tranquila.",
+              url: "https://es.wikipedia.org/wiki/Impresi%C3%B3n,_sol_naciente",
+            },
+          ],
+          cloudy: [
+            {
+              title: "El caminante sobre el mar de nubes",
+              artist: "Caspar David Friedrich",
+              why: "Ideal para un cielo gris y contemplativo.",
+              url: "https://es.wikipedia.org/wiki/El_caminante_sobre_el_mar_de_nubes",
+            },
+            {
+              title: "Cielo tormentoso sobre Toledo",
+              artist: "El Greco",
+              why: "Nubes dramáticas y contrastes fuertes.",
+              url: "https://es.wikipedia.org/wiki/Vista_de_Toledo",
+            },
+          ],
+          rainy: [
+            {
+              title: "Lluvia en Ohashi",
+              artist: "Utagawa Hiroshige",
+              why: "La lluvia domina toda la composición.",
+              url: "https://es.wikipedia.org/wiki/Cien_famosas_vistas_de_Edo",
+            },
+            {
+              title: "Calle de París, día lluvioso",
+              artist: "Gustave Caillebotte",
+              why: "Perfecta para una ciudad bajo la lluvia.",
+              url: "https://es.wikipedia.org/wiki/Calle_de_Par%C3%ADs,_d%C3%ADa_lluvioso",
+            },
+          ],
+          cold: [
+            {
+              title: "Cazadores en la nieve",
+              artist: "Pieter Bruegel",
+              why: "Una representación clásica del frío.",
+              url: "https://es.wikipedia.org/wiki/Cazadores_en_la_nieve",
+            },
+            {
+              title: "La gran ola de Kanagawa",
+              artist: "Hokusai",
+              why: "Sensación fría y poderosa del paisaje.",
+              url: "https://es.wikipedia.org/wiki/La_gran_ola_de_Kanagawa",
+            },
+          ],
+          hot: [
+            {
+              title: "La terraza del café",
+              artist: "Vincent van Gogh",
+              why: "Colores cálidos para un ambiente caluroso.",
+              url: "https://es.wikipedia.org/wiki/Terraza_de_caf%C3%A9_por_la_noche",
+            },
+            {
+              title: "La playa de Trouville",
+              artist: "Eugène Boudin",
+              why: "Una escena luminosa de verano.",
+              url: "https://es.wikipedia.org/wiki/Eug%C3%A8ne_Boudin",
+            },
+          ],
+          foggy: [
+            {
+              title: "El Parlamento, efecto niebla",
+              artist: "Claude Monet",
+              why: "La niebla es protagonista de la escena.",
+              url: "https://es.wikipedia.org/wiki/Las_Casas_del_Parlamento,_efecto_niebla",
+            },
+            {
+              title: "Mañana brumosa en el río",
+              artist: "Jean-Baptiste-Camille Corot",
+              why: "Atmosfera suave y difusa.",
+              url: "https://es.wikipedia.org/wiki/Jean-Baptiste-Camille_Corot",
+            },
+          ],
+        };
+
+        const WEATHER = {
+          0: ["☀️", "Despejado", "sunny"],
+          1: ["🌤️", "Principalmente despejado", "sunny"],
+          2: ["⛅", "Parcialmente nublado", "cloudy"],
+          3: ["☁️", "Nublado", "cloudy"],
+          45: ["🌫️", "Niebla", "foggy"],
+          48: ["🌫️", "Niebla", "foggy"],
+          51: ["🌦️", "Llovizna", "rainy"],
+          53: ["🌦️", "Llovizna", "rainy"],
+          55: ["🌧️", "Llovizna intensa", "rainy"],
+          61: ["🌧️", "Lluvia", "rainy"],
+          63: ["🌧️", "Lluvia moderada", "rainy"],
+          65: ["🌧️", "Lluvia intensa", "rainy"],
+          71: ["❄️", "Nieve", "cold"],
+          73: ["❄️", "Nieve moderada", "cold"],
+          75: ["❄️", "Nieve intensa", "cold"],
+          80: ["🌦️", "Chubascos", "rainy"],
+          81: ["🌦️", "Chubascos moderados", "rainy"],
+          82: ["🌧️", "Chubascos intensos", "rainy"],
+          95: ["⛈️", "Tormenta", "rainy"],
+          96: ["⛈️", "Tormenta con granizo", "rainy"],
+          99: ["⛈️", "Tormenta con granizo", "rainy"],
+        };
+
+        function getPainting(profile, temperature, weatherCode) {
+          /*
+           * La recomendación depende directamente del clima actual.
+           * No es aleatoria: cada condición meteorológica tiene
+           * una selección de pinturas coherente con el ambiente.
+           */
+          const options = PAINTINGS[profile] || PAINTINGS.cloudy;
+
+          // Elegimos de forma estable una pintura según la temperatura
+          // y el código meteorológico para que la recomendación pueda
+          // cambiar cuando realmente cambie el clima.
+          const seed = Math.abs(
+            Math.round(Number(temperature) * 10) + Number(weatherCode || 0),
+          );
+
+          return options[seed % options.length];
+        }
+
+        function cityFromInput(value) {
+          const query = value.trim().toLowerCase();
+          if (!query) return null;
+
+          return (
+            CITIES.find(
+              (city) =>
+                city.name.toLowerCase() === query ||
+                city.name.toLowerCase().includes(query),
+            ) || null
+          );
+        }
+
+        openWindow({
+          id: "w-weatherart",
+          title: "WeatherArt.app",
+          x: 20,
+          y: 20,
+          w: 270,
+          h: 315,
+
+          content:
+            '<div class="weather-app" style="display:flex;flex-direction:column;height:100%;gap:5px;font-size:11px;">' +
+            '<div style="display:flex;gap:4px;align-items:center;">' +
+            '<input id="waCityInput" type="text" placeholder="Escribe una ciudad..." ' +
+            'style="flex:1;min-width:0;height:21px;padding:2px 5px;border:1px solid var(--screen-text);' +
+            'background:rgba(255,255,255,.55);color:var(--screen-text);font:inherit;outline:none;">' +
+            '<button id="waSearch" class="paint-btn" style="font-size:10px;padding:3px 6px;">OK</button>' +
+            "</div>" +
+            '<div style="display:flex;gap:3px;flex-wrap:wrap;max-height:28px;overflow:hidden;">' +
+            CITIES.slice(0, 4)
+              .map(
+                (city, i) =>
+                  '<button class="paint-btn wa-city-btn" data-index="' +
+                  i +
+                  '" ' +
+                  'style="font-size:9px;padding:2px 5px;line-height:1;">' +
+                  city.name +
+                  "</button>",
+              )
+              .join("") +
+            "</div>" +
+            '<div id="waResult" style="flex:1;overflow:auto;border:2px solid var(--screen-text);' +
+            'padding:8px;background:rgba(12,58,47,.05);line-height:1.35;">' +
+            '<div style="text-align:center;padding-top:22px;">' +
+            '<div style="font-size:24px;">🌤️</div>' +
+            '<div style="margin-top:5px;">Escribe una ciudad para consultar el clima.</div>' +
+            '<small style="opacity:.7;">Ejemplo: Bogotá</small>' +
+            "</div>" +
+            "</div>" +
+            '<div style="display:flex;justify-content:space-between;align-items:center;font-size:9px;opacity:.75;">' +
+            '<span id="waStatus">API: esperando</span>' +
+            '<button id="waRefresh" class="paint-btn" style="font-size:9px;padding:2px 5px;">↻ Actualizar</button>' +
+            "</div>" +
+            "</div>",
+
+          onReady: function (win) {
+            const input = win.querySelector("#waCityInput");
+            const search = win.querySelector("#waSearch");
+            const refresh = win.querySelector("#waRefresh");
+            const result = win.querySelector("#waResult");
+            const status = win.querySelector("#waStatus");
+            const buttons = win.querySelectorAll(".wa-city-btn");
+
+            let selectedCity = CITIES[0];
+
+            function showError(message) {
+              status.textContent = "API: error";
+              result.innerHTML =
+                '<div style="text-align:center;padding:18px 5px;">' +
+                '<div style="font-size:22px;">⚠️</div>' +
+                "<b>No se pudo obtener el clima</b><br>" +
+                "<small>" +
+                message +
+                "</small>" +
+                "</div>";
+            }
+
+            async function loadWeather(city) {
+              selectedCity = city;
+              input.value = city.name;
+
+              status.textContent = "API: consultando...";
+              result.innerHTML =
+                '<div style="text-align:center;padding:28px 5px;">' +
+                '<div style="font-size:22px;">↻</div>' +
+                "<div>Consultando clima real...</div>" +
+                "</div>";
+
+              const url =
+                "https://api.open-meteo.com/v1/forecast" +
+                "?latitude=" +
+                city.lat +
+                "&longitude=" +
+                city.lon +
+                "&current=temperature_2m,relative_humidity_2m,apparent_temperature," +
+                "precipitation,weather_code,cloud_cover,wind_speed_10m" +
+                "&temperature_unit=celsius" +
+                "&wind_speed_unit=kmh" +
+                "&timezone=auto";
+
+              try {
+                const response = await fetch(url);
+
+                if (!response.ok) {
+                  throw new Error("HTTP " + response.status);
+                }
+
+                const data = await response.json();
+                const current = data.current;
+                const weather = WEATHER[current.weather_code] || [
+                  "🌤️",
+                  "Condición desconocida",
+                  "cloudy",
+                ];
+                const painting = getPainting(
+                  current.temperature_2m,
+                  current.temperature_2m,
+                  current.weather_code,
+                );
+
+                const temperature = Math.round(current.temperature_2m);
+                const feels = Math.round(current.apparent_temperature);
+                const humidity = Math.round(current.relative_humidity_2m);
+                const wind = Math.round(current.wind_speed_10m);
+                const clouds = Math.round(current.cloud_cover);
+                const rain = Number(current.precipitation || 0).toFixed(1);
+
+                result.innerHTML =
+                  '<div style="text-align:center;">' +
+                  '<div style="font-size:34px;line-height:1;">' +
+                  weather[0] +
+                  "</div>" +
+                  '<div style="font-size:15px;font-weight:bold;margin-top:3px;">' +
+                  city.name +
+                  "</div>" +
+                  '<div style="font-size:11px;">' +
+                  weather[1] +
+                  "</div>" +
+                  '<div style="font-size:36px;font-weight:bold;line-height:1.1;margin:7px 0;">' +
+                  temperature +
+                  "°C" +
+                  "</div>" +
+                  '<div style="font-size:9px;opacity:.75;">Sensación ' +
+                  feels +
+                  "°C</div>" +
+                  "</div>" +
+                  '<hr style="border:none;border-top:1px solid var(--screen-text);opacity:.25;margin:8px 0;">' +
+                  '<div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;font-size:10px;">' +
+                  "<div>💧 Humedad<br><b>" +
+                  humidity +
+                  "%</b></div>" +
+                  '<div style="font-size:10px;">💨 Viento<br><b>' +
+                  wind +
+                  " km/h</b></div>" +
+                  "<div>☁️ Nubes<br><b>" +
+                  clouds +
+                  "%</b></div>" +
+                  "<div>🌧️ Lluvia<br><b>" +
+                  rain +
+                  " mm</b></div>" +
+                  "</div>" +
+                  '<div style="margin:6px 0 8px;padding:7px;border:2px solid var(--screen-text);' +
+                  'background:rgba(255,255,255,.25);">' +
+                  '<div style="font-size:12px;font-weight:bold;opacity:.75;">PINTURA RECOMENDADA</div>' +
+                  '<div style="font-size:14px;font-weight:bold;margin-top:3px;line-height:1.15;">' +
+                  "🎨 " +
+                  painting.title +
+                  "</div>" +
+                  '<div style="font-size:14px;margin-top:2px;">' +
+                  "— " +
+                  painting.artist +
+                  "</div>" +
+                  '<div style="font-size:13px;margin-top:4px;line-height:1.25;">' +
+                  painting.why +
+                  "</div>" +
+                  '<div style="font-size:12px;margin-top:4px;opacity:.65;">' +
+                  "Elegida para: " +
+                  weather[1] +
+                  "</div>" +
+                  '<a href="' +
+                  painting.url +
+                  '" target="_blank" rel="noopener noreferrer" ' +
+                  'style="display:inline-block;margin-top:6px;padding:3px 6px;border:1px solid var(--screen-text);' +
+                  'color:var(--screen-text);text-decoration:none;font-size:9px;background:rgba(255,255,255,.35);">' +
+                  "Ver pintura ↗" +
+                  "</a>" +
+                  "</div>" +
+                  '<div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;font-size:10px; margin-bottom:200px;">';
+
+                status.textContent = "API: ✓ Open-Meteo";
+              } catch (error) {
+                console.error("WeatherArt:", error);
+                showError("Revisa tu conexión a Internet.");
+              }
+            }
+
+            function searchCity() {
+              const city = cityFromInput(input.value);
+
+              if (!city) {
+                showError(
+                  "Ciudad no disponible. Prueba: Bogotá, Medellín, Cali o París.",
+                );
+                return;
+              }
+
+              loadWeather(city);
+            }
+
+            search.addEventListener("click", searchCity);
+
+            input.addEventListener("keydown", function (event) {
+              if (event.key === "Enter") {
+                searchCity();
+              }
+            });
+
+            refresh.addEventListener("click", function () {
+              loadWeather(selectedCity);
+            });
+
+            buttons.forEach(function (button) {
+              button.addEventListener("click", function () {
+                const index = Number(button.dataset.index);
+                loadWeather(CITIES[index]);
+              });
+            });
+
+            // Bogotá por defecto.
+            loadWeather(CITIES[0]);
+          },
+        });
+      }
+
+      /* ============================================================
+         DESKTOP ICONS
+      ============================================================ */
       const desktopIcons = [
         { name: "disk", label: "Macintosh HD", onOpen: openMacHDWindow },
         { name: "folder", label: "Documentos", onOpen: openDocumentsWindow },
         { name: "brush", label: "PixelPaint", onOpen: openPaintWindow },
+        { name: "pong", label: "Pong.app", onOpen: openPongWindow },
+        {
+          name: "weatherart",
+          label: "WeatherArt",
+          onOpen: openWeatherArtWindow,
+        },
         { name: "trash", label: "Papelera", onOpen: openTrashWindow },
       ];
       const desktopIconsEl = document.getElementById("desktopIcons");
@@ -1453,12 +2309,17 @@
         const el = document.createElement("div");
         el.className = "desk-icon";
         el.innerHTML = `<div class="glyph">${ICONS[cfg.name]}</div><div class="lbl">${cfg.label}</div>`;
+        let lastTap = 0;
         el.addEventListener("click", (e) => {
           e.stopPropagation();
           document
             .querySelectorAll(".desk-icon")
             .forEach((d) => d.classList.remove("selected"));
           el.classList.add("selected");
+          // double-tap on touch
+          const now = Date.now();
+          if (now - lastTap < 350) cfg.onOpen();
+          lastTap = now;
         });
         el.addEventListener("dblclick", (e) => {
           e.stopPropagation();
@@ -1471,21 +2332,6 @@
           .querySelectorAll(".desk-icon")
           .forEach((d) => d.classList.remove("selected"));
       });
-
-      /* ============================================================
-   ESCALADO RESPONSIVE DEL ESCENARIO
-   ============================================================ */
-      function fitStage() {
-        const wrap = document.getElementById("sceneWrap");
-        const scale = Math.min(
-          1,
-          (window.innerWidth * 0.95) / 470,
-          (window.innerHeight * 0.95) / 400,
-        );
-        wrap.style.transform = `scale(${scale})`;
-      }
-      fitStage();
-      window.addEventListener("resize", fitStage);
     </script>
   </body>
 </html>
