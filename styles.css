@@ -1950,9 +1950,9 @@ main {
 }
 .retro-station__grid {
   display: grid;
-  grid-template-columns: 1fr 420px;
+  grid-template-columns: 1fr 580px;
   gap: 48px;
-  align-items: center;
+  align-items: start;
 }
 .retro-station__title {
   font-family: var(--font-display);
@@ -1995,9 +1995,9 @@ main {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  justify-self: center;
+  justify-self: start;
   width: 100%;
-  max-width: 520px;
+  max-width: 580px;
 }
 .retro-mac-frame__bar {
   display: flex;
@@ -2013,11 +2013,11 @@ main {
   color: var(--text-dim);
   letter-spacing: 0.03em;
 }
-/* aspect-ratio box: the Mac stage is 470×590, ratio ≈ 1.255  */
+/* aspect-ratio box: mac body only, 470×370, ratio = 78.7% */
 .retro-mac-frame__aspect {
   position: relative;
   width: 100%;
-  padding-bottom: 125.5%; /* 590/470 * 100 */
+  padding-bottom: 78.7%;
   overflow: hidden;
 }
 .retro-mac-frame__iframe {
@@ -2029,15 +2029,10 @@ main {
   background: transparent;
   display: block;
 }
-/* clamp so the mac doesn't get too tall on wide screens */
-@media (min-width: 900px) {
-  .retro-mac-frame__aspect {
-    padding-bottom: min(125.5%, 560px);
-  }
-}
-@media (max-width: 600px) {
+@media (max-width: 980px) {
   .retro-mac-frame {
-    max-width: 100%;
+    max-width: min(100%, 480px);
+    justify-self: center;
   }
 }
 
@@ -2231,6 +2226,9 @@ main {
   }
   .retro-station__text {
     max-width: 60ch;
+  }
+  .retro-mac-frame {
+    justify-self: center;
   }
 
   /* QUICK_ACCESS pasa a ser un desplegable en móvil/tablet */

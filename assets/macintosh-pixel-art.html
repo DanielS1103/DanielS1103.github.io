@@ -51,7 +51,7 @@
       .stage {
         position: relative;
         width: 470px;
-        height: 590px; /* taller to include keyboard+mouse */
+        height: 370px; /* mac body only */
         user-select: none;
         flex-shrink: 0;
       }
@@ -769,64 +769,6 @@
             <div class="mac-base"></div>
           </div>
         </div>
-
-        <!-- KEYBOARD -->
-        <div class="keyboard">
-          <div class="keyboard-bg" id="kbBg"></div>
-          <div class="kb-keys">
-            <div class="kb-row">
-              <div class="key"></div>
-              <div class="key"></div>
-              <div class="key"></div>
-              <div class="key"></div>
-              <div class="key"></div>
-              <div class="key"></div>
-              <div class="key"></div>
-              <div class="key"></div>
-              <div class="key"></div>
-              <div class="key"></div>
-              <div class="key"></div>
-              <div class="key wide"></div>
-            </div>
-            <div class="kb-row">
-              <div class="key wide"></div>
-              <div class="key"></div>
-              <div class="key"></div>
-              <div class="key"></div>
-              <div class="key"></div>
-              <div class="key"></div>
-              <div class="key"></div>
-              <div class="key"></div>
-              <div class="key"></div>
-              <div class="key"></div>
-              <div class="key"></div>
-              <div class="key"></div>
-            </div>
-            <div class="kb-row">
-              <div class="key wide"></div>
-              <div class="key"></div>
-              <div class="key"></div>
-              <div class="key"></div>
-              <div class="key"></div>
-              <div class="key"></div>
-              <div class="key"></div>
-              <div class="key"></div>
-              <div class="key"></div>
-              <div class="key wide"></div>
-            </div>
-            <div class="kb-row">
-              <div class="key wide"></div>
-              <div class="key space"></div>
-              <div class="key wide"></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- MOUSE -->
-        <div class="mouse-wrap">
-          <div class="mouse-bg" id="mouseBg"></div>
-          <div class="mouse-seam"></div>
-        </div>
       </div>
     </div>
 
@@ -1131,16 +1073,6 @@
         38,
         BEZEL_PALETTE,
       );
-      document.getElementById("kbBg").innerHTML = pixelPanel(
-        70,
-        16,
-        KB_PALETTE,
-      );
-      document.getElementById("mouseBg").innerHTML = pixelPanel(
-        16,
-        13,
-        MOUSE_PALETTE,
-      );
       document.getElementById("bootIcon").innerHTML = ICONS.happyMac;
       document.getElementById("appleBadge").innerHTML = ICONS.appleRainbow;
       document.getElementById("menuApple").innerHTML = ICONS.appleRainbow;
@@ -1152,11 +1084,12 @@
       function fitStage() {
         const wrap = document.getElementById("sceneWrap");
         const stageW = 470,
-          stageH = 590;
-        const avW = window.innerWidth * 0.98;
-        const avH = window.innerHeight * 0.98;
-        const scale = Math.min(1, avW / stageW, avH / stageH);
+          stageH = 370;
+        const avW = window.innerWidth;
+        const avH = window.innerHeight;
+        const scale = Math.min(avW / stageW, avH / stageH);
         wrap.style.transform = `scale(${scale})`;
+        wrap.style.transformOrigin = "top center";
         wrap.style.width = stageW + "px";
         wrap.style.height = stageH + "px";
       }
